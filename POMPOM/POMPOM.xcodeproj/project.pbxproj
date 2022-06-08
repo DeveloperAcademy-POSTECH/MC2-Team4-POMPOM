@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		13C68565826818C883BCD969 /* Pods_POMPOMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A233C9F7EE2F43C44A16412C /* Pods_POMPOMTests.framework */; };
 		575BF0DA7306934B5512BD95 /* Pods_POMPOM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DDE9E9E18A3E669433BA19 /* Pods_POMPOM.framework */; };
+		AEABA1FF28506BDE004665A7 /* JeniView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABA1FE28506BDE004665A7 /* JeniView.swift */; };
 		C04FCAF6284E24020040F790 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04FCAF5284E24020040F790 /* GoogleService-Info.plist */; };
 		C0754BA7284F1921005DBAFC /* DummyNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0754BA6284F1921005DBAFC /* DummyNetworkManager.swift */; };
 		C0754BAA284F1936005DBAFC /* DummyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0754BA9284F1936005DBAFC /* DummyViewModel.swift */; };
@@ -49,6 +50,7 @@
 		893FA964D491FDFD16ACC4FD /* Pods-POMPOM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOM.debug.xcconfig"; path = "Target Support Files/Pods-POMPOM/Pods-POMPOM.debug.xcconfig"; sourceTree = "<group>"; };
 		9FDC8B0E53B5AF6CF8AA4472 /* Pods-POMPOMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOMTests.debug.xcconfig"; path = "Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A233C9F7EE2F43C44A16412C /* Pods_POMPOMTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_POMPOMTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEABA1FE28506BDE004665A7 /* JeniView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeniView.swift; sourceTree = "<group>"; };
 		B4D6499D492346083126C119 /* Pods-POMPOM-POMPOMUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOM-POMPOMUITests.debug.xcconfig"; path = "Target Support Files/Pods-POMPOM-POMPOMUITests/Pods-POMPOM-POMPOMUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C04FCAF5284E24020040F790 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C0754BA6284F1921005DBAFC /* DummyNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyNetworkManager.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				C0A779C82849E1C50086810C /* ContentView.swift */,
+				AEABA1FE28506BDE004665A7 /* JeniView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEABA1FF28506BDE004665A7 /* JeniView.swift in Sources */,
 				C0A779C92849E1C50086810C /* ContentView.swift in Sources */,
 				C0ECD08F28503D8A0005EC08 /* Secret.swift in Sources */,
 				C0754BA7284F1921005DBAFC /* DummyNetworkManager.swift in Sources */,
