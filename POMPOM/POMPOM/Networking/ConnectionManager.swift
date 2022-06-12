@@ -11,7 +11,18 @@ import FirebaseFirestore
 struct ConnectionManager {
     static private let usersRef = Firestore.firestore().collection("users")
     
-    static func saveCode(code: String){
+    static func isUniqueCode(code: String) async -> Bool {
+        var returnValue: Bool = false
+        
+        do {
+            let querySnapShot = try await usersRef.whereField("code", isEqualTo: code).getDocuments()
+            returnValue = querySnapShot.isEmpty ? true : false
+        } catch { }
+        
+        return returnValue
+    }
+    
+    static func saveCode(code: String) {
         usersRef.addDocument(data: [
             "code": code
         ]) { err in
