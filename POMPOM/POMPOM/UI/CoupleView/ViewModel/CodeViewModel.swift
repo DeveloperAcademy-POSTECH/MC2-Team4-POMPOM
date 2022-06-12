@@ -29,7 +29,7 @@ struct CodeViewModel {
         
         repeat {
             newCode = generateCode(length: 10)
-        } while await ConnectionManager.isUniqueCode(code: newCode) == false
+        } while await ConnectionManager.isExistingCode(code: newCode)
         
         return newCode
     }
@@ -40,5 +40,22 @@ struct CodeViewModel {
         return String((0 ..< length).map { _ in elements.randomElement()! })
     }
     
-    
+    static func connectWithPartner(partnerCode: String) async throws {
+        // partnerCode가 존재하는지부터 확인
+        guard await ConnectionManager.isExistingCode(code: partnerCode) else {
+            throw ConnectionManagerError.invalidPartnerCode
+        }
+        
+        let ownCode: String = await getCode()
+        
+        let ownId: String = await ConnectionManager.getIdByCode(code: ownCode)
+        let partnerId: String = await ConnectionManager.getIdByCode(code: partnerCode)
+        
+        ConnectionManager.updatePartnerCode(oneId: ownId, anotherCode: partnerCode)
+        ConnectionManager.updatePartnerCode(oneId: partnerId, anotherCode: ownCode)
+    }
+}
+
+enum ConnectionManagerError: Error {
+    case invalidPartnerCode // 일치하는 파트너 코드가 없는 경우
 }
