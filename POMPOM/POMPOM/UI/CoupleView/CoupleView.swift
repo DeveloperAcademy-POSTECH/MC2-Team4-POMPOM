@@ -97,12 +97,10 @@ struct CoupleView: View {
                 }
             }
             .sheet(isPresented: $codeInputViewIsPresented, content: {
-                CodeInputView(textInput: $codeInput) {
-                    
-                }
+                CodeInputView(textInput: $codeInput)
             })
             .sheet(isPresented: $codeOutputViewIsPresented, content: {
-                CodeOutputView(code: "ASDFGHHH") {
+                CodeOutputView(code: .constant("ASDFGHHH")) {
                     
                 }
             })

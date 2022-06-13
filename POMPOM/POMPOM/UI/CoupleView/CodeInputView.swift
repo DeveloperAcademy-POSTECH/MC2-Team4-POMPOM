@@ -9,23 +9,24 @@ import SwiftUI
 
 struct CodeInputView: View {
     @Binding var textInput: String
-    let action: () -> ()
     
     var body: some View {
         CodeView(title: "초대코드 입력", content: {
             TextField("", text: _textInput)
                 .padding(.horizontal, 8)
                 .multilineTextAlignment(.center)
-        }, buttonTitle: "확인", buttonAction: action)
+        }, buttonTitle: "확인", buttonAction: {
+            Task {
+                try await CodeViewModel.connectWithPartner(partnerCode: textInput)
+            }
+        })
     }
 }
 
 struct CodeInputView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CodeInputView(textInput: .constant("")) {
-                
-            }
+            CodeInputView(textInput: .constant(""))
                 .navigationTitle("POMPOM")
                 .navigationBarTitleDisplayMode(.inline)
         }
