@@ -14,9 +14,10 @@
 		AB132FED2854BF500023DBD0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB132FEC2854BF500023DBD0 /* Constant.swift */; };
 		ABFEE2122855A86D007817D3 /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE2112855A86D007817D3 /* CodeView.swift */; };
 		ABFEE2142855F2C1007817D3 /* CommentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE2132855F2C1007817D3 /* CommentTextField.swift */; };
-		AEA32AA9285741C5006A31D4 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA32AA8285741C5006A31D4 /* ChatView.swift */; };
+		AEA32AA9285741C5006A31D4 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA32AA8285741C5006A31D4 /* TextFieldView.swift */; };
 		AEA32AAB285741CF006A31D4 /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA32AAA285741CF006A31D4 /* MessageListView.swift */; };
 		AEA32AAD285741DB006A31D4 /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA32AAC285741DB006A31D4 /* MessageBubbleView.swift */; };
+		AEA32AB328579A99006A31D4 /* SlideOverCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA32AB228579A99006A31D4 /* SlideOverCard.swift */; };
 		C04FCAF6284E24020040F790 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04FCAF5284E24020040F790 /* GoogleService-Info.plist */; };
 		C06CE14B2851DC0900BBDA68 /* CoupleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14A2851DC0900BBDA68 /* CoupleView.swift */; };
 		C06CE14E2851DC5100BBDA68 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14D2851DC5100BBDA68 /* CodeInputView.swift */; };
@@ -75,9 +76,10 @@
 		AB132FEC2854BF500023DBD0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		ABFEE2112855A86D007817D3 /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
 		ABFEE2132855F2C1007817D3 /* CommentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextField.swift; sourceTree = "<group>"; };
-		AEA32AA8285741C5006A31D4 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		AEA32AA8285741C5006A31D4 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		AEA32AAA285741CF006A31D4 /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
 		AEA32AAC285741DB006A31D4 /* MessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleView.swift; sourceTree = "<group>"; };
+		AEA32AB228579A99006A31D4 /* SlideOverCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverCard.swift; sourceTree = "<group>"; };
 		B4D6499D492346083126C119 /* Pods-POMPOM-POMPOMUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOM-POMPOMUITests.debug.xcconfig"; path = "Target Support Files/Pods-POMPOM-POMPOMUITests/Pods-POMPOM-POMPOMUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C04FCAF5284E24020040F790 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C059279A2852FF8C0071751A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -174,9 +176,10 @@
 		AEA32AA7285741B5006A31D4 /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
-				AEA32AA8285741C5006A31D4 /* ChatView.swift */,
+				AEA32AA8285741C5006A31D4 /* TextFieldView.swift */,
 				AEA32AAA285741CF006A31D4 /* MessageListView.swift */,
 				AEA32AAC285741DB006A31D4 /* MessageBubbleView.swift */,
+				AEA32AB228579A99006A31D4 /* SlideOverCard.swift */,
 			);
 			path = ChatView;
 			sourceTree = "<group>";
@@ -577,7 +580,7 @@
 				AEA32AAB285741CF006A31D4 /* MessageListView.swift in Sources */,
 				C06CE14B2851DC0900BBDA68 /* CoupleView.swift in Sources */,
 				C0754BA7284F1921005DBAFC /* DummyNetworkManager.swift in Sources */,
-				AEA32AA9285741C5006A31D4 /* ChatView.swift in Sources */,
+				AEA32AA9285741C5006A31D4 /* TextFieldView.swift in Sources */,
 				C06CE1592851DCD600BBDA68 /* CodeViewModel.swift in Sources */,
 				C0A779C72849E1C50086810C /* POMPOMApp.swift in Sources */,
 				C0F90CB32850729E00CC2C0E /* Secret.swift in Sources */,
@@ -591,6 +594,7 @@
 				C0A779C72849E1C50086810C /* POMPOMApp.swift in Sources */,
 				C06CE1602851DD6700BBDA68 /* NotificationManager.swift in Sources */,
 				D40F418628571FE70037B3EB /* OnboardingPageView.swift in Sources */,
+				AEA32AB328579A99006A31D4 /* SlideOverCard.swift in Sources */,
 				C06CE1572851DCB100BBDA68 /* FirebaseManager.swift in Sources */,
 				ABFEE2142855F2C1007817D3 /* CommentTextField.swift in Sources */,
 				C06CE1632851DD8500BBDA68 /* LoginView.swift in Sources */,
