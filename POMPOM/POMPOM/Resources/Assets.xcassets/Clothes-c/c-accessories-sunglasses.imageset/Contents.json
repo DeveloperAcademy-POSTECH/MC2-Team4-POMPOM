@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "top-shortB.png",
+      "filename" : "c-accessories-sunglasses.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "top-shortB@2x.png",
+      "filename" : "c-accessories-sunglasses@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "top-shortB@3x.png",
+      "filename" : "c-accessories-sunglasses@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
