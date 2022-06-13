@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		13C68565826818C883BCD969 /* Pods_POMPOMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A233C9F7EE2F43C44A16412C /* Pods_POMPOMTests.framework */; };
 		575BF0DA7306934B5512BD95 /* Pods_POMPOM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DDE9E9E18A3E669433BA19 /* Pods_POMPOM.framework */; };
+		AB132FE92854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */; };
+		AB132FEA2854BE5C0023DBD0 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */; };
+		AB132FED2854BF500023DBD0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB132FEC2854BF500023DBD0 /* Constant.swift */; };
+		ABFEE2122855A86D007817D3 /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE2112855A86D007817D3 /* CodeView.swift */; };
+		ABFEE2142855F2C1007817D3 /* CommentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE2132855F2C1007817D3 /* CommentTextField.swift */; };
+		AEA32AA9285741C5006A31D4 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA32AA8285741C5006A31D4 /* ChatView.swift */; };
+		AEA32AAB285741CF006A31D4 /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA32AAA285741CF006A31D4 /* MessageListView.swift */; };
+		AEA32AAD285741DB006A31D4 /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA32AAC285741DB006A31D4 /* MessageBubbleView.swift */; };
 		C04FCAF6284E24020040F790 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04FCAF5284E24020040F790 /* GoogleService-Info.plist */; };
 		C06CE14B2851DC0900BBDA68 /* CoupleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14A2851DC0900BBDA68 /* CoupleView.swift */; };
 		C06CE14E2851DC5100BBDA68 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14D2851DC5100BBDA68 /* CodeInputView.swift */; };
@@ -33,6 +41,8 @@
 		C0A779E92849E1C60086810C /* POMPOMUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779E82849E1C60086810C /* POMPOMUITestsLaunchTests.swift */; };
 		C0F90CB32850729E00CC2C0E /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F90CB22850729E00CC2C0E /* Secret.swift */; };
 		CD5064FE72AD933795FF0668 /* Pods_POMPOM_POMPOMUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3C5F2FE47AEF89866EEFA6 /* Pods_POMPOM_POMPOMUITests.framework */; };
+		D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F41832857135D0037B3EB /* OnboardingViewModel.swift */; };
+		D40F418628571FE70037B3EB /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F418528571FE70037B3EB /* OnboardingPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +70,14 @@
 		893FA964D491FDFD16ACC4FD /* Pods-POMPOM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOM.debug.xcconfig"; path = "Target Support Files/Pods-POMPOM/Pods-POMPOM.debug.xcconfig"; sourceTree = "<group>"; };
 		9FDC8B0E53B5AF6CF8AA4472 /* Pods-POMPOMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOMTests.debug.xcconfig"; path = "Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A233C9F7EE2F43C44A16412C /* Pods_POMPOMTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_POMPOMTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
+		AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		AB132FEC2854BF500023DBD0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		ABFEE2112855A86D007817D3 /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
+		ABFEE2132855F2C1007817D3 /* CommentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextField.swift; sourceTree = "<group>"; };
+		AEA32AA8285741C5006A31D4 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		AEA32AAA285741CF006A31D4 /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
+		AEA32AAC285741DB006A31D4 /* MessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleView.swift; sourceTree = "<group>"; };
 		B4D6499D492346083126C119 /* Pods-POMPOM-POMPOMUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOM-POMPOMUITests.debug.xcconfig"; path = "Target Support Files/Pods-POMPOM-POMPOMUITests/Pods-POMPOM-POMPOMUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C04FCAF5284E24020040F790 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C059279A2852FF8C0071751A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -89,7 +107,9 @@
 		C0A779E82849E1C60086810C /* POMPOMUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMPOMUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C0F90CB22850729E00CC2C0E /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		C0FF3531284E9FB6001B1129 /* POMPOM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = POMPOM.entitlements; sourceTree = "<group>"; };
-		C350ECAB77A213FE32F7F534 /* Pods-POMPOMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig"; sourceTree = "<group>"; };
+		C350ECAB77A213FE32F7F534 /* Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig"; sourceTree = "<group>"; };
+		D40F41832857135D0037B3EB /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		D40F418528571FE70037B3EB /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,9 +158,27 @@
 				B4D6499D492346083126C119 /* Pods-POMPOM-POMPOMUITests.debug.xcconfig */,
 				02339F4AD4C3D1D8C2D03564 /* Pods-POMPOM-POMPOMUITests.release.xcconfig */,
 				9FDC8B0E53B5AF6CF8AA4472 /* Pods-POMPOMTests.debug.xcconfig */,
-				C350ECAB77A213FE32F7F534 /* Pods-POMPOMTests.release.xcconfig */,
+				C350ECAB77A213FE32F7F534 /* Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		AB132FEB2854BF430023DBD0 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				AB132FEC2854BF500023DBD0 /* Constant.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		AEA32AA7285741B5006A31D4 /* ChatView */ = {
+			isa = PBXGroup;
+			children = (
+				AEA32AA8285741C5006A31D4 /* ChatView.swift */,
+				AEA32AAA285741CF006A31D4 /* MessageListView.swift */,
+				AEA32AAC285741DB006A31D4 /* MessageBubbleView.swift */,
+			);
+			path = ChatView;
 			sourceTree = "<group>";
 		};
 		C04795C1284F15C10040646A /* System */ = {
@@ -154,6 +192,8 @@
 		C04795C4284F15D20040646A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */,
+				AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */,
 				C0A779CD2849E1C60086810C /* Preview Assets.xcassets */,
 				C04FCAF5284E24020040F790 /* GoogleService-Info.plist */,
 				C0A779CA2849E1C60086810C /* Assets.xcassets */,
@@ -165,6 +205,7 @@
 		C04795C5284F15D20040646A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				AEA32AA7285741B5006A31D4 /* ChatView */,
 				C06CE1612851DD7700BBDA68 /* LoginView */,
 				C06CE15C2851DD1C00BBDA68 /* Onboarding */,
 				C06CE14C2851DC2600BBDA68 /* CoupleView */,
@@ -192,6 +233,8 @@
 				C06CE14A2851DC0900BBDA68 /* CoupleView.swift */,
 				C06CE14D2851DC5100BBDA68 /* CodeInputView.swift */,
 				C06CE14F2851DC5C00BBDA68 /* CodeOutputView.swift */,
+				ABFEE2112855A86D007817D3 /* CodeView.swift */,
+				ABFEE2132855F2C1007817D3 /* CommentTextField.swift */,
 			);
 			path = CoupleView;
 			sourceTree = "<group>";
@@ -209,6 +252,8 @@
 			isa = PBXGroup;
 			children = (
 				C06CE15D2851DD4800BBDA68 /* OnboardingView.swift */,
+				D40F41832857135D0037B3EB /* OnboardingViewModel.swift */,
+				D40F418528571FE70037B3EB /* OnboardingPageView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -247,6 +292,7 @@
 		C0A779C52849E1C50086810C /* POMPOM */ = {
 			isa = PBXGroup;
 			children = (
+				AB132FEB2854BF430023DBD0 /* Constants */,
 				C059279A2852FF8C0071751A /* Info.plist */,
 				C0F90CB12850728F00CC2C0E /* Secrets */,
 				C0FF3531284E9FB6001B1129 /* POMPOM.entitlements */,
@@ -392,7 +438,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB132FEA2854BE5C0023DBD0 /* Montserrat-Bold.ttf in Resources */,
 				C0A779CE2849E1C60086810C /* Preview Assets.xcassets in Resources */,
+				AB132FE92854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf in Resources */,
 				C0A779CB2849E1C60086810C /* Assets.xcassets in Resources */,
 				C04FCAF6284E24020040F790 /* GoogleService-Info.plist in Resources */,
 			);
@@ -526,21 +574,29 @@
 				C06CE1532851DC7F00BBDA68 /* CoupleViewModel.swift in Sources */,
 				C0F90CB32850729E00CC2C0E /* Secret.swift in Sources */,
 				C06CE15E2851DD4800BBDA68 /* OnboardingView.swift in Sources */,
+				AEA32AAB285741CF006A31D4 /* MessageListView.swift in Sources */,
 				C06CE14B2851DC0900BBDA68 /* CoupleView.swift in Sources */,
 				C0754BA7284F1921005DBAFC /* DummyNetworkManager.swift in Sources */,
+				AEA32AA9285741C5006A31D4 /* ChatView.swift in Sources */,
 				C06CE1592851DCD600BBDA68 /* CodeViewModel.swift in Sources */,
 				C0A779C72849E1C50086810C /* POMPOMApp.swift in Sources */,
 				C0F90CB32850729E00CC2C0E /* Secret.swift in Sources */,
 				C06CE1502851DC5C00BBDA68 /* CodeOutputView.swift in Sources */,
 				C06CE14E2851DC5100BBDA68 /* CodeInputView.swift in Sources */,
+				ABFEE2122855A86D007817D3 /* CodeView.swift in Sources */,
 				C06CE1552851DCA100BBDA68 /* LoginManager.swift in Sources */,
 				C0754BA7284F1921005DBAFC /* DummyNetworkManager.swift in Sources */,
 				C06CE15B2851DCFE00BBDA68 /* ConnectionManager.swift in Sources */,
+				AB132FED2854BF500023DBD0 /* Constant.swift in Sources */,
 				C0A779C72849E1C50086810C /* POMPOMApp.swift in Sources */,
 				C06CE1602851DD6700BBDA68 /* NotificationManager.swift in Sources */,
+				D40F418628571FE70037B3EB /* OnboardingPageView.swift in Sources */,
 				C06CE1572851DCB100BBDA68 /* FirebaseManager.swift in Sources */,
+				ABFEE2142855F2C1007817D3 /* CommentTextField.swift in Sources */,
 				C06CE1632851DD8500BBDA68 /* LoginView.swift in Sources */,
 				C0A779D32849E1C60086810C /* Model.xcdatamodeld in Sources */,
+				D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */,
+				AEA32AAD285741DB006A31D4 /* MessageBubbleView.swift in Sources */,
 				C06CE1652851DDAB00BBDA68 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -783,7 +839,7 @@
 		};
 		C0A779F12849E1C60086810C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C350ECAB77A213FE32F7F534 /* Pods-POMPOMTests.release.xcconfig */;
+			baseConfigurationReference = C350ECAB77A213FE32F7F534 /* Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
