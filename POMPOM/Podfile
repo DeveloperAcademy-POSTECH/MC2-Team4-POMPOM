@@ -10,8 +10,6 @@ target 'POMPOM' do
   # Add the pods for the Firebase products you want to use in your app
   # For example, to use Firebase Authentication and Cloud Firestore
   pod 'FirebaseAuth'
-  pod 'GoogleSignIn'
-  pod 'GoogleSignInSwiftSupport'
   pod 'FirebaseFirestore'
 
   target 'POMPOMTests' do

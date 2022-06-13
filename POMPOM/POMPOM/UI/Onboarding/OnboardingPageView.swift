@@ -18,20 +18,19 @@ struct OnboardingPageView: View {
     var body: some View {
         VStack {
             Spacer()
-                .frame(height: 84)
+                .frame(height: Constant.screenHeight * (84 / 844))
             Text(onboardingViewModel.title)
                 .font(.system(size: 30, weight: .heavy))
-                .frame(height: 20)
+                .frame(height: Constant.screenHeight * (20 / 844))
                 .padding(17)
             Text(onboardingViewModel.message)
                 .font(.system(size: 17))
                 .multilineTextAlignment(.center)
                 .lineSpacing(6)
             Spacer()
-                .frame(height: 80)
+                .frame(height: Constant.screenHeight * (80 / 844))
             HStack {
                 Spacer()
-                    .frame(width: onboardingViewModel.ImageSpacer)
                 Image(onboardingViewModel.onboardingImage)
                 Spacer()
             }
@@ -46,14 +45,14 @@ struct OnboardingPageView: View {
                             }) {
                                 Text("시작하기")
                                     .padding()
-                                    .frame(width: 302, height: 50)
+                                    .frame(width: Constant.screenWidth * (302 / 390), height: Constant.screenHeight * (50 / 844))
                                     .foregroundColor(.white)
                                     .background(Color.black)
                                     .cornerRadius(8)
                             }
                             .padding(20)
                             Spacer()
-                                .frame(height: 40)
+                                .frame(height: Constant.screenHeight * (40 / 844))
 
             }
          }
@@ -62,7 +61,11 @@ struct OnboardingPageView: View {
 
 //struct OnboardingPageView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        OnboardingPageView()
+//        OnboardingPageView(onboardingViewModel: OnboardingViewModel(
+//            title: "코디 너로 결정!",
+//            message: "내 옷장에 색상을 넣고\n같이 컬러 조합을 맞춰봐요",
+//            onboardingImage: "ChooseClothes",
+//            isLast: false))
 //    }
 //}
 

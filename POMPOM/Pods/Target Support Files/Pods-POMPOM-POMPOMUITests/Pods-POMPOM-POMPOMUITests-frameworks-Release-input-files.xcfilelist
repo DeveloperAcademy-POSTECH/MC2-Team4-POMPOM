@@ -1,16 +1,12 @@
 ${PODS_ROOT}/Target Support Files/Pods-POMPOM-POMPOMUITests/Pods-POMPOM-POMPOMUITests-frameworks.sh
-${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework
 ${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseFirestore/FirebaseFirestore.framework
-${BUILT_PRODUCTS_DIR}/GTMAppAuth/GTMAppAuth.framework
 ${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework
 ${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework
-${BUILT_PRODUCTS_DIR}/GoogleSignIn/GoogleSignIn.framework
-${BUILT_PRODUCTS_DIR}/GoogleSignInSwiftSupport/GoogleSignInSwift.framework
 ${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework
 ${BUILT_PRODUCTS_DIR}/Libuv-gRPC/uv.framework
 ${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework

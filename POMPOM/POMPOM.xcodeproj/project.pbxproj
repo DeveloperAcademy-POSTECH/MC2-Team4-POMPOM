@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13C68565826818C883BCD969 /* Pods_POMPOMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A233C9F7EE2F43C44A16412C /* Pods_POMPOMTests.framework */; };
 		575BF0DA7306934B5512BD95 /* Pods_POMPOM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DDE9E9E18A3E669433BA19 /* Pods_POMPOM.framework */; };
 		AB132FE92854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */; };
 		AB132FEA2854BE5C0023DBD0 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */; };
@@ -22,7 +21,6 @@
 		C06CE14E2851DC5100BBDA68 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14D2851DC5100BBDA68 /* CodeInputView.swift */; };
 		C06CE1502851DC5C00BBDA68 /* CodeOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14F2851DC5C00BBDA68 /* CodeOutputView.swift */; };
 		C06CE1532851DC7F00BBDA68 /* CoupleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE1522851DC7F00BBDA68 /* CoupleViewModel.swift */; };
-		C06CE1552851DCA100BBDA68 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE1542851DCA100BBDA68 /* LoginManager.swift */; };
 		C06CE1572851DCB100BBDA68 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE1562851DCB100BBDA68 /* FirebaseManager.swift */; };
 		C06CE1592851DCD600BBDA68 /* CodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE1582851DCD600BBDA68 /* CodeViewModel.swift */; };
 		C06CE15B2851DCFE00BBDA68 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE15A2851DCFE00BBDA68 /* ConnectionManager.swift */; };
@@ -36,31 +34,10 @@
 		C0A779CB2849E1C60086810C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CA2849E1C60086810C /* Assets.xcassets */; };
 		C0A779CE2849E1C60086810C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CD2849E1C60086810C /* Preview Assets.xcassets */; };
 		C0A779D32849E1C60086810C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0A779D12849E1C60086810C /* Model.xcdatamodeld */; };
-		C0A779DD2849E1C60086810C /* POMPOMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779DC2849E1C60086810C /* POMPOMTests.swift */; };
-		C0A779E72849E1C60086810C /* POMPOMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779E62849E1C60086810C /* POMPOMUITests.swift */; };
-		C0A779E92849E1C60086810C /* POMPOMUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779E82849E1C60086810C /* POMPOMUITestsLaunchTests.swift */; };
 		C0F90CB32850729E00CC2C0E /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F90CB22850729E00CC2C0E /* Secret.swift */; };
-		CD5064FE72AD933795FF0668 /* Pods_POMPOM_POMPOMUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3C5F2FE47AEF89866EEFA6 /* Pods_POMPOM_POMPOMUITests.framework */; };
 		D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F41832857135D0037B3EB /* OnboardingViewModel.swift */; };
 		D40F418628571FE70037B3EB /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F418528571FE70037B3EB /* OnboardingPageView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C0A779D92849E1C60086810C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C0A779BB2849E1C50086810C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C0A779C22849E1C50086810C;
-			remoteInfo = POMPOM;
-		};
-		C0A779E32849E1C60086810C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C0A779BB2849E1C50086810C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C0A779C22849E1C50086810C;
-			remoteInfo = POMPOM;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		02339F4AD4C3D1D8C2D03564 /* Pods-POMPOM-POMPOMUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOM-POMPOMUITests.release.xcconfig"; path = "Target Support Files/Pods-POMPOM-POMPOMUITests/Pods-POMPOM-POMPOMUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -85,7 +62,6 @@
 		C06CE14D2851DC5100BBDA68 /* CodeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeInputView.swift; sourceTree = "<group>"; };
 		C06CE14F2851DC5C00BBDA68 /* CodeOutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeOutputView.swift; sourceTree = "<group>"; };
 		C06CE1522851DC7F00BBDA68 /* CoupleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleViewModel.swift; sourceTree = "<group>"; };
-		C06CE1542851DCA100BBDA68 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		C06CE1562851DCB100BBDA68 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		C06CE1582851DCD600BBDA68 /* CodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewModel.swift; sourceTree = "<group>"; };
 		C06CE15A2851DCFE00BBDA68 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
@@ -100,11 +76,6 @@
 		C0A779CA2849E1C60086810C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0A779CD2849E1C60086810C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C0A779D22849E1C60086810C /* POMPOM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = POMPOM.xcdatamodel; sourceTree = "<group>"; };
-		C0A779D82849E1C60086810C /* POMPOMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = POMPOMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0A779DC2849E1C60086810C /* POMPOMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMPOMTests.swift; sourceTree = "<group>"; };
-		C0A779E22849E1C60086810C /* POMPOMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = POMPOMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0A779E62849E1C60086810C /* POMPOMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMPOMUITests.swift; sourceTree = "<group>"; };
-		C0A779E82849E1C60086810C /* POMPOMUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMPOMUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C0F90CB22850729E00CC2C0E /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		C0FF3531284E9FB6001B1129 /* POMPOM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = POMPOM.entitlements; sourceTree = "<group>"; };
 		C350ECAB77A213FE32F7F534 /* Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,22 +89,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				575BF0DA7306934B5512BD95 /* Pods_POMPOM.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C0A779D52849E1C60086810C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				13C68565826818C883BCD969 /* Pods_POMPOMTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C0A779DF2849E1C60086810C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CD5064FE72AD933795FF0668 /* Pods_POMPOM_POMPOMUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				C0754BA6284F1921005DBAFC /* DummyNetworkManager.swift */,
-				C06CE1542851DCA100BBDA68 /* LoginManager.swift */,
 				C06CE1562851DCB100BBDA68 /* FirebaseManager.swift */,
 				C06CE15A2851DCFE00BBDA68 /* ConnectionManager.swift */,
 				C06CE15F2851DD6700BBDA68 /* NotificationManager.swift */,
@@ -271,8 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				C0A779C52849E1C50086810C /* POMPOM */,
-				C0A779DB2849E1C60086810C /* POMPOMTests */,
-				C0A779E52849E1C60086810C /* POMPOMUITests */,
 				C0A779C42849E1C50086810C /* Products */,
 				576FCBAD05F753AEC43C4C0F /* Pods */,
 				375888BD01AB00004F5A48D0 /* Frameworks */,
@@ -283,8 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				C0A779C32849E1C50086810C /* POMPOM.app */,
-				C0A779D82849E1C60086810C /* POMPOMTests.xctest */,
-				C0A779E22849E1C60086810C /* POMPOMUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,23 +252,6 @@
 				C04795C5284F15D20040646A /* UI */,
 			);
 			path = POMPOM;
-			sourceTree = "<group>";
-		};
-		C0A779DB2849E1C60086810C /* POMPOMTests */ = {
-			isa = PBXGroup;
-			children = (
-				C0A779DC2849E1C60086810C /* POMPOMTests.swift */,
-			);
-			path = POMPOMTests;
-			sourceTree = "<group>";
-		};
-		C0A779E52849E1C60086810C /* POMPOMUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C0A779E62849E1C60086810C /* POMPOMUITests.swift */,
-				C0A779E82849E1C60086810C /* POMPOMUITestsLaunchTests.swift */,
-			);
-			path = POMPOMUITests;
 			sourceTree = "<group>";
 		};
 		C0F90CB12850728F00CC2C0E /* Secrets */ = {
@@ -351,45 +284,6 @@
 			productReference = C0A779C32849E1C50086810C /* POMPOM.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C0A779D72849E1C60086810C /* POMPOMTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C0A779EF2849E1C60086810C /* Build configuration list for PBXNativeTarget "POMPOMTests" */;
-			buildPhases = (
-				F6141BE3FFBCC80055AA9601 /* [CP] Check Pods Manifest.lock */,
-				C0A779D42849E1C60086810C /* Sources */,
-				C0A779D52849E1C60086810C /* Frameworks */,
-				C0A779D62849E1C60086810C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C0A779DA2849E1C60086810C /* PBXTargetDependency */,
-			);
-			name = POMPOMTests;
-			productName = POMPOMTests;
-			productReference = C0A779D82849E1C60086810C /* POMPOMTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		C0A779E12849E1C60086810C /* POMPOMUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C0A779F22849E1C60086810C /* Build configuration list for PBXNativeTarget "POMPOMUITests" */;
-			buildPhases = (
-				1E365C63590EB0127C18357B /* [CP] Check Pods Manifest.lock */,
-				C0A779DE2849E1C60086810C /* Sources */,
-				C0A779DF2849E1C60086810C /* Frameworks */,
-				C0A779E02849E1C60086810C /* Resources */,
-				D92B47B84ACDB92A26193E55 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C0A779E42849E1C60086810C /* PBXTargetDependency */,
-			);
-			name = POMPOMUITests;
-			productName = POMPOMUITests;
-			productReference = C0A779E22849E1C60086810C /* POMPOMUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -402,14 +296,6 @@
 				TargetAttributes = {
 					C0A779C22849E1C50086810C = {
 						CreatedOnToolsVersion = 13.4.1;
-					};
-					C0A779D72849E1C60086810C = {
-						CreatedOnToolsVersion = 13.4.1;
-						TestTargetID = C0A779C22849E1C50086810C;
-					};
-					C0A779E12849E1C60086810C = {
-						CreatedOnToolsVersion = 13.4.1;
-						TestTargetID = C0A779C22849E1C50086810C;
 					};
 				};
 			};
@@ -427,8 +313,6 @@
 			projectRoot = "";
 			targets = (
 				C0A779C22849E1C50086810C /* POMPOM */,
-				C0A779D72849E1C60086810C /* POMPOMTests */,
-				C0A779E12849E1C60086810C /* POMPOMUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -446,45 +330,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C0A779D62849E1C60086810C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C0A779E02849E1C60086810C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1E365C63590EB0127C18357B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-POMPOM-POMPOMUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		83AB04DE08EBD25547A404E2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -524,45 +372,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D92B47B84ACDB92A26193E55 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-POMPOM-POMPOMUITests/Pods-POMPOM-POMPOMUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-POMPOM-POMPOMUITests/Pods-POMPOM-POMPOMUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-POMPOM-POMPOMUITests/Pods-POMPOM-POMPOMUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6141BE3FFBCC80055AA9601 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-POMPOMTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -584,7 +393,6 @@
 				C06CE1502851DC5C00BBDA68 /* CodeOutputView.swift in Sources */,
 				C06CE14E2851DC5100BBDA68 /* CodeInputView.swift in Sources */,
 				ABFEE2122855A86D007817D3 /* CodeView.swift in Sources */,
-				C06CE1552851DCA100BBDA68 /* LoginManager.swift in Sources */,
 				C0754BA7284F1921005DBAFC /* DummyNetworkManager.swift in Sources */,
 				C06CE15B2851DCFE00BBDA68 /* ConnectionManager.swift in Sources */,
 				AB132FED2854BF500023DBD0 /* Constant.swift in Sources */,
@@ -601,37 +409,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C0A779D42849E1C60086810C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C0A779DD2849E1C60086810C /* POMPOMTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C0A779DE2849E1C60086810C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C0A779E92849E1C60086810C /* POMPOMUITestsLaunchTests.swift in Sources */,
-				C0A779E72849E1C60086810C /* POMPOMUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C0A779DA2849E1C60086810C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C0A779C22849E1C50086810C /* POMPOM */;
-			targetProxy = C0A779D92849E1C60086810C /* PBXContainerItemProxy */;
-		};
-		C0A779E42849E1C60086810C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C0A779C22849E1C50086810C /* POMPOM */;
-			targetProxy = C0A779E32849E1C60086810C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C0A779EA2849E1C60086810C /* Debug */ = {
@@ -816,86 +594,6 @@
 			};
 			name = Release;
 		};
-		C0A779F02849E1C60086810C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FDC8B0E53B5AF6CF8AA4472 /* Pods-POMPOMTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4DC5UF7YA9;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gongtae.POMPOMTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/POMPOM.app/POMPOM";
-			};
-			name = Debug;
-		};
-		C0A779F12849E1C60086810C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C350ECAB77A213FE32F7F534 /* Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4DC5UF7YA9;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gongtae.POMPOMTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/POMPOM.app/POMPOM";
-			};
-			name = Release;
-		};
-		C0A779F32849E1C60086810C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4D6499D492346083126C119 /* Pods-POMPOM-POMPOMUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4DC5UF7YA9;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gongtae.POMPOMUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = POMPOM;
-			};
-			name = Debug;
-		};
-		C0A779F42849E1C60086810C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 02339F4AD4C3D1D8C2D03564 /* Pods-POMPOM-POMPOMUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4DC5UF7YA9;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gongtae.POMPOMUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = POMPOM;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -913,24 +611,6 @@
 			buildConfigurations = (
 				C0A779ED2849E1C60086810C /* Debug */,
 				C0A779EE2849E1C60086810C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C0A779EF2849E1C60086810C /* Build configuration list for PBXNativeTarget "POMPOMTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C0A779F02849E1C60086810C /* Debug */,
-				C0A779F12849E1C60086810C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C0A779F22849E1C60086810C /* Build configuration list for PBXNativeTarget "POMPOMUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C0A779F32849E1C60086810C /* Debug */,
-				C0A779F42849E1C60086810C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
