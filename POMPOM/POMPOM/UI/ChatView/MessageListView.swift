@@ -24,9 +24,6 @@ struct MessageListView: View {
                 MessageBubbleView(chatMessage: "고구마와플이정말맛있습니다", isUserBubble: true)
                 MessageBubbleView(chatMessage: "아아아아아아아앙악 아이들 콘서트 빨리 가고싶다 울아가등 ㄹㄴ읾ㄴㅇ롬ㄴ애랴ㅗㅂ재댜갭쟏고ㅓ샣뱌ㅗㄱ히마넝레ㅑ머ㅗ네래", isUserBubble: false)
                 MessageBubbleView(chatMessage: "에이쌥 내 통장잔고 반 쪼 가리", isUserBubble: false)
-                
-                
-                
             }.padding(16)
         }
     }
