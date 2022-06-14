@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "c-shoes-socks.png",
+      "filename" : "accessories-layeredB.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "c-shoes-socks@2x.png",
+      "filename" : "accessories-layeredB@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "c-shoes-socks@3x.png",
+      "filename" : "accessories-layeredB@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
