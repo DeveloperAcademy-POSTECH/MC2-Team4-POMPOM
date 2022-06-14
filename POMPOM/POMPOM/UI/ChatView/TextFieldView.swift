@@ -9,9 +9,6 @@ import SwiftUI
 
 
 
-
-
-
 //코멘트 쓰는 곳
 struct TextFieldView: View {
     @State
@@ -29,7 +26,7 @@ struct TextFieldView: View {
                 Button(action: sendMessage ){Image(systemName: "location.fill")}.padding( 18).foregroundColor(Color(UIColor(red: 192/255, green: 192/255, blue: 196/255, alpha: 1.0)))
             }.background(
                 RoundedRectangle(cornerRadius: 24).fill(Color(UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1.0))).frame(height: 47))
-        }//.background(Color.black).opacity(0.85)
+        }
     }
     
     func sendMessage() {

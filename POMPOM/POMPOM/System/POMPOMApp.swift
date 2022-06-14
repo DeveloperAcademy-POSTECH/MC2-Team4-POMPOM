@@ -39,7 +39,8 @@ struct POMPOMApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            //ContentView()
+            CardContent()
         }
     }
 }
