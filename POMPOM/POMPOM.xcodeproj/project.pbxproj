@@ -48,6 +48,7 @@
 		C0F90CB32850729E00CC2C0E /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F90CB22850729E00CC2C0E /* Secret.swift */; };
 		D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F41832857135D0037B3EB /* OnboardingViewModel.swift */; };
 		D40F418628571FE70037B3EB /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F418528571FE70037B3EB /* OnboardingPageView.swift */; };
+		D430FCFE2859A76900F216CB /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430FCFD2859A76900F216CB /* ColorPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +104,7 @@
 		C350ECAB77A213FE32F7F534 /* Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig"; sourceTree = "<group>"; };
 		D40F41832857135D0037B3EB /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		D40F418528571FE70037B3EB /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
+		D430FCFD2859A76900F216CB /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 		C04795C5284F15D20040646A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D430FCFC2859A73700F216CB /* ColorPickerView */,
 				C0F1DBFE28575B9100F8EAA0 /* ClothPickerView */,
 				AEA32AA7285741B5006A31D4 /* ChatView */,
 				C06CE1612851DD7700BBDA68 /* LoginView */,
@@ -333,6 +336,14 @@
 				C0F90CB22850729E00CC2C0E /* Secret.swift */,
 			);
 			path = Secrets;
+			sourceTree = "<group>";
+		};
+		D430FCFC2859A73700F216CB /* ColorPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				D430FCFD2859A76900F216CB /* ColorPickerView.swift */,
+			);
+			path = ColorPickerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,6 +498,7 @@
 				C0A779D32849E1C60086810C /* Model.xcdatamodeld in Sources */,
 				C0182C4028598470000F0A6A /* Seperator.swift in Sources */,
 				D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */,
+				D430FCFE2859A76900F216CB /* ColorPickerView.swift in Sources */,
 				AEA32AAD285741DB006A31D4 /* MessageBubbleView.swift in Sources */,
 				C06CE1652851DDAB00BBDA68 /* LoginViewModel.swift in Sources */,
 				C0F1DC0028575BA700F8EAA0 /* ClothPickerView.swift in Sources */,
