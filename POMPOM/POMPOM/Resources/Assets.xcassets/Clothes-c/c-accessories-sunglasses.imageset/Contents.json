@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "c-accessories-sunglasses.png",
+      "filename" : "c-accessories-sunglass.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "c-accessories-sunglasses@2x.png",
+      "filename" : "c-accessories-sunglass@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "c-accessories-sunglasses@3x.png",
+      "filename" : "c-accessories-sunglass@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -19,8 +19,5 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "template-rendering-intent" : "template"
   }
 }
