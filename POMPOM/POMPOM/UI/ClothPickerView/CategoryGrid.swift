@@ -13,6 +13,7 @@ struct CategoryGrid: View {
     @Binding var currentHex: String
     @Binding var currentCategory: ClothCategory
     let rows = [GridItem(.fixed(44))]
+    let spacing: CGFloat = 60
     var body: some View {
         LazyHGrid(rows: rows, spacing: 40) {
             ForEach(ClothCategory.allCases) { category in
@@ -23,27 +24,27 @@ struct CategoryGrid: View {
                     .onTapGesture {
                         // 맥락 바꾸기.
                         vm.changeCategory(with: category)
+                        currentHex = vm.currentPresets.first ?? "FFFFFF"
+                        
                         withAnimation(.spring()) {
                             switch vm.currentType {
                             case .hat:
-                                offSet = Constant.screenWidth / 2 - 60
+                                offSet = Constant.screenWidth / 2 - spacing
                             case .top:
-                                offSet = Constant.screenWidth / 2 - 120
+                                offSet = Constant.screenWidth / 2 - spacing * 2
                             case .bottom:
-                                offSet = Constant.screenWidth / 2 - 190
-                            case .socks:
-                                offSet = Constant.screenWidth / 2 - 265
+                                offSet = Constant.screenWidth / 2 - spacing * 3
                             case .shoes:
-                                offSet = Constant.screenWidth / 2 - 330
+                                offSet = Constant.screenWidth / 2 - spacing * 4
+                            case .accessories:
+                                offSet = Constant.screenWidth / 2 - spacing * 5
                             }
                         }
                         currentCategory = category
-                        currentHex = vm.currentPresets.first!
                     }
             }
             .offset(x: offSet, y: 0)
         }
-       
     }
 }
 

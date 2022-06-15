@@ -42,6 +42,7 @@ struct CoupleView: View {
         characterWidth * (215.68 / 114)
     }
     
+    @StateObject var pickerViewModel = PickerViewModel()
     @State private var partnerConnected = false
     @State private var actionSheetPresented = false
     @State private var codeInput = ""
@@ -85,13 +86,20 @@ struct CoupleView: View {
                             }
                             .disabled(partnerConnected)
                         }
-
-                        Button {
-                            sheetMode = .mid
-                        } label: {
+                        
+                        ZStack {
                             Image("Character")
                                 .resizable()
-                                .frame(width: characterWidth, height: characterHeight)
+                            
+                            ClothView(vm: pickerViewModel, category: .hat)
+                            ClothView(vm: pickerViewModel, category: .shoes)
+                            ClothView(vm: pickerViewModel, category: .bottom)
+                            ClothView(vm: pickerViewModel, category: .top)
+                            
+                        }
+                        .frame(width: characterWidth, height: characterHeight)
+                        .onTapGesture {
+                            sheetMode = .mid
                         }
 
                     }
@@ -104,7 +112,7 @@ struct CoupleView: View {
                 }
                 
                 SheetView(sheetMode: $sheetMode) {
-                    ClothPickerView()
+                    ClothPickerView(vm: pickerViewModel)
                 }
             }
             .toolbar {
@@ -142,10 +150,28 @@ struct CoupleView: View {
             }
         }
     }
+    
+
 }
 
 struct CoupleView_Previews: PreviewProvider {
     static var previews: some View {
         CoupleView()
+    }
+}
+
+struct ClothView: View {
+    @ObservedObject var vm: PickerViewModel
+    var category: ClothCategory
+    
+    var body: some View {
+        ZStack {
+            Image(vm.fetchImageString(with: category) + "B")
+                .resizable()
+                .foregroundColor(Color(hex: vm.selectedItems[category]?.hex ?? "FFFFFF"))
+            
+            Image(vm.fetchImageString(with: category))
+                .resizable()
+        }
     }
 }

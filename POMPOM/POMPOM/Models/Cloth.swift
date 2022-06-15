@@ -17,8 +17,8 @@ enum ClothCategory: String, CaseIterable, Identifiable {
     case hat
     case top
     case bottom
-    case socks
     case shoes
+    case accessories
     
     var id: ClothCategory {
         self
@@ -32,10 +32,10 @@ enum ClothCategory: String, CaseIterable, Identifiable {
             return "상의"
         case .bottom:
             return "하의"
-        case .socks:
-            return "양말"
         case .shoes:
             return "신발"
+        case .accessories:
+            return "악세사리"
         }
     }
 }
