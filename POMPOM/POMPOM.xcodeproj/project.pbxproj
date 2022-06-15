@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		575BF0DA7306934B5512BD95 /* Pods_POMPOM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DDE9E9E18A3E669433BA19 /* Pods_POMPOM.framework */; };
+		8A32B2BC28586D5000D8DFB0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32B2BB28586D5000D8DFB0 /* SettingsView.swift */; };
 		AB132FE92854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */; };
 		AB132FEA2854BE5C0023DBD0 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */; };
 		AB132FED2854BF500023DBD0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB132FEC2854BF500023DBD0 /* Constant.swift */; };
@@ -34,9 +35,6 @@
 		C0A779CB2849E1C60086810C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CA2849E1C60086810C /* Assets.xcassets */; };
 		C0A779CE2849E1C60086810C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CD2849E1C60086810C /* Preview Assets.xcassets */; };
 		C0A779D32849E1C60086810C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0A779D12849E1C60086810C /* Model.xcdatamodeld */; };
-		C0A779DD2849E1C60086810C /* POMPOMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779DC2849E1C60086810C /* POMPOMTests.swift */; };
-		C0A779E72849E1C60086810C /* POMPOMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779E62849E1C60086810C /* POMPOMUITests.swift */; };
-		C0A779E92849E1C60086810C /* POMPOMUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779E82849E1C60086810C /* POMPOMUITestsLaunchTests.swift */; };
 		C0F1DC0028575BA700F8EAA0 /* ClothPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F1DBFF28575BA700F8EAA0 /* ClothPickerView.swift */; };
 		C0F1DC0328575BCB00F8EAA0 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F1DC0228575BCB00F8EAA0 /* PickerViewModel.swift */; };
 		C0F90CB32850729E00CC2C0E /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F90CB22850729E00CC2C0E /* Secret.swift */; };
@@ -50,6 +48,7 @@
 		73DDE9E9E18A3E669433BA19 /* Pods_POMPOM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_POMPOM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7726019BE8B2B147179CFA25 /* Pods-POMPOM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOM.release.xcconfig"; path = "Target Support Files/Pods-POMPOM/Pods-POMPOM.release.xcconfig"; sourceTree = "<group>"; };
 		893FA964D491FDFD16ACC4FD /* Pods-POMPOM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOM.debug.xcconfig"; path = "Target Support Files/Pods-POMPOM/Pods-POMPOM.debug.xcconfig"; sourceTree = "<group>"; };
+		8A32B2BB28586D5000D8DFB0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9FDC8B0E53B5AF6CF8AA4472 /* Pods-POMPOMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOMTests.debug.xcconfig"; path = "Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A233C9F7EE2F43C44A16412C /* Pods_POMPOMTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_POMPOMTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -81,11 +80,6 @@
 		C0A779CA2849E1C60086810C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0A779CD2849E1C60086810C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C0A779D22849E1C60086810C /* POMPOM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = POMPOM.xcdatamodel; sourceTree = "<group>"; };
-		C0A779D82849E1C60086810C /* POMPOMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = POMPOMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0A779DC2849E1C60086810C /* POMPOMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMPOMTests.swift; sourceTree = "<group>"; };
-		C0A779E22849E1C60086810C /* POMPOMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = POMPOMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0A779E62849E1C60086810C /* POMPOMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMPOMUITests.swift; sourceTree = "<group>"; };
-		C0A779E82849E1C60086810C /* POMPOMUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMPOMUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C0F1DBFF28575BA700F8EAA0 /* ClothPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothPickerView.swift; sourceTree = "<group>"; };
 		C0F1DC0228575BCB00F8EAA0 /* PickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModel.swift; sourceTree = "<group>"; };
 		C0F90CB22850729E00CC2C0E /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
@@ -130,6 +124,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8A32B2BA28586D3E00D8DFB0 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				8A32B2BB28586D5000D8DFB0 /* SettingsView.swift */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
 		AB132FEB2854BF430023DBD0 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +174,7 @@
 		C04795C5284F15D20040646A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8A32B2BA28586D3E00D8DFB0 /* SettingsView */,
 				C0F1DBFE28575B9100F8EAA0 /* ClothPickerView */,
 				AEA32AA7285741B5006A31D4 /* ChatView */,
 				C06CE1612851DD7700BBDA68 /* LoginView */,
@@ -265,23 +268,6 @@
 				C04795C5284F15D20040646A /* UI */,
 			);
 			path = POMPOM;
-			sourceTree = "<group>";
-		};
-		C0A779DB2849E1C60086810C /* POMPOMTests */ = {
-			isa = PBXGroup;
-			children = (
-				C0A779DC2849E1C60086810C /* POMPOMTests.swift */,
-			);
-			path = POMPOMTests;
-			sourceTree = "<group>";
-		};
-		C0A779E52849E1C60086810C /* POMPOMUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C0A779E62849E1C60086810C /* POMPOMUITests.swift */,
-				C0A779E82849E1C60086810C /* POMPOMUITestsLaunchTests.swift */,
-			);
-			path = POMPOMUITests;
 			sourceTree = "<group>";
 		};
 		C0F1DBFE28575B9100F8EAA0 /* ClothPickerView */ = {
@@ -441,6 +427,7 @@
 				C0F1DC0328575BCB00F8EAA0 /* PickerViewModel.swift in Sources */,
 				C06CE14E2851DC5100BBDA68 /* CodeInputView.swift in Sources */,
 				ABFEE2122855A86D007817D3 /* CodeView.swift in Sources */,
+				8A32B2BC28586D5000D8DFB0 /* SettingsView.swift in Sources */,
 				C0754BA7284F1921005DBAFC /* DummyNetworkManager.swift in Sources */,
 				C06CE15B2851DCFE00BBDA68 /* ConnectionManager.swift in Sources */,
 				AB132FED2854BF500023DBD0 /* Constant.swift in Sources */,
