@@ -34,3 +34,14 @@ struct MessageListView_Previews: PreviewProvider {
         MessageListView()
     }
 }
+
+/*
+ 
+ message
+ message_id
+ message_from
+ message_to
+ message_content
+ message_time
+ 
+ */

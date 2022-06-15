@@ -7,25 +7,17 @@
 
 import SwiftUI
 
-enum Field: Hashable{
-    case comment
-}
-
 //코멘트 쓰는 곳
-//@available(iOS 15.0, *)
 struct TextFieldView: View {
 
     @State var comment: String = ""
-    //@FocusState private var focusedField: Field?
-    //var focusedField: FocusState<Field?>.Binding
     
     var body: some View {
         HStack{
             Image("TextFieldDecoration")
                 .resizable()
-                .frame(width: 30)
+                .frame(width: 46 ,height: 47)
                 .aspectRatio(contentMode: .fit)
-                .padding(.leading, 18)
             TextField("코멘트를 입력하세요", text: $comment).frame(height:47).keyboardType(.default)
             Button(action: sendMessage ){Image(systemName: "location.fill")}.padding( 18).foregroundColor(Color(UIColor(red: 192/255, green: 192/255, blue: 196/255, alpha: 1.0)))
         }
