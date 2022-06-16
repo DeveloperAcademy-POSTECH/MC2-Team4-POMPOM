@@ -113,8 +113,9 @@ struct CoupleView: View {
                     .animation(.default, value: characterHeight)
                     .animation(.default, value: characterOffset)
                     Spacer()
-                    CommentTextField(textInput: $commentInput)
+                   //CommentTextField(textInput: $commentInput)
                 }
+                CardContent()
                 
                 SheetView(sheetMode: $sheetMode) {
                     ClothPickerView(vm: myClothViewModel)
@@ -142,7 +143,7 @@ struct CoupleView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if sheetMode == .none {
-                        NavigationLink(destination: Text("Hello world")) {
+                        NavigationLink(destination: SettingsView()) {
                             Image(systemName: "gearshape.fill")
                                 .foregroundColor(Color(UIColor.label))
                         }
