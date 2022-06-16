@@ -44,7 +44,8 @@ struct CoupleView: View {
         characterWidth * (215.68 / 114)
     }
     
-    @StateObject var pickerViewModel = PickerViewModel()
+    @StateObject var myClothViewModel = PickerViewModel()
+    @StateObject var partnerClothViewModel = ClothViewModel()
     var codeViewModel = CodeManager()
     @State private var partnerConnected = false
     @State private var actionSheetPresented = false
@@ -82,8 +83,11 @@ struct CoupleView: View {
                                         .opacity(partnerConnected ? 1 : 0.3)
                                     
                                     if !partnerConnected {
+                                        
                                         Text("초대하기")
                                             .foregroundColor(.orange)
+                                    } else {
+                                        ClothesView(vm: partnerClothViewModel)
                                     }
                                 }
                             }
@@ -93,22 +97,16 @@ struct CoupleView: View {
                         ZStack {
                             Image("Gom0")
                                 .resizable()
-                            
-                            ClothView(vm: pickerViewModel, category: .hat)
-                            ClothView(vm: pickerViewModel, category: .shoes)
-                            ClothView(vm: pickerViewModel, category: .bottom)
-                            AccesoriesView(vm: pickerViewModel)
-                            ClothView(vm: pickerViewModel, category: .top)
-                            
+
+                            ClothesView(vm: myClothViewModel)
+
                         }
                         .frame(width: characterWidth, height: characterHeight)
                         .onTapGesture {
                             withAnimation {
                                 sheetMode = .mid
                             }
-                            
                         }
-
                     }
                     .offset(y: characterOffset)
                     .animation(.default, value: characterWidth)
@@ -119,7 +117,7 @@ struct CoupleView: View {
                 }
                 
                 SheetView(sheetMode: $sheetMode) {
-                    ClothPickerView(vm: pickerViewModel)
+                    ClothPickerView(vm: myClothViewModel)
                 }
             }
             .toolbar {
@@ -127,8 +125,9 @@ struct CoupleView: View {
                     if sheetMode != .none {
                         Button("취소") {
                             Task {
-                                await pickerViewModel.requestClothes()
+                                await myClothViewModel.requestClothes()
                             }
+                            sheetMode = .none
                         }
                         .foregroundColor(.red)
                     }
@@ -149,7 +148,8 @@ struct CoupleView: View {
                         }
                     } else {
                         Button("완료") {
-                            pickerViewModel.uploadItem()
+                            myClothViewModel.uploadItem()
+                            sheetMode = .none
                         }
                     }
                 }
@@ -177,7 +177,8 @@ struct CoupleView: View {
             .onAppear {
                 UITabBar.appearance().isHidden = true
                 Task {
-                    await pickerViewModel.requestClothes()
+                    await myClothViewModel.requestClothes()
+                    await partnerClothViewModel.requestClothes()
                 }
                 print(isFirstLaunching)
                 
@@ -196,7 +197,7 @@ struct CoupleView_Previews: PreviewProvider {
 }
 
 struct ClothView: View {
-    @ObservedObject var vm: PickerViewModel
+    @ObservedObject var vm: ClothViewModel
     var category: ClothCategory
     
     var body: some View {
@@ -213,7 +214,7 @@ struct ClothView: View {
 }
 
 struct AccesoriesView: View {
-    @ObservedObject var vm: PickerViewModel
+    @ObservedObject var vm: ClothViewModel
    
     var body: some View {
         ZStack {
@@ -222,3 +223,18 @@ struct AccesoriesView: View {
         }
     }
 }
+
+struct ClothesView: View {
+    @ObservedObject var vm: ClothViewModel
+    
+    var body: some View {
+        ZStack {
+            ClothView(vm: vm, category: .hat)
+            ClothView(vm: vm, category: .shoes)
+            ClothView(vm: vm, category: .bottom)
+            AccesoriesView(vm: vm)
+            ClothView(vm: vm, category: .top)
+        }
+    }
+}
+

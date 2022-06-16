@@ -39,8 +39,6 @@ struct ClothPickerView: View {
                                 .padding(10)
                         }
                     }
-                   
-                  
                     
                     Seprator()
                         .padding(.bottom, 20)
