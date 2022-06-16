@@ -12,22 +12,22 @@ class messageData: ObservableObject{
     @Published var messages: [Message] = []
     let reference = Firestore.firestore()
     
-    init(){
+    init() {
         readMessages()
     }
     
     func readMessages() {
-        reference.collection("message").order(by: "timestamp",descending: false).addSnapshotListener{
+        reference.collection("message").order(by: "timestamp", descending: false).addSnapshotListener {
             (snap, err) in
             
-            if err != nil{
-                print(err!.localizedDescription)
+            if let error = err{
+                print(error.localizedDescription)
                 return
             }
             
-            guard let data = snap else {return}
+            guard let data = snap else { return }
             
-            data.documentChanges.forEach { (change) in
+            data.documentChanges.forEach { change in
                 
                 let timestampp = change.document.get("timestamp") as! Timestamp
                 print("timestamp is \(timestampp.dateValue())")
@@ -43,11 +43,11 @@ class messageData: ObservableObject{
 
 
 struct Message: Codable, Identifiable, Hashable {
-    var id: Int
-    var messageContent: String
-    var messageFrom: String
-    var messageTo: String
-    var timestamp: Date
+    let id: Int
+    let messageContent: String
+    let messageFrom: String
+    let messageTo: String
+    let timestamp: Date
     
     init(_id: Int, _messageContent: String, _messageFrom: String, _messageTo: String, _timestamp: Date) {
         id = _id

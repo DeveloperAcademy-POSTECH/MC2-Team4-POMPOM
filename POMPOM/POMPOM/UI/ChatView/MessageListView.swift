@@ -10,22 +10,22 @@ import SwiftUI
 //코멘트 리스트
 struct MessageListView: View {
     @StateObject var data = messageData()
-    @State var scrolled = false
+    @State private var scrolled = false
     @State private var myCode: String?
     
     
     
     var body: some View {
-        ScrollViewReader{ value in
-            ScrollView{
+        ScrollViewReader { value in
+            ScrollView {
                 VStack(spacing: 15) {
                     //버블간 간격 15
-                    ForEach(data.messages){ message in
+                    ForEach(data.messages) { message in
                         MessageBubbleView(chatMessage: message.messageContent, isUserBubble: message.messageFrom == myCode ? true : false, commentedTime: message.timestamp) //temp
                             .task {
-                                self.myCode = await CodeViewModel.getCode()
+                                self.myCode = await CodeManager().getCode()
                             }
-                            .onAppear{
+                            .onAppear {
                                 if message.id == self.data.messages.last!.id && scrolled {
                                     value.scrollTo(data.messages.last!.id, anchor: .bottom)
                                     scrolled = true
