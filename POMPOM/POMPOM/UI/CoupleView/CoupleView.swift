@@ -172,6 +172,7 @@ struct ClothView: View {
             
             Image(vm.fetchImageString(with: category))
                 .resizable()
+                .foregroundColor(Color(hex: vm.selectedItems[category]?.hex ?? "FFFFFF" == "000000" ? "D0D0D0" : "000000"))
         }
     }
 }
