@@ -37,7 +37,8 @@ struct CodeView<Content: View>: View {
     
     var body: some View {
         ZStack {
-            Color(UIColor.systemGray4)
+            Color(UIColor.systemGray5)
+                .opacity(0.4)
             ZStack {
                 RoundedRectangle(cornerRadius: 14)
                     .foregroundColor(Color.white)
