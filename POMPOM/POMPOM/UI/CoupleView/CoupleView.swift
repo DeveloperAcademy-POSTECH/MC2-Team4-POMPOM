@@ -97,6 +97,7 @@ struct CoupleView: View {
                             ClothView(vm: pickerViewModel, category: .hat)
                             ClothView(vm: pickerViewModel, category: .shoes)
                             ClothView(vm: pickerViewModel, category: .bottom)
+                            AccesoriesView(vm: pickerViewModel)
                             ClothView(vm: pickerViewModel, category: .top)
                             
                         }
@@ -207,6 +208,17 @@ struct ClothView: View {
             Image(vm.fetchImageString(with: category))
                 .resizable()
                 .foregroundColor(Color(hex: vm.selectedItems[category]?.hex ?? "FFFFFF" == "000000" ? "D0D0D0" : "000000"))
+        }
+    }
+}
+
+struct AccesoriesView: View {
+    @ObservedObject var vm: PickerViewModel
+   
+    var body: some View {
+        ZStack {
+            Image(vm.fetchImageString(with: .accessories))
+                .resizable()
         }
     }
 }

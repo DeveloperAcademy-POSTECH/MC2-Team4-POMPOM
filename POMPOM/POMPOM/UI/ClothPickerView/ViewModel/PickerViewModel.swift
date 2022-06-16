@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SystemConfiguration
 
 class PickerViewModel: ObservableObject {
     //MARK: - Propeties
@@ -31,9 +32,9 @@ class PickerViewModel: ObservableObject {
     var items: [ClothCategory: [String]] = [
         .hat : ["cap", "suncap"],
         .top : [ "short", "long",  "shirts", "shirtslong", "sleeveless", "pkshirts", "onepiece", "pkonepiece"],
-        .bottom : ["shorts", "skirtshort", "skirtsa", "long", "skirtlong"],
-        .shoes : ["sandals", "sneakers", "socks", "women"],
-        .accessories : []
+        .bottom : ["shorts", "skirtshort", "skirta", "long", "skirtlong"],
+        .shoes : ["sandals", "sneakers", "women"],
+        .accessories : ["glasses", "sunglasses"]
     ]
     
     var selectedItem: Cloth? {
@@ -45,6 +46,15 @@ class PickerViewModel: ObservableObject {
             return hex
         } else {
             return nil
+        }
+    }
+    
+    var isCategoryColorEnable: Bool {
+        switch currentType {
+        case .accessories:
+            return false
+        default:
+            return true
         }
     }
 
