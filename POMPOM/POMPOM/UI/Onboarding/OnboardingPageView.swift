@@ -25,10 +25,13 @@ struct OnboardingPageView: View {
                 .multilineTextAlignment(.center)
                 .lineSpacing(6)
             Spacer()
-                .frame(height: Constant.screenHeight * (80 / 844))
+                .frame(height: Constant.screenHeight * (60 / 844))
             HStack {
                 Spacer()
                 Image(onboardingViewModel.onboardingImage)
+                    .resizable()
+                    .frame(width: onboardingViewModel.onboardingWidth, height: onboardingViewModel.onboardingHeight)
+                    
                 Spacer()
             }
             Spacer()

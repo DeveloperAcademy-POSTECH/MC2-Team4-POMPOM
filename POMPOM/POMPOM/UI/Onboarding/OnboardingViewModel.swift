@@ -12,6 +12,8 @@ struct OnboardingViewModel: Identifiable {
     var title: String
     var message: String
     var onboardingImage: String
+    var onboardingWidth: CGFloat
+    var onboardingHeight:CGFloat
     var isLast: Bool
 }
 
