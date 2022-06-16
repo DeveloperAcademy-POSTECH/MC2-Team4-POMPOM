@@ -132,6 +132,18 @@ struct CoupleView: View {
                     }
 
                 }
+                
+                if codeInputViewIsPresented {
+                    CodeInputView(textInput: $codeInput, delegate: self) {
+                        codeInputViewIsPresented = false
+                    }
+                }
+                
+                if codeOutputViewIsPresented {
+                    CodeOutputView {
+                        codeOutputViewIsPresented = false
+                    }
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -169,13 +181,6 @@ struct CoupleView: View {
                 
               
             }
-            .sheet(isPresented: $codeInputViewIsPresented, content: {
-                CodeInputView(textInput: $codeInput, delegate: self)
-
-            })
-            .sheet(isPresented: $codeOutputViewIsPresented, content: {
-                CodeOutputView()
-            })
             .actionSheet(isPresented: $actionSheetPresented) {
                 ActionSheet(title: Text("초대코드 확인/입력"), buttons: [
                     .default(Text("초대코드 확인하기")) {
