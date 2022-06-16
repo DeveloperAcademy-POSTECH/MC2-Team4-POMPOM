@@ -125,7 +125,7 @@ struct CoupleView: View {
                 
                 if showAlert {
                     VStack {
-                        BottomAlert(message: alertMessage, presenting: $showAlert)
+                        CustomAlert(message: alertMessage, presenting: $showAlert)
                         
                         Spacer()
                     }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BottomAlert: View {
+struct CustomAlert: View {
     var message: String
     @State var opacity: Double = 0.6
     @Binding var presenting: Bool
@@ -28,7 +28,7 @@ struct BottomAlert: View {
             .frame(height: 50)
             .padding(.horizontal, 20)
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     withAnimation {
                         presenting.toggle()
                     }
@@ -39,6 +39,6 @@ struct BottomAlert: View {
 
 struct BottomAlert_Previews: PreviewProvider {
     static var previews: some View {
-        BottomAlert(message: "프리뷰 경고 메세지", presenting: .constant(true))
+        CustomAlert(message: "프리뷰 경고 메세지", presenting: .constant(true))
     }
 }
