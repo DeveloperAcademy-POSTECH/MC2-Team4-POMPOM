@@ -54,6 +54,8 @@ struct CoupleView: View {
     @State private var codeInputViewIsPresented = false
     @State private var codeOutputViewIsPresented = false
     @State private var sheetMode = SheetMode.none
+    @State var showAlert = false
+    @State var alertMessage: String = "유효하지 않은 동작입니다."
     
     var characterSize: CharacterSize {
         switch sheetMode {
@@ -120,6 +122,15 @@ struct CoupleView: View {
                 SheetView(sheetMode: $sheetMode) {
                     ClothPickerView(vm: myClothViewModel)
                 }
+                
+                if showAlert {
+                    VStack {
+                        CustomAlert(message: alertMessage, presenting: $showAlert)
+                        
+                        Spacer()
+                    }
+
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -158,7 +169,8 @@ struct CoupleView: View {
               
             }
             .sheet(isPresented: $codeInputViewIsPresented, content: {
-                CodeInputView()
+                CodeInputView(textInput: $codeInput, delegate: self)
+
             })
             .sheet(isPresented: $codeOutputViewIsPresented, content: {
                 CodeOutputView()
@@ -187,6 +199,17 @@ struct CoupleView: View {
             OnboardingView(isFirstLunching: $isFirstLaunching)
         }
     }
+}
+
+extension CoupleView: AlertDelegate {
+    func showAlertwith(message: String) {
+        alertMessage = message
+        showAlert.toggle()
+    }
+}
+
+protocol AlertDelegate {
+    func showAlertwith(message: String)
 }
 
 struct CoupleView_Previews: PreviewProvider {

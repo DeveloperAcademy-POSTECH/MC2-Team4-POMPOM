@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CodeInputView: View {
-    @State var textInput: String = ""
+    @Binding var textInput: String
+    var delegate: AlertDelegate?
     private let codeViewModel: CodeManager = CodeManager()
     
     var body: some View {
@@ -18,7 +19,11 @@ struct CodeInputView: View {
                 .multilineTextAlignment(.center)
         }, buttonTitle: "확인", buttonAction: {
             Task {
-                try await codeViewModel.connectWithPartner(partnerCode: textInput)
+                do {
+                    try await codeViewModel.connectWithPartner(partnerCode: textInput)
+                } catch ConnectionManagerError.invalidPartnerCode {
+                    delegate?.showAlertwith(message: "유효하지 않은 코드입니다.")
+                }
             }
         })
     }
@@ -27,7 +32,7 @@ struct CodeInputView: View {
 struct CodeInputView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CodeInputView()
+            CodeInputView(textInput: .constant(""))
                 .navigationTitle("POMPOM")
                 .navigationBarTitleDisplayMode(.inline)
         }

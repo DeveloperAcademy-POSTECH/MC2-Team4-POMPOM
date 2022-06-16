@@ -19,7 +19,7 @@ struct SettingsView: View {
                 NavigationLink("초대코드 확인하기", destination: CodeOutputView())
                 
                 //Text("초대코드 입력")을 CodeInputView()로 변경
-                NavigationLink("초대코드 입력하기", destination: CodeInputView())
+                NavigationLink("초대코드 입력하기", destination: CodeInputView(textInput: $codeInput))
                 
                 //"연결 해지" View 필요
                 Button("연결 해지") {
