@@ -9,9 +9,9 @@ import Foundation
 import FirebaseFirestore
 
 struct ConnectionManager {
-    static private let usersRef = Firestore.firestore().collection("users")
+    let usersRef = Firestore.firestore().collection("users")
     
-    static func isExistingCode(code: String) async -> Bool {
+    func isExistingCode(code: String) async -> Bool {
         var returnValue: Bool = false
         
         do {
@@ -22,7 +22,7 @@ struct ConnectionManager {
         return returnValue
     }
     
-    static func saveCode(code: String) {
+    func saveCode(code: String) {
         usersRef.addDocument(data: [
             "code": code,
             "partner_code": ""
@@ -33,7 +33,7 @@ struct ConnectionManager {
         }
     }
     
-    static func updatePartnerCode(oneId: String, anotherCode: String) {
+    func updatePartnerCode(oneId: String, anotherCode: String) {
         usersRef.document(oneId).updateData([
             "partner_code": anotherCode
         ]) { err in
@@ -43,7 +43,7 @@ struct ConnectionManager {
         }
     }
     
-    static func getIdByCode(code: String) async -> String {
+    func getIdByCode(code: String) async -> String {
         var returnValue: String = ""
         
         do {

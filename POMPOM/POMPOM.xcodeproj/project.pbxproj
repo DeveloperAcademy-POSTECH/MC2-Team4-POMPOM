@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2521EC76285A0D2400B02E1A /* ClothesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2521EC75285A0D2400B02E1A /* ClothesManager.swift */; };
 		575BF0DA7306934B5512BD95 /* Pods_POMPOM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DDE9E9E18A3E669433BA19 /* Pods_POMPOM.framework */; };
 		AB132FE92854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */; };
 		AB132FEA2854BE5C0023DBD0 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */; };
@@ -48,10 +49,12 @@
 		C0F90CB32850729E00CC2C0E /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F90CB22850729E00CC2C0E /* Secret.swift */; };
 		D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F41832857135D0037B3EB /* OnboardingViewModel.swift */; };
 		D40F418628571FE70037B3EB /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F418528571FE70037B3EB /* OnboardingPageView.swift */; };
+		D430FCFE2859A76900F216CB /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430FCFD2859A76900F216CB /* ColorPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		02339F4AD4C3D1D8C2D03564 /* Pods-POMPOM-POMPOMUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOM-POMPOMUITests.release.xcconfig"; path = "Target Support Files/Pods-POMPOM-POMPOMUITests/Pods-POMPOM-POMPOMUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2521EC75285A0D2400B02E1A /* ClothesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesManager.swift; sourceTree = "<group>"; };
 		6A3C5F2FE47AEF89866EEFA6 /* Pods_POMPOM_POMPOMUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_POMPOM_POMPOMUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73DDE9E9E18A3E669433BA19 /* Pods_POMPOM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_POMPOM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7726019BE8B2B147179CFA25 /* Pods-POMPOM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOM.release.xcconfig"; path = "Target Support Files/Pods-POMPOM/Pods-POMPOM.release.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 		C350ECAB77A213FE32F7F534 /* Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig"; sourceTree = "<group>"; };
 		D40F41832857135D0037B3EB /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		D40F418528571FE70037B3EB /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
+		D430FCFD2859A76900F216CB /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +188,7 @@
 		C04795C5284F15D20040646A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D430FCFC2859A73700F216CB /* ColorPickerView */,
 				C0F1DBFE28575B9100F8EAA0 /* ClothPickerView */,
 				AEA32AA7285741B5006A31D4 /* ChatView */,
 				C06CE1612851DD7700BBDA68 /* LoginView */,
@@ -201,6 +206,7 @@
 				C06CE1562851DCB100BBDA68 /* FirebaseManager.swift */,
 				C06CE15A2851DCFE00BBDA68 /* ConnectionManager.swift */,
 				C06CE15F2851DD6700BBDA68 /* NotificationManager.swift */,
+				2521EC75285A0D2400B02E1A /* ClothesManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -333,6 +339,14 @@
 				C0F90CB22850729E00CC2C0E /* Secret.swift */,
 			);
 			path = Secrets;
+			sourceTree = "<group>";
+		};
+		D430FCFC2859A73700F216CB /* ColorPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				D430FCFD2859A76900F216CB /* ColorPickerView.swift */,
+			);
+			path = ColorPickerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,6 +494,7 @@
 				AE8509F72859C0FE00D11812 /* KeyboardObserver.swift in Sources */,
 				C06CE1572851DCB100BBDA68 /* FirebaseManager.swift in Sources */,
 				ABFEE2142855F2C1007817D3 /* CommentTextField.swift in Sources */,
+				2521EC76285A0D2400B02E1A /* ClothesManager.swift in Sources */,
 				AE8509F92859C10E00D11812 /* TextFieldView.swift in Sources */,
 				C0ED415A285868F1007E5502 /* Color.swift in Sources */,
 				AE8509F52859C0EF00D11812 /* SlideModalView.swift in Sources */,
@@ -487,6 +502,7 @@
 				C0A779D32849E1C60086810C /* Model.xcdatamodeld in Sources */,
 				C0182C4028598470000F0A6A /* Seperator.swift in Sources */,
 				D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */,
+				D430FCFE2859A76900F216CB /* ColorPickerView.swift in Sources */,
 				AEA32AAD285741DB006A31D4 /* MessageBubbleView.swift in Sources */,
 				C06CE1652851DDAB00BBDA68 /* LoginViewModel.swift in Sources */,
 				C0F1DC0028575BA700F8EAA0 /* ClothPickerView.swift in Sources */,

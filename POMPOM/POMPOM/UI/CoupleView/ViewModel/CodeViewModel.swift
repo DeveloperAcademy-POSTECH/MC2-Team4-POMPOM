@@ -8,9 +8,10 @@
 import Foundation
 
 struct CodeViewModel {
-    private static let code: String = ""
+    private let code: String = ""
+    private let connectionManager: ConnectionManager = ConnectionManager()
     
-    static func getCode() async -> String {
+    func getCode() async -> String {
         // UserDefaults에 이미 code가 있을 때
         if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
             return defaultCode;
@@ -18,41 +19,41 @@ struct CodeViewModel {
         // UserDefaults에 code가 없을 때
         else {
             let newCode = await setNewCode()
-            ConnectionManager.saveCode(code: newCode)
+            connectionManager.saveCode(code: newCode)
             UserDefaults.standard.set(newCode, forKey: "code")
             return newCode;
         }
     }
     
-    static func setNewCode() async -> String {
+    func setNewCode() async -> String {
         var newCode: String = ""
         
         repeat {
             newCode = generateCode(length: 10)
-        } while await ConnectionManager.isExistingCode(code: newCode)
+        } while await connectionManager.isExistingCode(code: newCode)
         
         return newCode
     }
     
     // 길이가 length고, 숫자와 영문 대문자로만 이뤄진 코드 생성 및 반환
-    static func generateCode(length: Int) -> String {
+    func generateCode(length: Int) -> String {
         let elements = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         return String((0 ..< length).map { _ in elements.randomElement()! })
     }
     
-    static func connectWithPartner(partnerCode: String) async throws {
+    func connectWithPartner(partnerCode: String) async throws {
         // partnerCode가 존재하는지부터 확인
-        guard await ConnectionManager.isExistingCode(code: partnerCode) else {
+        guard await connectionManager.isExistingCode(code: partnerCode) else {
             throw ConnectionManagerError.invalidPartnerCode
         }
         
         let ownCode: String = await getCode()
         
-        let ownId: String = await ConnectionManager.getIdByCode(code: ownCode)
-        let partnerId: String = await ConnectionManager.getIdByCode(code: partnerCode)
+        let ownId: String = await connectionManager.getIdByCode(code: ownCode)
+        let partnerId: String = await connectionManager.getIdByCode(code: partnerCode)
         
-        ConnectionManager.updatePartnerCode(oneId: ownId, anotherCode: partnerCode)
-        ConnectionManager.updatePartnerCode(oneId: partnerId, anotherCode: ownCode)
+        connectionManager.updatePartnerCode(oneId: ownId, anotherCode: partnerCode)
+        connectionManager.updatePartnerCode(oneId: partnerId, anotherCode: ownCode)
     }
 }
 

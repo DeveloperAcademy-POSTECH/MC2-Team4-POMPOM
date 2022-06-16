@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CodeInputView: View {
     @Binding var textInput: String
+    private let codeViewModel: CodeViewModel = CodeViewModel()
     
     var body: some View {
         CodeView(title: "초대코드 입력", content: {
@@ -17,7 +18,7 @@ struct CodeInputView: View {
                 .multilineTextAlignment(.center)
         }, buttonTitle: "확인", buttonAction: {
             Task {
-                try await CodeViewModel.connectWithPartner(partnerCode: textInput)
+                try await codeViewModel.connectWithPartner(partnerCode: textInput)
             }
         })
     }

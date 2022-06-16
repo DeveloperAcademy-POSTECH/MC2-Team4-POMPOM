@@ -11,12 +11,13 @@ struct CodeOutputView: View {
     @Binding var code: String
     let afterCopy: () -> ()
     private let pasteboard = UIPasteboard.general
+    private let codeViewModel: CodeViewModel = CodeViewModel()
     
     var body: some View {
         CodeView(title: "초대코드 확인", content: {
             Text(code)
                 .task {
-                    code = await CodeViewModel.getCode()
+                    code = await codeViewModel.getCode()
                 }
         }, buttonTitle: "복사") {
             pasteboard.string = code
