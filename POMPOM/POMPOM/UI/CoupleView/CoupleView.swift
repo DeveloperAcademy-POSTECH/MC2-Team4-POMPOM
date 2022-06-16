@@ -156,12 +156,10 @@ struct CoupleView: View {
               
             }
             .sheet(isPresented: $codeInputViewIsPresented, content: {
-                CodeInputView(textInput: $codeInput)
+                CodeInputView()
             })
             .sheet(isPresented: $codeOutputViewIsPresented, content: {
-                CodeOutputView(code: .constant("ASDFGHHH")) {
-                    
-                }
+                CodeOutputView()
             })
             .actionSheet(isPresented: $actionSheetPresented) {
                 ActionSheet(title: Text("초대코드 확인/입력"), buttons: [
