@@ -17,7 +17,7 @@ struct CodeOutputView: View {
         CodeView(title: "초대코드 확인", content: {
             Text(code)
                 .task {
-                    code = await codeViewModel.getCode()
+                    code = codeViewModel.getCode()
                 }
         }, buttonTitle: "복사") {
             pasteboard.string = code

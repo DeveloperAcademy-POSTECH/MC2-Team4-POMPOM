@@ -175,11 +175,14 @@ struct CoupleView: View {
             }
             .onAppear {
                 UITabBar.appearance().isHidden = true
+                Task {
+                    await pickerViewModel.requestClothes()
+                }
+                print(isFirstLaunching)
                 
             }
             
-        }
-        .fullScreenCover(isPresented: $isFirstLaunching) {
+        }        .fullScreenCover(isPresented: $isFirstLaunching) {
             OnboardingView(isFirstLunching: $isFirstLaunching)
         }
     }

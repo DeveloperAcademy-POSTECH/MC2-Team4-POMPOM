@@ -10,17 +10,23 @@ import Foundation
 struct CodeManager {
     private let code: String = ""
     private let connectionManager: ConnectionManager = ConnectionManager()
-    func getCode() async -> String {
+    
+    @discardableResult
+    func getCode() -> String {
         // UserDefaults에 이미 code가 있을 때
         if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
-            return defaultCode;
+            return defaultCode
         }
         // UserDefaults에 code가 없을 때
         else {
-            let newCode = await setNewCode()
-            connectionManager.saveCode(code: newCode)
+//            let newCode = await setNewCode()
+            let newCode = generateCode(length: 10)
+            DispatchQueue.global().async {
+                connectionManager.saveCode(code: newCode)
+            }
             UserDefaults.standard.set(newCode, forKey: "code")
-            return newCode;
+            print("DEUBG: 코드 생성 완료 - \(newCode)")
+            return newCode
         }
     }
     
@@ -46,7 +52,7 @@ struct CodeManager {
             throw ConnectionManagerError.invalidPartnerCode
         }
         
-        let ownCode: String = await getCode()
+        let ownCode: String = getCode()
         
         let ownId: String = await connectionManager.getIdByCode(code: ownCode)
         let partnerId: String = await connectionManager.getIdByCode(code: partnerCode)

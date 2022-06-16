@@ -9,10 +9,8 @@ import SwiftUI
 
 struct OnboardingView: View {
     
-    // CoupleView에 밑에 코드 추가
-    //@AppStorage("_isFirstLanching") var isFirstLaunching: Bool = true
-    
     @Binding var isFirstLunching: Bool
+    let codeManger = CodeManager()
     
     let onboardingViewData : [OnboardingViewModel] = [
         OnboardingViewModel(
@@ -45,6 +43,10 @@ struct OnboardingView: View {
         }
         .tabViewStyle(PageTabViewStyle())
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+        .onAppear {
+            codeManger.getCode()
+            print("DEBUG: get Code 호출 in ONboardign View")
+        }
      }
 }
 

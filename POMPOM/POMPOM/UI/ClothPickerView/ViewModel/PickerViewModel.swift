@@ -102,7 +102,9 @@ class PickerViewModel: ObservableObject {
     
     func requestClothes() async {
         if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
-            selectedItems = await networkManager.loadClothes(userCode: defaultCode)
+            networkManager.loadClothes(userCode: defaultCode) { clothes in
+                    self.selectedItems = clothes
+            }
         } else {
             print("DEBUG: 사용자 코드 조회 실패")
         }

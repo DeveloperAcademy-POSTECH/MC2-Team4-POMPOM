@@ -29,11 +29,16 @@ struct ClothesManager {
         return returnValue
     }
     
-    func loadClothes(userCode: String) async -> [ClothCategory: Cloth] {
+    func loadClothes(userCode: String, competion: @escaping ([ClothCategory : Cloth]) -> Void) {
         var returnValue: [ClothCategory: Cloth] = [:]
         
-        do {
-            if let data = try await clothesRef.document(userCode).getDocument().data() {
+        clothesRef.document(userCode).getDocument { snapShot, error in
+            guard let data = snapShot?.data() else { competion(returnValue)
+                return
+            }
+
+            switch error {
+            case .none:
                 for clothCategory in ClothCategory.allCases {
                     if let cloth: [String] = data[clothCategory.rawValue] as! [String]? {
                         if !(cloth[0].isEmpty && cloth[1].isEmpty) {
@@ -41,9 +46,11 @@ struct ClothesManager {
                         }
                     }
                 }
+                competion(returnValue)
+            case .some(let error):
+                print("DEBUG: 옷 불러오기 에러 - \(error)")
             }
-        } catch { }
-        
-        return returnValue
+            
+        }
     }
 }
