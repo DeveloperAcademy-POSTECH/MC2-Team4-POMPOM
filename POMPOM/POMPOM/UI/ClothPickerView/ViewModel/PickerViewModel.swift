@@ -16,7 +16,10 @@ class PickerViewModel: ClothViewModel {
     @Published var currentItems: [String] = []
     //선택된 옷 + 컬러
 
-    
+    override init() {
+        super.init()
+        changeCategory(with: .hat)
+    }
     
     // 기본 컬러 프리셋
     var presets: [ClothCategory : [String]] = [
