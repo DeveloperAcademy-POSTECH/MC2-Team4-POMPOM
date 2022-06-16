@@ -17,6 +17,7 @@ struct ClothPickerView: View {
         VStack {
             CategoryGrid(vm: vm, currentHex: $currentHex, currentCategory: $currentCategory)
                 .frame(width: Constant.screenWidth, height: 50)
+                
             
             Seprator()
             
@@ -31,11 +32,12 @@ struct ClothPickerView: View {
                     .padding(.leading, 20)
                     .padding(.top, 15)
                     
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        ColorGrid(vm: vm, currentHex: $currentHex)
-                            .padding(.leading, 10)
-                            .padding(10)
-                        
+                    if vm.isCategoryColorEnable {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            ColorGrid(vm: vm, currentHex: $currentHex)
+                                .padding(.leading, 10)
+                                .padding(10)
+                        }
                     }
                     
                     Seprator()
