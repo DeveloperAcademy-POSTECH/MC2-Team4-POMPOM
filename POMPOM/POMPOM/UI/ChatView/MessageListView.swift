@@ -20,6 +20,9 @@ struct MessageListView: View {
             ScrollView {
                 VStack(spacing: 15) {
                     //버블간 간격 15
+                    
+                    DateDisplayView()
+                    
                     ForEach(data.messages) { message in
                         MessageBubbleView(chatMessage: message.messageContent, isUserBubble: message.messageFrom == myCode ? true : false, commentedTime: message.timestamp) //temp
                             .task {
