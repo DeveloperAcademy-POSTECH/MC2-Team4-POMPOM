@@ -10,12 +10,16 @@ import SwiftUI
 class PickerViewModel: ObservableObject {
     //MARK: - Propeties
     @Published var currentType: ClothCategory = .hat
+    //UI 에 보여지는 컬러, 옷
     @Published var currentPresets: [String] = []
     @Published var currentItems: [String] = []
+    //선택된 옷 + 컬러
     @Published var selectedItems: [ClothCategory : Cloth] = [:]
     
+    var networkManager: ClothesManager = ClothesManager()
     
-    // presets 이차원 배열 key : ClothCategory , value -> [String]
+    
+    // 기본 컬러 프리셋
     var presets: [ClothCategory : [String]] = [
         .hat : ["FFFFFF", "000000", "325593", "2E614E", "AD5139", "DF002B"],
         .top : ["FFFFFF", "000000", "BAD2F5", "C5C5C7", "23293F", "00914E", "3F2D24", "32323B"],
@@ -32,14 +36,18 @@ class PickerViewModel: ObservableObject {
         .accessories : []
     ]
     
-    var currentItem: Cloth? {
+    var selectedItem: Cloth? {
         return selectedItems[currentType]
     }
     
-//    var currentItems: [String] {
-//        return items[currentType] ?? []
-//    }
-    
+    var selectedItemColor: String? {
+        if let hex = selectedItems[currentType]?.hex {
+            return hex
+        } else {
+            return nil
+        }
+    }
+
     //MARK: - LifeCycle
     init() {
         changeCategory(with: .hat)
@@ -48,8 +56,8 @@ class PickerViewModel: ObservableObject {
     //MARK: - Methods
     func changeCategory(with category: ClothCategory) {
         currentType = category
-        currentPresets = presets[category]!
-        currentItems = items[category]!
+        currentPresets = presets[category] ?? []
+        currentItems = items[category] ?? []
     }
     
     func addPreset(hex: String) {
@@ -57,15 +65,15 @@ class PickerViewModel: ObservableObject {
         presets[currentType]?.append(hex)
     }
     
-    func imageName(name: String) -> String {
-        let str = "c-\(currentType)-\(name)"
-        return str
-    }
-    
-    func changeColor(hex: String) {
+    func changeSelectedColor(with hex: String) {
         if selectedItems[currentType] != nil {
             selectedItems[currentType]?.hex = hex
         }
+    }
+    
+    func fetchAssetName(name: String) -> String {
+        let str = "c-\(currentType)-\(name)"
+        return str
     }
     
     func selectItem(name: String, hex: String) {
@@ -80,10 +88,27 @@ class PickerViewModel: ObservableObject {
         } else {
             selectedItems[currentType] = Cloth(id: name, hex: hex , category: currentType)
         }
-        print(selectedItems)
+    }
+    
+    func uploadItem() {
+        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
+            networkManager.saveClothes(userCode: defaultCode, clothes: selectedItems)
+        } else {
+            print("DEBUG: 사용자 코드 조회 실패")
+        }
     }
     
     //CouplleView
+    
+    func requestClothes() async {
+        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
+            networkManager.loadClothes(userCode: defaultCode) { clothes in
+                    self.selectedItems = clothes
+            }
+        } else {
+            print("DEBUG: 사용자 코드 조회 실패")
+        }
+    }
     
     func clearSelectedItem() {
         selectedItems.removeAll()
@@ -95,14 +120,6 @@ class PickerViewModel: ObservableObject {
             return imageName
         }
         return ""
-    }
-    
-    func fetchCurrentHex() -> String? {
-        if let hex = selectedItems[currentType]?.hex {
-            return hex
-        } else {
-            return nil
-        }
     }
 }
 

@@ -23,11 +23,11 @@ struct ColorGrid: View {
                         .onTapGesture {
                             withAnimation {
                                 currentHex = item.wrappedValue
-                                vm.changeColor(hex: currentHex)
+                                vm.changeSelectedColor(with: currentHex)
                             }
                         }
                         .overlay {
-                            if item.wrappedValue == vm.fetchCurrentHex() ?? currentHex {
+                            if item.wrappedValue == vm.selectedItemColor ?? currentHex {
                                 Circle()
                                     .stroke(Color(hex: "BABABA"), lineWidth: 3)
                                     .frame(width: 60, height: 60, alignment: .center)

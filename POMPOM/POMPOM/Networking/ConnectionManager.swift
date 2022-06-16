@@ -30,6 +30,7 @@ struct ConnectionManager {
             if let err = err {
                 dump("Error adding users 아래 문서: \(err)")
             }
+            print(err)
         }
     }
     
