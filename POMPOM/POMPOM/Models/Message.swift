@@ -33,7 +33,11 @@ class messageData: ObservableObject{
                 print("timestamp is \(timestampp.dateValue())")
                 
                 if change.type == .added {
-                    let newMsg: Message = Message(_id : change.document.get("id") as! Int, _messageContent: change.document.get("messageContent") as! String, _messageFrom: change.document.get("messageFrom") as! String, _messageTo: change.document.get("messageTo") as! String, _timestamp: (change.document.get("timestamp") as! Timestamp).dateValue()) //가드 안됐음
+                    let newMsg: Message = Message(_id : change.document.get("id") as! Int,
+                                                  _messageContent: change.document.get("messageContent") as! String,
+                                                  _messageFrom: change.document.get("messageFrom") as! String,
+                                                  _messageTo: change.document.get("messageTo") as! String,
+                                                  _timestamp: (change.document.get("timestamp") as! Timestamp).dateValue())
                     self.messages.append(newMsg)
                 }
             }
