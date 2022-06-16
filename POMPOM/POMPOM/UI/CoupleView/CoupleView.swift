@@ -100,6 +100,7 @@ struct CoupleView: View {
                         ZStack {
                             Image("Gom0")
                                 .resizable()
+                                
 
                             ClothesView(vm: myClothViewModel)
 

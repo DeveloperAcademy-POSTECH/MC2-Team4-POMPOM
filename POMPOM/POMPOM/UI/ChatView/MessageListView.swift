@@ -37,9 +37,10 @@ struct MessageListView: View {
                     }.onChange(of: data.messages) { newValue in
                         value.scrollTo(data.messages.last!.id, anchor: .bottom)
                     }
-                    
                 }.padding(16)
+                 .rotationEffect(Angle(degrees: 180))
             }
+            .rotationEffect(Angle(degrees: 180))
         }
     }
 }
