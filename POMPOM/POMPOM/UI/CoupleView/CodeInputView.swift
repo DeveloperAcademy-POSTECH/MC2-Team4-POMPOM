@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CodeInputView: View {
     @Binding var textInput: String
-    var delegate: AlertDelegate?
+    var delegate: NetworkDelegate?
     private let codeViewModel: CodeManager = CodeManager()
     
     var body: some View {
@@ -21,9 +21,13 @@ struct CodeInputView: View {
             Task {
                 do {
                     try await codeViewModel.connectWithPartner(partnerCode: textInput)
+                } catch ConnectionManagerError.callMySelf {
+                    delegate?.showAlertwith(message: "자신의 코드는 입력할 수 없습니다.")
                 } catch ConnectionManagerError.invalidPartnerCode {
                     delegate?.showAlertwith(message: "유효하지 않은 코드입니다.")
                 }
+                
+                delegate?.didConnectedPartner()
             }
         })
     }
