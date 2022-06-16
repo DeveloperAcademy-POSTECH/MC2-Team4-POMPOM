@@ -11,6 +11,7 @@ struct CodeInputView: View {
     @Binding var textInput: String
     var delegate: NetworkDelegate?
     private let codeViewModel: CodeManager = CodeManager()
+    let afterAction: () -> ()
     
     var body: some View {
         CodeView(title: "초대코드 입력", content: {
@@ -28,6 +29,10 @@ struct CodeInputView: View {
                 }
                 
                 delegate?.didConnectedPartner()
+                
+                DispatchQueue.main.async {
+                    afterAction()
+                }
             }
         })
     }
@@ -36,7 +41,7 @@ struct CodeInputView: View {
 struct CodeInputView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CodeInputView(textInput: .constant(""))
+            CodeInputView(textInput: .constant(""), afterAction: {})
                 .navigationTitle("POMPOM")
                 .navigationBarTitleDisplayMode(.inline)
         }
