@@ -59,6 +59,18 @@ struct CodeManager {
         
         connectionManager.updatePartnerCode(oneId: ownId, anotherCode: partnerCode)
         connectionManager.updatePartnerCode(oneId: partnerId, anotherCode: ownCode)
+        UserDefaults.standard.set(partnerCode, forKey: "partner_code")
+    }
+    
+    func getPartnerCode() -> String {
+        // UserDefaults에 partner_code가 있을 때
+        if let partnerCode: String = UserDefaults.standard.string(forKey: "partner_code") {
+            return partnerCode
+        }
+        // UserDefaults에 partner_code가 없을 때
+        else {
+            return ""
+        }
     }
 }
 
