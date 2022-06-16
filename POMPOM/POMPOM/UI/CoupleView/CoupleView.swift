@@ -55,7 +55,7 @@ struct CoupleView: View {
     @State private var codeOutputViewIsPresented = false
     @State private var sheetMode = SheetMode.none
     @State var showAlert = false
-    @State var alertMessage: String = ""
+    @State var alertMessage: String = "유효하지 않은 동작입니다."
     
     var characterSize: CharacterSize {
         switch sheetMode {
