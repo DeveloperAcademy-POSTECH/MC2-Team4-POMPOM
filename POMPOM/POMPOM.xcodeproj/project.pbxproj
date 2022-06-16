@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2521EC76285A0D2400B02E1A /* ClothesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2521EC75285A0D2400B02E1A /* ClothesManager.swift */; };
 		575BF0DA7306934B5512BD95 /* Pods_POMPOM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DDE9E9E18A3E669433BA19 /* Pods_POMPOM.framework */; };
+		8A0732CE285B057B00E72AD9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0732CD285B057B00E72AD9 /* SettingsView.swift */; };
 		AB132FE92854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */; };
 		AB132FEA2854BE5C0023DBD0 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */; };
 		AB132FED2854BF500023DBD0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB132FEC2854BF500023DBD0 /* Constant.swift */; };
@@ -62,6 +63,7 @@
 		73DDE9E9E18A3E669433BA19 /* Pods_POMPOM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_POMPOM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7726019BE8B2B147179CFA25 /* Pods-POMPOM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOM.release.xcconfig"; path = "Target Support Files/Pods-POMPOM/Pods-POMPOM.release.xcconfig"; sourceTree = "<group>"; };
 		893FA964D491FDFD16ACC4FD /* Pods-POMPOM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOM.debug.xcconfig"; path = "Target Support Files/Pods-POMPOM/Pods-POMPOM.debug.xcconfig"; sourceTree = "<group>"; };
+		8A0732CD285B057B00E72AD9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9FDC8B0E53B5AF6CF8AA4472 /* Pods-POMPOMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOMTests.debug.xcconfig"; path = "Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A233C9F7EE2F43C44A16412C /* Pods_POMPOMTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_POMPOMTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -150,6 +152,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8A0732CC285B056C00E72AD9 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				8A0732CD285B057B00E72AD9 /* SettingsView.swift */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
 		AB132FEB2854BF430023DBD0 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +214,7 @@
 		C04795C5284F15D20040646A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8A0732CC285B056C00E72AD9 /* SettingsView */,
 				D430FCFC2859A73700F216CB /* ColorPickerView */,
 				C0F1DBFE28575B9100F8EAA0 /* ClothPickerView */,
 				AEA32AA7285741B5006A31D4 /* ChatView */,
@@ -504,6 +515,7 @@
 				C0182C3828598407000F0A6A /* ColorGrid.swift in Sources */,
 				ABFEE2122855A86D007817D3 /* CodeView.swift in Sources */,
 				C0754BA7284F1921005DBAFC /* DummyNetworkManager.swift in Sources */,
+				8A0732CE285B057B00E72AD9 /* SettingsView.swift in Sources */,
 				C06CE15B2851DCFE00BBDA68 /* ConnectionManager.swift in Sources */,
 				AB3ABBAA285AECCA002F9DD9 /* BaseModel.swift in Sources */,
 				AB132FED2854BF500023DBD0 /* Constant.swift in Sources */,
