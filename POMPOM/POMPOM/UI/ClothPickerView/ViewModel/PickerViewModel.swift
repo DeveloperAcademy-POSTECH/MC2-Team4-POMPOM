@@ -23,9 +23,9 @@ class PickerViewModel: ClothViewModel {
     
     // 기본 컬러 프리셋
     var presets: [ClothCategory : [String]] = [
-        .hat : ["FFFFFF", "000000", "325593", "2E614E", "AD5139", "DF002B"],
-        .top : ["FFFFFF", "000000", "BAD2F5", "C5C5C7", "23293F", "00914E", "3F2D24", "32323B"],
-        .bottom : ["FFFFFF", "C5C5C7", "ACC8E0", "1D2433", "FAF3E6", "CBAF86", "6D7A3B"],
+        .hat : ["FFFFFF", "000000", "325593", "2E614E", "AD5139", "DF002B", "6F6F71", "D0DBE2", "DAC7C5"],
+        .top : ["FFFFFF", "000000", "BAD2F5", "C5C5C7", "23293F", "00914E", "FF5100", "3F2D24", "32323B", "FAF6EA", "E3EDE8", "F7EDF8"],
+        .bottom : ["FFFFFF", "C5C5C7", "ACC8E0","7489A3", "1D2433", "FAF3E6", "CBAF86", "6D7A3B"],
         .shoes : ["FFFFFF", "000000", "8D8983", "AC9F80"],
         .accessories : ["FFFFFF", "000000", "325593", "2E614E", "AD5139", "DF002B"]
     ]
