@@ -11,6 +11,7 @@ import SwiftUI
 struct MessageBubbleView: View {
     var chatMessage: String
     var isUserBubble: Bool
+    var commentedTime: Date
     
     var body: some View {
         HStack(alignment: .bottom) {
@@ -35,23 +36,17 @@ struct MessageBubbleView: View {
     }
     
     var chatTime: some View {
-        return Text(currentTime)
+        return Text(getCurrentTime(time: commentedTime))
             .foregroundColor(Color(UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1.0)))
     }
     
-    var currentTime: String { //현재 시간 string return
-        let date = Date()
+    func getCurrentTime(time: Date) -> String { //시간 string return
+        let date = time
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
         let min = calendar.component(.minute, from: date)
         let timeString = "\(hour):\(min)"
         
         return timeString
-    }
-}
-
-struct MessageBubbleView_Previews: PreviewProvider {
-    static var previews: some View {
-        MessageBubbleView(chatMessage: "안녕하세요육칠팔구십그다음은더많겠다아아아아아아아아호에에에에에에", isUserBubble: true)
     }
 }

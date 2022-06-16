@@ -12,6 +12,8 @@ enum CharacterSize {
 }
 
 struct CoupleView: View {
+    @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
+    
     var characterSpacing: CGFloat {
         Constant.screenWidth * (33 / 390)
     }
@@ -42,14 +44,15 @@ struct CoupleView: View {
         characterWidth * (215.68 / 114)
     }
     
-    @StateObject var pickerViewModel = PickerViewModel()
+    @StateObject var myClothViewModel = PickerViewModel()
+    @StateObject var partnerClothViewModel = ClothViewModel()
+    var codeViewModel = CodeManager()
     @State private var partnerConnected = false
     @State private var actionSheetPresented = false
     @State private var codeInput = ""
     @State private var commentInput = ""
     @State private var codeInputViewIsPresented = false
     @State private var codeOutputViewIsPresented = false
-    
     @State private var sheetMode = SheetMode.none
     
     var characterSize: CharacterSize {
@@ -63,6 +66,7 @@ struct CoupleView: View {
         }
     }
     
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -73,14 +77,17 @@ struct CoupleView: View {
                                 actionSheetPresented = true
                             } label: {
                                 ZStack {
-                                    Image("Character")
+                                    Image("Gom0")
                                         .resizable()
                                         .frame(width: characterWidth, height: characterHeight)
                                         .opacity(partnerConnected ? 1 : 0.3)
                                     
                                     if !partnerConnected {
+                                        
                                         Text("초대하기")
                                             .foregroundColor(.orange)
+                                    } else {
+                                        ClothesView(vm: partnerClothViewModel)
                                     }
                                 }
                             }
@@ -88,44 +95,67 @@ struct CoupleView: View {
                         }
                         
                         ZStack {
-                            Image("Character")
+                            Image("Gom0")
                                 .resizable()
-                            
-                            ClothView(vm: pickerViewModel, category: .hat)
-                            ClothView(vm: pickerViewModel, category: .shoes)
-                            ClothView(vm: pickerViewModel, category: .bottom)
-                            ClothView(vm: pickerViewModel, category: .top)
-                            
+
+                            ClothesView(vm: myClothViewModel)
+
                         }
                         .frame(width: characterWidth, height: characterHeight)
                         .onTapGesture {
-                            sheetMode = .mid
+                            withAnimation {
+                                sheetMode = .mid
+                            }
                         }
-
                     }
                     .offset(y: characterOffset)
                     .animation(.default, value: characterWidth)
                     .animation(.default, value: characterHeight)
                     .animation(.default, value: characterOffset)
                     Spacer()
-                    CommentTextField(textInput: $commentInput)
+                   //CommentTextField(textInput: $commentInput)
                 }
+                CardContent()
                 
                 SheetView(sheetMode: $sheetMode) {
-                    ClothPickerView(vm: pickerViewModel)
+                    ClothPickerView(vm: myClothViewModel)
                 }
             }
             .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("POMPOM")
-                        .font(.custom("Montserrat-ExtraBold", size: 20))
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: Text("Hello world")) {
-                        Image(systemName: "gearshape.fill")
-                            .foregroundColor(Color(UIColor.label))
+                ToolbarItem(placement: .navigationBarLeading) {
+                    if sheetMode != .none {
+                        Button("취소") {
+                            Task {
+                                await myClothViewModel.requestClothes()
+                            }
+                            sheetMode = .none
+                        }
+                        .foregroundColor(.red)
                     }
                 }
+      
+                
+                ToolbarItem(placement: .principal) {
+                    if sheetMode == .none {
+                        Text("POMPOM")
+                            .font(.custom("Montserrat-ExtraBold", size: 20))
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if sheetMode == .none {
+                        NavigationLink(destination: SettingsView()) {
+                            Image(systemName: "gearshape.fill")
+                                .foregroundColor(Color(UIColor.label))
+                        }
+                    } else {
+                        Button("완료") {
+                            myClothViewModel.uploadItem()
+                            sheetMode = .none
+                        }
+                    }
+                }
+                
+              
             }
             .sheet(isPresented: $codeInputViewIsPresented, content: {
                 CodeInputView(textInput: $codeInput)
@@ -147,11 +177,18 @@ struct CoupleView: View {
             }
             .onAppear {
                 UITabBar.appearance().isHidden = true
+                Task {
+                    await myClothViewModel.requestClothes()
+                    await partnerClothViewModel.requestClothes()
+                }
+                print(isFirstLaunching)
+                
             }
+            
+        }        .fullScreenCover(isPresented: $isFirstLaunching) {
+            OnboardingView(isFirstLunching: $isFirstLaunching)
         }
     }
-    
-
 }
 
 struct CoupleView_Previews: PreviewProvider {
@@ -161,7 +198,7 @@ struct CoupleView_Previews: PreviewProvider {
 }
 
 struct ClothView: View {
-    @ObservedObject var vm: PickerViewModel
+    @ObservedObject var vm: ClothViewModel
     var category: ClothCategory
     
     var body: some View {
@@ -172,6 +209,33 @@ struct ClothView: View {
             
             Image(vm.fetchImageString(with: category))
                 .resizable()
+                .foregroundColor(Color(hex: vm.selectedItems[category]?.hex ?? "FFFFFF" == "000000" ? "D0D0D0" : "000000"))
         }
     }
 }
+
+struct AccesoriesView: View {
+    @ObservedObject var vm: ClothViewModel
+   
+    var body: some View {
+        ZStack {
+            Image(vm.fetchImageString(with: .accessories))
+                .resizable()
+        }
+    }
+}
+
+struct ClothesView: View {
+    @ObservedObject var vm: ClothViewModel
+    
+    var body: some View {
+        ZStack {
+            ClothView(vm: vm, category: .hat)
+            ClothView(vm: vm, category: .shoes)
+            ClothView(vm: vm, category: .bottom)
+            AccesoriesView(vm: vm)
+            ClothView(vm: vm, category: .top)
+        }
+    }
+}
+

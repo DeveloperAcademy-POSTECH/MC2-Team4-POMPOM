@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 extension Color {
     //Hex 코드를 이용한 Color 객체 생성
@@ -24,5 +25,15 @@ extension Color {
             green: CGFloat(g) / 0xff,
             blue: CGFloat(b) / 0xff
         )
+    }
+    
+    var hex: String {
+        let components = UIColor(self).cgColor.components!
+        
+        let r = Float(components[0])
+        let g = Float(components[1])
+        let b = Float(components[2])
+        
+        return String(format: "%02lX%02lX%02lX", lroundf(r * 255), lroundf(g * 255), lroundf(b * 255))
     }
 }
