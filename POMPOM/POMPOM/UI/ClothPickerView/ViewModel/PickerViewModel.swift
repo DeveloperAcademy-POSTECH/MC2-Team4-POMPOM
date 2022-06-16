@@ -20,6 +20,7 @@ class PickerViewModel: ClothViewModel {
         super.init()
         changeCategory(with: .hat)
     }
+
     
     // 기본 컬러 프리셋
     var presets: [ClothCategory : [String]] = [

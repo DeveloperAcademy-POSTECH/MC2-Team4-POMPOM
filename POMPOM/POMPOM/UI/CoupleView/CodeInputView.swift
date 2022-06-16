@@ -14,7 +14,7 @@ struct CodeInputView: View {
     
     var body: some View {
         CodeView(title: "초대코드 입력", content: {
-            TextField("", text: _textInput)
+            TextField("", text: $textInput)
                 .padding(.horizontal, 8)
                 .multilineTextAlignment(.center)
         }, buttonTitle: "확인", buttonAction: {

@@ -16,9 +16,7 @@ struct SettingsView: View {
         List {
             Section(header: Text("프로필 관리")) {
                 //Text("초대코드")를 CondeOutputView()로 변경
-                NavigationLink("초대코드 확인하기", destination: CodeOutputView(code: .constant("ABCDEFGH"), afterCopy: {
-                    
-                }))
+                NavigationLink("초대코드 확인하기", destination: CodeOutputView())
                 
                 //Text("초대코드 입력")을 CodeInputView()로 변경
                 NavigationLink("초대코드 입력하기", destination: CodeInputView(textInput: $codeInput))
