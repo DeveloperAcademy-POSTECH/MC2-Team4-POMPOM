@@ -6,17 +6,16 @@
 //
 
 import SwiftUI
+import SystemConfiguration
 
-class PickerViewModel: ObservableObject {
+class PickerViewModel: ClothViewModel {
     //MARK: - Propeties
     @Published var currentType: ClothCategory = .hat
     //UI 에 보여지는 컬러, 옷
     @Published var currentPresets: [String] = []
     @Published var currentItems: [String] = []
     //선택된 옷 + 컬러
-    @Published var selectedItems: [ClothCategory : Cloth] = [:]
-    
-    var networkManager: ClothesManager = ClothesManager()
+
     
     
     // 기본 컬러 프리셋
@@ -31,9 +30,9 @@ class PickerViewModel: ObservableObject {
     var items: [ClothCategory: [String]] = [
         .hat : ["cap", "suncap"],
         .top : [ "short", "long",  "shirts", "shirtslong", "sleeveless", "pkshirts", "onepiece", "pkonepiece"],
-        .bottom : ["shorts", "skirtshort", "skirtsa", "long", "skirtlong"],
-        .shoes : ["sandals", "sneakers", "socks", "women"],
-        .accessories : []
+        .bottom : ["shorts", "skirtshort", "skirta", "long", "skirtlong"],
+        .shoes : ["sandals", "sneakers", "women"],
+        .accessories : ["glasses", "sunglasses"]
     ]
     
     var selectedItem: Cloth? {
@@ -47,11 +46,16 @@ class PickerViewModel: ObservableObject {
             return nil
         }
     }
-
-    //MARK: - LifeCycle
-    init() {
-        changeCategory(with: .hat)
+    
+    var isCategoryColorEnable: Bool {
+        switch currentType {
+        case .accessories:
+            return false
+        default:
+            return true
+        }
     }
+
     
     //MARK: - Methods
     func changeCategory(with category: ClothCategory) {
@@ -96,30 +100,6 @@ class PickerViewModel: ObservableObject {
         } else {
             print("DEBUG: 사용자 코드 조회 실패")
         }
-    }
-    
-    //CouplleView
-    
-    func requestClothes() async {
-        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
-            networkManager.loadClothes(userCode: defaultCode) { clothes in
-                    self.selectedItems = clothes
-            }
-        } else {
-            print("DEBUG: 사용자 코드 조회 실패")
-        }
-    }
-    
-    func clearSelectedItem() {
-        selectedItems.removeAll()
-    }
-    
-    func fetchImageString(with category: ClothCategory) -> String {
-        if let name = selectedItems[category]?.id {
-            let imageName = "\(category)-\(name)"
-            return imageName
-        }
-        return ""
     }
 }
 
