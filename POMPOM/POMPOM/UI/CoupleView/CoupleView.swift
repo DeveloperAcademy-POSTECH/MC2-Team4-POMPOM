@@ -12,6 +12,8 @@ enum CharacterSize {
 }
 
 struct CoupleView: View {
+    @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
+    
     var characterSpacing: CGFloat {
         Constant.screenWidth * (33 / 390)
     }
@@ -43,13 +45,13 @@ struct CoupleView: View {
     }
     
     @StateObject var pickerViewModel = PickerViewModel()
+    var codeViewModel = CodeManager()
     @State private var partnerConnected = false
     @State private var actionSheetPresented = false
     @State private var codeInput = ""
     @State private var commentInput = ""
     @State private var codeInputViewIsPresented = false
     @State private var codeOutputViewIsPresented = false
-    
     @State private var sheetMode = SheetMode.none
     
     var characterSize: CharacterSize {
@@ -63,6 +65,7 @@ struct CoupleView: View {
         }
     }
     
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -73,7 +76,7 @@ struct CoupleView: View {
                                 actionSheetPresented = true
                             } label: {
                                 ZStack {
-                                    Image("Character")
+                                    Image("Gom0")
                                         .resizable()
                                         .frame(width: characterWidth, height: characterHeight)
                                         .opacity(partnerConnected ? 1 : 0.3)
@@ -88,7 +91,7 @@ struct CoupleView: View {
                         }
                         
                         ZStack {
-                            Image("Character")
+                            Image("Gom0")
                                 .resizable()
                             
                             ClothView(vm: pickerViewModel, category: .hat)
@@ -99,7 +102,10 @@ struct CoupleView: View {
                         }
                         .frame(width: characterWidth, height: characterHeight)
                         .onTapGesture {
-                            sheetMode = .mid
+                            withAnimation {
+                                sheetMode = .mid
+                            }
+                            
                         }
 
                     }
@@ -116,16 +122,38 @@ struct CoupleView: View {
                 }
             }
             .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("POMPOM")
-                        .font(.custom("Montserrat-ExtraBold", size: 20))
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: Text("Hello world")) {
-                        Image(systemName: "gearshape.fill")
-                            .foregroundColor(Color(UIColor.label))
+                ToolbarItem(placement: .navigationBarLeading) {
+                    if sheetMode != .none {
+                        Button("취소") {
+                            Task {
+                                await pickerViewModel.requestClothes()
+                            }
+                        }
+                        .foregroundColor(.red)
                     }
                 }
+      
+                
+                ToolbarItem(placement: .principal) {
+                    if sheetMode == .none {
+                        Text("POMPOM")
+                            .font(.custom("Montserrat-ExtraBold", size: 20))
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if sheetMode == .none {
+                        NavigationLink(destination: Text("Hello world")) {
+                            Image(systemName: "gearshape.fill")
+                                .foregroundColor(Color(UIColor.label))
+                        }
+                    } else {
+                        Button("완료") {
+                            pickerViewModel.uploadItem()
+                        }
+                    }
+                }
+                
+              
             }
             .sheet(isPresented: $codeInputViewIsPresented, content: {
                 CodeInputView(textInput: $codeInput)
@@ -147,11 +175,14 @@ struct CoupleView: View {
             }
             .onAppear {
                 UITabBar.appearance().isHidden = true
+                
             }
+            
+        }
+        .fullScreenCover(isPresented: $isFirstLaunching) {
+            OnboardingView(isFirstLunching: $isFirstLaunching)
         }
     }
-    
-
 }
 
 struct CoupleView_Previews: PreviewProvider {

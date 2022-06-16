@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CodeInputView: View {
     @Binding var textInput: String
-    private let codeViewModel: CodeViewModel = CodeViewModel()
+    private let codeViewModel: CodeManager = CodeManager()
     
     var body: some View {
         CodeView(title: "초대코드 입력", content: {

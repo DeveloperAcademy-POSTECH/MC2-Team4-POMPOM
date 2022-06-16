@@ -7,10 +7,9 @@
 
 import Foundation
 
-struct CodeViewModel {
+struct CodeManager {
     private let code: String = ""
     private let connectionManager: ConnectionManager = ConnectionManager()
-    
     func getCode() async -> String {
         // UserDefaults에 이미 code가 있을 때
         if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
@@ -36,7 +35,7 @@ struct CodeViewModel {
     }
     
     // 길이가 length고, 숫자와 영문 대문자로만 이뤄진 코드 생성 및 반환
-    func generateCode(length: Int) -> String {
+    private func generateCode(length: Int) -> String {
         let elements = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         return String((0 ..< length).map { _ in elements.randomElement()! })
     }

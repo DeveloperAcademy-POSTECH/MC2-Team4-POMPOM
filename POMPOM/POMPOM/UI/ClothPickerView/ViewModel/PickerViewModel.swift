@@ -16,6 +16,8 @@ class PickerViewModel: ObservableObject {
     //선택된 옷 + 컬러
     @Published var selectedItems: [ClothCategory : Cloth] = [:]
     
+    var networkManager: ClothesManager = ClothesManager()
+    
     
     // 기본 컬러 프리셋
     var presets: [ClothCategory : [String]] = [
@@ -89,13 +91,21 @@ class PickerViewModel: ObservableObject {
     }
     
     func uploadItem() {
-        
+        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
+            networkManager.saveClothes(userCode: defaultCode, clothes: selectedItems)
+        } else {
+            print("DEBUG: 사용자 코드 조회 실패")
+        }
     }
     
     //CouplleView
     
-    func requestClothes() {
-        
+    func requestClothes() async {
+        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
+            selectedItems = await networkManager.loadClothes(userCode: defaultCode)
+        } else {
+            print("DEBUG: 사용자 코드 조회 실패")
+        }
     }
     
     func clearSelectedItem() {

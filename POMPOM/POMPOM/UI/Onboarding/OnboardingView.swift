@@ -12,7 +12,7 @@ struct OnboardingView: View {
     // CoupleView에 밑에 코드 추가
     //@AppStorage("_isFirstLanching") var isFirstLaunching: Bool = true
     
-    //@Binding var isFirstLunching: Bool
+    @Binding var isFirstLunching: Bool
     
     let onboardingViewData : [OnboardingViewModel] = [
         OnboardingViewModel(
@@ -40,7 +40,7 @@ struct OnboardingView: View {
     var body: some View {
         TabView {
             ForEach(onboardingViewData) {item in
-                OnboardingPageView(onboardingViewModel: item)
+                OnboardingPageView(onboardingViewModel: item, isFirstLunching: $isFirstLunching)
             }
         }
         .tabViewStyle(PageTabViewStyle())
@@ -51,6 +51,6 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView()
+        OnboardingView(isFirstLunching: .constant(true))
     }
 }

@@ -9,11 +9,8 @@ import SwiftUI
 
 struct OnboardingPageView: View {
     var onboardingViewModel: OnboardingViewModel
+    @Binding var isFirstLunching: Bool
     
-    
-    init(onboardingViewModel: OnboardingViewModel) {
-        self.onboardingViewModel = onboardingViewModel
-    }
     
     var body: some View {
         VStack {
@@ -37,11 +34,7 @@ struct OnboardingPageView: View {
             Spacer()
             if onboardingViewModel.isLast {
                 Button(action: {
-                                //임시코드 - 누르면 CoupleView로 넘어감.
-                                print("시작하기")
-                                // isFirstLaunching.toggle()
-                                // 위에 코드로 변경예정
-                                
+                    isFirstLunching = false
                             }) {
                                 Text("시작하기")
                                     .padding()
