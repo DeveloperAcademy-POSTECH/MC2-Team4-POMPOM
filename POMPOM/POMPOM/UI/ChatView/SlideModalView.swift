@@ -8,37 +8,41 @@
 import SwiftUI
 
 struct CardContent: View {
-    @ObservedObject var keyboard : KeyboardObserver = KeyboardObserver()
+    @StateObject var keyboard : KeyboardObserver = KeyboardObserver()
     
     public var body: some View {
         VStack {
-            SlideModalView {
+            SlideModalView(keyboard: keyboard) {
                 MessageListView()
             }.background(Color.white.opacity(0.85))
             TextFieldView()
-        }.frame(maxWidth:.infinity,maxHeight: UIScreen.main.bounds.height - (keyboard.isShowing ? keyboard.height + 34: 0), alignment:.bottom) //34: bottom safearea size
+        }.edgesIgnoringSafeArea(.all)
+            .frame(maxWidth:.infinity, maxHeight: UIScreen.main.bounds.height
+                   , alignment:.bottom)
             .onAppear{self.keyboard.addObserver()}
             .onDisappear{self.keyboard.removeObserver()}
     }
 }
 
 struct SlideModalView<Content> : View where Content : View {
+    @ObservedObject var keyboard: KeyboardObserver
     var content: () -> Content
-
     
-    public init(content: @escaping () -> Content) {
+    public init(keyboard: KeyboardObserver ,content: @escaping () -> Content) {
+        self.keyboard = keyboard
         self.content = content
     }
     
     public var body: some View {
-        ModifiedContent(content: self.content(), modifier: CardView())
+        ModifiedContent(content: self.content(), modifier: CardView(keyboard: keyboard))
     }
 }
 
 
 struct CardView: ViewModifier {
+    @ObservedObject var keyboard: KeyboardObserver
     @State private var isDragging = false
-    @State private var curHeight: CGFloat = 200
+    @State private var curHeight: CGFloat = 300
     let minHeight: CGFloat = 200
     let maxHeight: CGFloat = 500
     
@@ -51,12 +55,17 @@ struct CardView: ViewModifier {
                 .foregroundColor(Color.secondary)
                 .padding(10)
                 .gesture(dragGesture)
+        }.onChange(of: keyboard.isShowing) { newValue in
+            if keyboard.isShowing {
+                if curHeight > UIScreen.main.bounds.height - keyboard.height - 300 {
+                    curHeight = UIScreen.main.bounds.height - keyboard.height - 300
+                }
+            }
         }
         .frame(height: curHeight)
         .frame(maxWidth: .infinity)
-        .animation(isDragging ? nil : .easeInOut(duration: 0.2))
     }
-
+    
     
     @State private var prevDragTranslation = CGSize.zero
     
