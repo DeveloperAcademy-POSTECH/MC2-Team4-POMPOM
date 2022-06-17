@@ -39,11 +39,9 @@ class ClothViewModel: ObservableObject {
     }
     
     func clearSelectedItem() {
-//        selectedItems.removeAll()
         for key in selectedItems.keys {
-            selectedItems[key] = Cloth(id: "", hex: "", category: key)
+            selectedItems[key] = Cloth(id: " ", hex: " ", category: key) // Firebase 빈문자열 리스너에서 인식 불가 현상. 임시해결🚧
         }
-        print(selectedItems)
     }
     
     func isValidItem(with category: ClothCategory) -> Bool {
@@ -51,7 +49,7 @@ class ClothViewModel: ObservableObject {
             return false
         }
         
-        return selectedItem.id != ""
+        return selectedItem.id != " " // Firebase 빈문자열 리스너에서 인식 불가 현상. 임시해결🚧
     }
     
     func fetchImageString(with category: ClothCategory) -> String {
