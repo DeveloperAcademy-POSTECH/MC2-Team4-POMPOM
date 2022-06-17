@@ -32,6 +32,7 @@ struct CodeView<Content: View>: View {
     let content: () -> Content
     let buttonTitle: String
     let buttonAction: () -> ()
+    let afterAction: () -> ()
     
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
@@ -39,6 +40,9 @@ struct CodeView<Content: View>: View {
         ZStack {
             Color(UIColor.systemGray5)
                 .opacity(0.4)
+                .onTapGesture {
+                    afterAction()
+                }
             ZStack {
                 RoundedRectangle(cornerRadius: 14)
                     .foregroundColor(Color.white)
@@ -58,6 +62,7 @@ struct CodeView<Content: View>: View {
                     Button(buttonTitle) {
                         presentationMode.wrappedValue.dismiss()
                         buttonAction()
+                        afterAction()
                     }
                     .frame(width: buttonWidth, height: buttonHeight)
                     .accentColor(.white)
@@ -79,6 +84,6 @@ struct CodeTemplateView_Previews: PreviewProvider {
             Text("XEDAASDF")
         }, buttonTitle: "복사", buttonAction: {
             
-        })
+        }, afterAction: {})
     }
 }
