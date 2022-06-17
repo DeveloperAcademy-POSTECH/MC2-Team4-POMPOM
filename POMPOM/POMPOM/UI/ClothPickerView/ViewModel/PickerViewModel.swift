@@ -94,7 +94,10 @@ class PickerViewModel: ClothViewModel {
                 selectedItems[currentType]?.id = name
             }
         } else {
-            selectedItems[currentType] = Cloth(id: name, hex: hex , category: currentType)
+            withAnimation(.easeOut) {
+                selectedItems[currentType] = Cloth(id: name, hex: hex , category: currentType)
+            }
+            
         }
     }
     

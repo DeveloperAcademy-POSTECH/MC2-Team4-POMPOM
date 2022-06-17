@@ -131,7 +131,6 @@ struct CoupleView: View {
                         
                         Spacer()
                     }
-
                 }
                 
                 if codeInputViewIsPresented {
@@ -240,14 +239,19 @@ struct ClothView: View {
     var category: ClothCategory
     
     var body: some View {
-        ZStack {
-            Image(vm.fetchImageString(with: category) + "B")
-                .resizable()
-                .foregroundColor(Color(hex: vm.selectedItems[category]?.hex ?? "FFFFFF"))
+        if vm.selectedItems[category] != nil {
+            ZStack {
+                Image(vm.fetchImageString(with: category) + "B")
+                    .resizable()
+                    .foregroundColor(Color(hex: vm.selectedItems[category]?.hex ?? "FFFFFF"))
+                
+                Image(vm.fetchImageString(with: category))
+                    .resizable()
+                    .foregroundColor(Color(hex: vm.selectedItems[category]?.hex ?? "FFFFFF" == "000000" ? "D0D0D0" : "000000"))
+            }
+            .transition(.opacity)
+//            .transition(.slide)
             
-            Image(vm.fetchImageString(with: category))
-                .resizable()
-                .foregroundColor(Color(hex: vm.selectedItems[category]?.hex ?? "FFFFFF" == "000000" ? "D0D0D0" : "000000"))
         }
     }
 }
@@ -256,9 +260,12 @@ struct AccesoriesView: View {
     @ObservedObject var vm: ClothViewModel
    
     var body: some View {
-        ZStack {
-            Image(vm.fetchImageString(with: .accessories))
-                .resizable()
+        if vm.selectedItems[.accessories] != nil {
+            ZStack {
+                Image(vm.fetchImageString(with: .accessories))
+                    .resizable()
+            }
+            .transition(.slide)
         }
     }
 }

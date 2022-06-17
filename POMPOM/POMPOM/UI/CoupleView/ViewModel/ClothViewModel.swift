@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ClothViewModel: ObservableObject {
     //MARK: - Propeties
@@ -18,7 +19,9 @@ class ClothViewModel: ObservableObject {
     func requestClothes() async {
         if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
             networkManager.loadClothes(userCode: defaultCode) { clothes in
+                withAnimation {
                     self.selectedItems = clothes
+                }
             }
         } else {
             print("DEBUG: 사용자 코드 조회 실패")
