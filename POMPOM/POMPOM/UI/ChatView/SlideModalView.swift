@@ -14,7 +14,7 @@ struct CardContent: View {
         VStack {
             SlideModalView(keyboard: keyboard) {
                 MessageListView()
-            }.background(Color.white.opacity(0))
+            }
             TextFieldView()
         }.edgesIgnoringSafeArea(.all)
             .background(Color.white.opacity(0.85))
