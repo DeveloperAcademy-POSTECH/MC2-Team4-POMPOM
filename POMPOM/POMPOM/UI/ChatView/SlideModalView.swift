@@ -14,9 +14,10 @@ struct CardContent: View {
         VStack {
             SlideModalView(keyboard: keyboard) {
                 MessageListView()
-            }.background(Color.white.opacity(0.85))
+            }.background(Color.white.opacity(0))
             TextFieldView()
         }.edgesIgnoringSafeArea(.all)
+            .background(Color.white.opacity(0.85))
             .frame(maxWidth:.infinity, maxHeight: UIScreen.main.bounds.height
                    , alignment:.bottom)
             .onAppear{self.keyboard.addObserver()}
