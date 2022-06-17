@@ -49,12 +49,12 @@ struct CodeManager {
     func connectWithPartner(partnerCode: String) async throws {
         // partnerCode를 본인의 코드로 입력했는지 확인
         guard partnerCode != getCode() else {
-            throw ConnectionManagerError.callMySelf
+            throw ConnectionManagerResultType.callMySelf
         }
         
         // partnerCode가 존재하는지부터 확인
         guard await connectionManager.isExistingCode(code: partnerCode) else {
-            throw ConnectionManagerError.invalidPartnerCode
+            throw ConnectionManagerResultType.invalidPartnerCode
         }
         
         let ownCode: String = getCode()
@@ -65,6 +65,7 @@ struct CodeManager {
         connectionManager.updatePartnerCode(oneId: ownId, anotherCode: partnerCode)
         connectionManager.updatePartnerCode(oneId: partnerId, anotherCode: ownCode)
         UserDefaults.standard.set(partnerCode, forKey: "partner_code")
+        throw ConnectionManagerResultType.success
     }
     
     func getPartnerCode() -> String {
@@ -79,7 +80,10 @@ struct CodeManager {
     }
 }
 
-enum ConnectionManagerError: Error {
+enum ConnectionManagerResultType: Error {
+    case success
     case callMySelf // 자신의 코드를 불러오는 경우
     case invalidPartnerCode // 일치하는 파트너 코드가 없는 경우
 }
+
+

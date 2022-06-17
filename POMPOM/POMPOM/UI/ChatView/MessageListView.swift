@@ -18,7 +18,7 @@ struct MessageListView: View {
                 VStack(spacing: 15) {
                     //버블간 간격 15
                     
-                    DateDisplayView()
+                    //DateDisplayView()
                     
                     ForEach(data.messages) { message in
                         MessageBubbleView(chatMessage: message.messageContent,
