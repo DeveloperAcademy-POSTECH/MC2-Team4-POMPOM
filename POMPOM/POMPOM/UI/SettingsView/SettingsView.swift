@@ -14,6 +14,7 @@ struct SettingsView: View {
     @State private var codeInput = ""
     @Binding var showAlert: Bool
     @Binding var alertMessage: String
+    @Binding var isPartnerConnected: Bool
     
     var body: some View {
         ZStack {
@@ -44,13 +45,16 @@ struct SettingsView: View {
             }))
             .confirmationDialog("친구 연결을 해지하시겠습니까?", isPresented: $actionSheetPresented) {
                 Button("연결 해지", role: .destructive) {
-                    // TODO: 연결 해지 로직 처리
+                    codeManager.deletePartnerCode { message in
+                        isPartnerConnected = false
+                        alertMessage = message
+                        showAlert = true
+                    }
                 }
                 .foregroundColor(Color(UIColor.label))
                 
                 Button("돌아가기", role: .cancel) {}
             }
-            
         }
     }
 }
@@ -69,7 +73,7 @@ extension SettingsView: NetworkDelegate {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SettingsView(showAlert: .constant(true), alertMessage: .constant("프리뷰 에러메세지"))
+            SettingsView(showAlert: .constant(true), alertMessage: .constant("프리뷰 에러메세지"), isPartnerConnected: .constant(false))
         }
     }
 }

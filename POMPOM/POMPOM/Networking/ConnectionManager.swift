@@ -64,4 +64,13 @@ struct ConnectionManager {
         
         return returnValue
     }
+    
+    func updatePartnerCodeBy(ownCode: String) async {
+        do {
+            try await usersRef.document(getIdByCode(code: ownCode))
+            .updateData(["partner_code": " "])
+        } catch {
+            print("cannot get document by code")
+        }
+    }
 }
