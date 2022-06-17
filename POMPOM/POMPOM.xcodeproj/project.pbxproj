@@ -34,14 +34,12 @@
 		C06CE14E2851DC5100BBDA68 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14D2851DC5100BBDA68 /* CodeInputView.swift */; };
 		C06CE1502851DC5C00BBDA68 /* CodeOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14F2851DC5C00BBDA68 /* CodeOutputView.swift */; };
 		C06CE1532851DC7F00BBDA68 /* ClothViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE1522851DC7F00BBDA68 /* ClothViewModel.swift */; };
-		C06CE1572851DCB100BBDA68 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE1562851DCB100BBDA68 /* FirebaseManager.swift */; };
 		C06CE1592851DCD600BBDA68 /* CodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE1582851DCD600BBDA68 /* CodeManager.swift */; };
 		C06CE15B2851DCFE00BBDA68 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE15A2851DCFE00BBDA68 /* ConnectionManager.swift */; };
 		C06CE15E2851DD4800BBDA68 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE15D2851DD4800BBDA68 /* OnboardingView.swift */; };
 		C06CE1602851DD6700BBDA68 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE15F2851DD6700BBDA68 /* NotificationManager.swift */; };
 		C06CE1632851DD8500BBDA68 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE1622851DD8500BBDA68 /* LoginView.swift */; };
 		C06CE1652851DDAB00BBDA68 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE1642851DDAB00BBDA68 /* LoginViewModel.swift */; };
-		C0754BA7284F1921005DBAFC /* DummyNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0754BA6284F1921005DBAFC /* DummyNetworkManager.swift */; };
 		C0A779C72849E1C50086810C /* POMPOMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779C62849E1C50086810C /* POMPOMApp.swift */; };
 		C0A779C92849E1C50086810C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779C82849E1C50086810C /* ContentView.swift */; };
 		C0A779CB2849E1C60086810C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CA2849E1C60086810C /* Assets.xcassets */; };
@@ -95,14 +93,12 @@
 		C06CE14D2851DC5100BBDA68 /* CodeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeInputView.swift; sourceTree = "<group>"; };
 		C06CE14F2851DC5C00BBDA68 /* CodeOutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeOutputView.swift; sourceTree = "<group>"; };
 		C06CE1522851DC7F00BBDA68 /* ClothViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothViewModel.swift; sourceTree = "<group>"; };
-		C06CE1562851DCB100BBDA68 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		C06CE1582851DCD600BBDA68 /* CodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeManager.swift; sourceTree = "<group>"; };
 		C06CE15A2851DCFE00BBDA68 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		C06CE15D2851DD4800BBDA68 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C06CE15F2851DD6700BBDA68 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		C06CE1622851DD8500BBDA68 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C06CE1642851DDAB00BBDA68 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		C0754BA6284F1921005DBAFC /* DummyNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyNetworkManager.swift; sourceTree = "<group>"; };
 		C0A779C32849E1C50086810C /* POMPOM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POMPOM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A779C62849E1C50086810C /* POMPOMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMPOMApp.swift; sourceTree = "<group>"; };
 		C0A779C82849E1C50086810C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -236,12 +232,10 @@
 		C04795C7284F15D20040646A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				C0754BA6284F1921005DBAFC /* DummyNetworkManager.swift */,
-				C06CE1562851DCB100BBDA68 /* FirebaseManager.swift */,
 				C06CE15A2851DCFE00BBDA68 /* ConnectionManager.swift */,
+				C06CE1582851DCD600BBDA68 /* CodeManager.swift */,
 				C06CE15F2851DD6700BBDA68 /* NotificationManager.swift */,
 				2521EC75285A0D2400B02E1A /* ClothesManager.swift */,
-				C06CE1582851DCD600BBDA68 /* CodeManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -511,7 +505,6 @@
 				AEA32AAB285741CF006A31D4 /* MessageListView.swift in Sources */,
 				C06CE14B2851DC0900BBDA68 /* CoupleView.swift in Sources */,
 				C0ED415D28586989007E5502 /* Cloth.swift in Sources */,
-				C0754BA7284F1921005DBAFC /* DummyNetworkManager.swift in Sources */,
 				ABC4C5192859A6FB00D064E4 /* SheetView.swift in Sources */,
 				C06CE1592851DCD600BBDA68 /* CodeManager.swift in Sources */,
 				C0A779C72849E1C50086810C /* POMPOMApp.swift in Sources */,
@@ -526,7 +519,6 @@
 				C06CE14E2851DC5100BBDA68 /* CodeInputView.swift in Sources */,
 				C0182C3828598407000F0A6A /* ColorGrid.swift in Sources */,
 				ABFEE2122855A86D007817D3 /* CodeView.swift in Sources */,
-				C0754BA7284F1921005DBAFC /* DummyNetworkManager.swift in Sources */,
 				8A0732CE285B057B00E72AD9 /* SettingsView.swift in Sources */,
 				C06CE15B2851DCFE00BBDA68 /* ConnectionManager.swift in Sources */,
 				AB3ABBAA285AECCA002F9DD9 /* BaseModel.swift in Sources */,
@@ -535,7 +527,6 @@
 				C06CE1602851DD6700BBDA68 /* NotificationManager.swift in Sources */,
 				D40F418628571FE70037B3EB /* OnboardingPageView.swift in Sources */,
 				AE8509F72859C0FE00D11812 /* KeyboardObserver.swift in Sources */,
-				C06CE1572851DCB100BBDA68 /* FirebaseManager.swift in Sources */,
 				ABFEE2142855F2C1007817D3 /* CommentTextField.swift in Sources */,
 				2521EC76285A0D2400B02E1A /* ClothesManager.swift in Sources */,
 				AE8509F92859C10E00D11812 /* TextFieldView.swift in Sources */,
