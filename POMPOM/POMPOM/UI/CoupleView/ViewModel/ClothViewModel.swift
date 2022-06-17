@@ -39,7 +39,19 @@ class ClothViewModel: ObservableObject {
     }
     
     func clearSelectedItem() {
-        selectedItems.removeAll()
+//        selectedItems.removeAll()
+        for key in selectedItems.keys {
+            selectedItems[key] = Cloth(id: "", hex: "", category: key)
+        }
+        print(selectedItems)
+    }
+    
+    func isValidItem(with category: ClothCategory) -> Bool {
+        guard let selectedItem = selectedItems[category] else {
+            return false
+        }
+        
+        return selectedItem.id != ""
     }
     
     func fetchImageString(with category: ClothCategory) -> String {
