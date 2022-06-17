@@ -8,6 +8,7 @@
 import Foundation
 
 struct Cloth: Identifiable {
+    
     var id: String
     var hex: String
     var category: ClothCategory
