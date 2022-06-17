@@ -11,14 +11,16 @@ import SwiftUI
 struct MessageBubbleView: View {
     var chatMessage: String
     var isUserBubble: Bool
+    var recievedBubble: Bool
     var commentedTime: Date
+
     
     var body: some View {
-        HStack(alignment: .bottom) {
+        HStack(alignment: .bottom, spacing: 0) {
             if isUserBubble { //쓴 사람 버블이라 시간이 채팅 내용 왼쪽에 와야함
                 chatTime
                 chatBubble
-            } else {
+            } else if recievedBubble {
                 chatBubble
                 chatTime
             }
