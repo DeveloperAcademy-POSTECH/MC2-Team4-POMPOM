@@ -11,8 +11,8 @@ struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var actionSheetPresented = false
     @State private var codeInput = ""
-    @State var showAlert = false
-    @State var alertMessage: String = "유효하지 않은 동작입니다."
+    @Binding var showAlert: Bool
+    @Binding var alertMessage: String
     
     var body: some View {
         ZStack {
@@ -50,12 +50,6 @@ struct SettingsView: View {
                 Button("돌아가기", role: .cancel) {}
             }
             
-            if showAlert {
-                VStack {
-                    CustomAlert(message: alertMessage, presenting: $showAlert)
-                    Spacer()
-                }
-            }
         }
     }
 }
@@ -74,7 +68,7 @@ extension SettingsView: NetworkDelegate {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SettingsView()
+            SettingsView(showAlert: .constant(true), alertMessage: .constant("프리뷰 에러메세지"))
         }
     }
 }

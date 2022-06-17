@@ -54,7 +54,7 @@ struct CoupleView: View {
     @State private var codeInputViewIsPresented = false
     @State private var codeOutputViewIsPresented = false
     @State private var sheetMode = SheetMode.none
-    @State var showAlert = false
+    @State var showAlert = true
     @State var alertMessage: String = "유효하지 않은 동작입니다."
     
     var characterSize: CharacterSize {
@@ -98,10 +98,10 @@ struct CoupleView: View {
                         ZStack {
                             Image("Gom0")
                                 .resizable()
-                                
-
+                            
+                            
                             ClothesView(vm: myClothViewModel)
-
+                            
                         }
                         .frame(width: characterWidth, height: characterHeight)
                         .onTapGesture {
@@ -116,19 +116,14 @@ struct CoupleView: View {
                     .animation(.default, value: characterOffset)
                     Spacer()
                 }
+                
+                
+                
                 if sheetMode == .none {
                     CardContent()
                 }
                 SheetView(sheetMode: $sheetMode) {
                     ClothPickerView(vm: myClothViewModel)
-                }
-                
-                if showAlert {
-                    VStack {
-                        CustomAlert(message: alertMessage, presenting: $showAlert)
-                        
-                        Spacer()
-                    }
                 }
                 
                 if codeInputViewIsPresented {
@@ -143,6 +138,8 @@ struct CoupleView: View {
                     }
                 }
             }
+            
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     if sheetMode != .none {
@@ -155,7 +152,7 @@ struct CoupleView: View {
                         .foregroundColor(.red)
                     }
                 }
-      
+                
                 
                 ToolbarItem(placement: .principal) {
                     if sheetMode == .none {
@@ -165,7 +162,9 @@ struct CoupleView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if sheetMode == .none {
-                        NavigationLink(destination: SettingsView()) {
+                        NavigationLink(destination:
+                                        SettingsView(showAlert: $showAlert, alertMessage: $alertMessage)
+                        ) {
                             Image(systemName: "gearshape.fill")
                                 .foregroundColor(Color(UIColor.label))
                         }
@@ -180,12 +179,12 @@ struct CoupleView: View {
             .actionSheet(isPresented: $actionSheetPresented) {
                 ActionSheet(title: Text("초대코드 확인/입력"), buttons: [
                     .default(Text("초대코드 확인하기")) {
-                    codeOutputViewIsPresented = true
-                },
+                        codeOutputViewIsPresented = true
+                    },
                     .default(Text("초대코드 입력하기")) {
-                    codeInputViewIsPresented = true
-                    codeInput = ""
-                }, .cancel(Text("돌아가기"))])
+                        codeInputViewIsPresented = true
+                        codeInput = ""
+                    }, .cancel(Text("돌아가기"))])
             }
             .onAppear {
                 UITabBar.appearance().isHidden = true
@@ -197,9 +196,12 @@ struct CoupleView: View {
                 
             }
             
-        }        .fullScreenCover(isPresented: $isFirstLaunching) {
+        }
+        .fullScreenCover(isPresented: $isFirstLaunching) {
             OnboardingView(isFirstLunching: $isFirstLaunching)
         }
+        .addCustomAlert(with: alertMessage, presenting: $showAlert)
+        
     }
 }
 

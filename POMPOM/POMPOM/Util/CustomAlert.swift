@@ -7,35 +7,6 @@
 
 import SwiftUI
 
-struct CustomAlert: View {
-    var message: String
-    @State var opacity: Double = 0.6
-    @Binding var presenting: Bool
-
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(.black.opacity(opacity))
-
-            HStack {
-                Text(message)
-                    .foregroundColor(.white)
-                    .padding(.leading, 20)
-
-                Spacer()
-            }
-        }
-        .frame(height: 50)
-        .padding(.horizontal, 20)
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                withAnimation {
-                    presenting = false
-                }
-            }
-        }
-    }
-}
 
 struct TopAlert: ViewModifier {
     var message: String
@@ -43,33 +14,44 @@ struct TopAlert: ViewModifier {
     @Binding var presenting: Bool
 
     func body(content: Content) -> some View {
+        
+       
         ZStack {
             content
             
-            VStack {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(.black.opacity(opacity))
+            
+            if presenting {
+                VStack {
                     
-                    HStack {
-                        Text(message)
-                            .foregroundColor(.white)
-                            .padding(.leading, 20)
+                    Spacer()
+                        .frame(height: 60)
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(.black.opacity(opacity))
                         
-                        Spacer()
-                    }
-                }
-                .frame(height: 50)
-                .padding(.horizontal, 20)
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            presenting = false
+                        HStack {
+                            Text(message)
+                                .font(.callout)
+                                .foregroundColor(.white)
+                                .padding(.leading, 20)
+                            
+                            Spacer()
                         }
                     }
+                    .frame(height: 50)
+                    .padding(.horizontal, 20)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            withAnimation {
+                                presenting = false
+                            }
+                        }
+                    }
+                    
+                    Spacer()
                 }
-                
-                Spacer()
+                .allowsHitTesting(false) // 터치 불가
             }
         }
     }
@@ -82,8 +64,3 @@ extension View {
 }
 
 
-struct BottomAlert_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomAlert(message: "프리뷰 경고 메세지", presenting: .constant(true))
-    }
-}
