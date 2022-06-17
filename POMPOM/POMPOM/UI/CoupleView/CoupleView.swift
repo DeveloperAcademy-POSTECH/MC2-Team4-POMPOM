@@ -116,7 +116,9 @@ struct CoupleView: View {
                     .animation(.default, value: characterOffset)
                     Spacer()
                 }
-                CardContent()
+                if sheetMode == .none {
+                    CardContent()
+                }
                 SheetView(sheetMode: $sheetMode) {
                     ClothPickerView(vm: myClothViewModel)
                 }
