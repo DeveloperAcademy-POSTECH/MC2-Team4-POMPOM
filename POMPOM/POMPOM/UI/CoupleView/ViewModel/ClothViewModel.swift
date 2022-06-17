@@ -25,6 +25,16 @@ class ClothViewModel: ObservableObject {
         }
     }
     
+    func requestPartnerClothes() async {
+        if let defaultCode: String = UserDefaults.standard.string(forKey: "partner_code") {
+            networkManager.loadClothes(userCode: defaultCode) { clothes in
+                    self.selectedItems = clothes
+            }
+        } else {
+            print("DEBUG: 사용자 코드 조회 실패")
+        }
+    }
+    
     func clearSelectedItem() {
         selectedItems.removeAll()
     }

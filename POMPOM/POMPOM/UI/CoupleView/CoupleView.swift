@@ -13,6 +13,7 @@ enum CharacterSize {
 
 struct CoupleView: View {
     @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
+    @State @AppStorage("isConnectedPartner") var isConnectedPartner: Bool = false
     
     var characterSpacing: CGFloat {
         Constant.screenWidth * (33 / 390)
@@ -47,13 +48,14 @@ struct CoupleView: View {
     @StateObject var myClothViewModel = PickerViewModel()
     @StateObject var partnerClothViewModel = ClothViewModel()
     var codeViewModel = CodeManager()
-    @State private var partnerConnected = false
     @State private var actionSheetPresented = false
     @State private var codeInput = ""
     @State private var commentInput = ""
     @State private var codeInputViewIsPresented = false
     @State private var codeOutputViewIsPresented = false
     @State private var sheetMode = SheetMode.none
+    @State var showAlert = false
+    @State var alertMessage: String = "유효하지 않은 동작입니다."
     
     var characterSize: CharacterSize {
         switch sheetMode {
@@ -80,23 +82,23 @@ struct CoupleView: View {
                                     Image("Gom0")
                                         .resizable()
                                         .frame(width: characterWidth, height: characterHeight)
-                                        .opacity(partnerConnected ? 1 : 0.3)
+                                        .opacity(isConnectedPartner ? 1 : 0.3)
                                     
-                                    if !partnerConnected {
-                                        
+                                    if !isConnectedPartner {
                                         Text("초대하기")
                                             .foregroundColor(.orange)
                                     } else {
                                         ClothesView(vm: partnerClothViewModel)
                                     }
                                 }
+                                .frame(width: characterWidth, height: characterHeight)
                             }
-                            .disabled(partnerConnected)
+                            .disabled(isConnectedPartner)
                         }
-                        
                         ZStack {
                             Image("Gom0")
                                 .resizable()
+                                
 
                             ClothesView(vm: myClothViewModel)
 
@@ -113,12 +115,31 @@ struct CoupleView: View {
                     .animation(.default, value: characterHeight)
                     .animation(.default, value: characterOffset)
                     Spacer()
-                   //CommentTextField(textInput: $commentInput)
                 }
                 CardContent()
-                
                 SheetView(sheetMode: $sheetMode) {
                     ClothPickerView(vm: myClothViewModel)
+                }
+                
+                if showAlert {
+                    VStack {
+                        CustomAlert(message: alertMessage, presenting: $showAlert)
+                        
+                        Spacer()
+                    }
+
+                }
+                
+                if codeInputViewIsPresented {
+                    CodeInputView(textInput: $codeInput, delegate: self) {
+                        codeInputViewIsPresented = false
+                    }
+                }
+                
+                if codeOutputViewIsPresented {
+                    CodeOutputView {
+                        codeOutputViewIsPresented = false
+                    }
                 }
             }
             .toolbar {
@@ -157,14 +178,6 @@ struct CoupleView: View {
                 
               
             }
-            .sheet(isPresented: $codeInputViewIsPresented, content: {
-                CodeInputView(textInput: $codeInput)
-            })
-            .sheet(isPresented: $codeOutputViewIsPresented, content: {
-                CodeOutputView(code: .constant("ASDFGHHH")) {
-                    
-                }
-            })
             .actionSheet(isPresented: $actionSheetPresented) {
                 ActionSheet(title: Text("초대코드 확인/입력"), buttons: [
                     .default(Text("초대코드 확인하기")) {
@@ -179,7 +192,7 @@ struct CoupleView: View {
                 UITabBar.appearance().isHidden = true
                 Task {
                     await myClothViewModel.requestClothes()
-                    await partnerClothViewModel.requestClothes()
+                    await partnerClothViewModel.requestPartnerClothes()
                 }
                 print(isFirstLaunching)
                 
@@ -189,6 +202,25 @@ struct CoupleView: View {
             OnboardingView(isFirstLunching: $isFirstLaunching)
         }
     }
+}
+
+extension CoupleView: NetworkDelegate {
+    func showAlertwith(message: String) {
+        alertMessage = message
+        showAlert.toggle()
+    }
+    
+    func didConnectedPartner() {
+        Task {
+            await partnerClothViewModel.requestPartnerClothes()
+        }
+        isConnectedPartner = true
+    }
+}
+
+protocol NetworkDelegate {
+    func showAlertwith(message: String)
+    func didConnectedPartner()
 }
 
 struct CoupleView_Previews: PreviewProvider {

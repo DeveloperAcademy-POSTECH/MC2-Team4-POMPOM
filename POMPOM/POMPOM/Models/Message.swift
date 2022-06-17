@@ -29,9 +29,6 @@ class messageData: ObservableObject{
             
             data.documentChanges.forEach { change in
                 
-                let timestampp = change.document.get("timestamp") as! Timestamp
-                print("timestamp is \(timestampp.dateValue())")
-                
                 if change.type == .added {
                     let newMsg: Message = Message(_id : change.document.get("id") as! Int,
                                                   _messageContent: change.document.get("messageContent") as! String,

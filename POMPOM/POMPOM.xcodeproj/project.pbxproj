@@ -47,6 +47,7 @@
 		C0A779CB2849E1C60086810C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CA2849E1C60086810C /* Assets.xcassets */; };
 		C0A779CE2849E1C60086810C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CD2849E1C60086810C /* Preview Assets.xcassets */; };
 		C0A779D32849E1C60086810C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0A779D12849E1C60086810C /* Model.xcdatamodeld */; };
+		C0C7EE9A285B42A2003DA1A9 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7EE99285B42A2003DA1A9 /* CustomAlert.swift */; };
 		C0ED415A285868F1007E5502 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED4159285868F1007E5502 /* Color.swift */; };
 		C0ED415D28586989007E5502 /* Cloth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED415C28586989007E5502 /* Cloth.swift */; };
 		C0F1DC0028575BA700F8EAA0 /* ClothPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F1DBFF28575BA700F8EAA0 /* ClothPickerView.swift */; };
@@ -55,6 +56,7 @@
 		D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F41832857135D0037B3EB /* OnboardingViewModel.swift */; };
 		D40F418628571FE70037B3EB /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F418528571FE70037B3EB /* OnboardingPageView.swift */; };
 		D430FCFE2859A76900F216CB /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430FCFD2859A76900F216CB /* ColorPickerView.swift */; };
+		D430FD42285B984200F216CB /* DayDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430FD41285B984200F216CB /* DayDisplayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +109,7 @@
 		C0A779CA2849E1C60086810C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0A779CD2849E1C60086810C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C0A779D22849E1C60086810C /* POMPOM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = POMPOM.xcdatamodel; sourceTree = "<group>"; };
+		C0C7EE99285B42A2003DA1A9 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		C0ED4159285868F1007E5502 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		C0ED415C28586989007E5502 /* Cloth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloth.swift; sourceTree = "<group>"; };
 		C0F1DBFF28575BA700F8EAA0 /* ClothPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothPickerView.swift; sourceTree = "<group>"; };
@@ -117,6 +120,7 @@
 		D40F41832857135D0037B3EB /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		D40F418528571FE70037B3EB /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		D430FCFD2859A76900F216CB /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		D430FD41285B984200F216CB /* DayDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDisplayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +192,7 @@
 				AE8509F42859C0EF00D11812 /* SlideModalView.swift */,
 				AE8509F62859C0FE00D11812 /* KeyboardObserver.swift */,
 				AE8509F82859C10E00D11812 /* TextFieldView.swift */,
+				D430FD41285B984200F216CB /* DayDisplayView.swift */,
 			);
 			path = ChatView;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				C0ED4158285868E4007E5502 /* Extensions */,
 				AB132FEB2854BF430023DBD0 /* Constants */,
 				C0182C3F28598470000F0A6A /* Seperator.swift */,
+				C0C7EE99285B42A2003DA1A9 /* CustomAlert.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -510,7 +516,9 @@
 				C06CE1592851DCD600BBDA68 /* CodeManager.swift in Sources */,
 				C0A779C72849E1C50086810C /* POMPOMApp.swift in Sources */,
 				AE850A07285B238D00D11812 /* Message.swift in Sources */,
+				C0C7EE9A285B42A2003DA1A9 /* CustomAlert.swift in Sources */,
 				C0F90CB32850729E00CC2C0E /* Secret.swift in Sources */,
+				D430FD42285B984200F216CB /* DayDisplayView.swift in Sources */,
 				C0182C3A28598411000F0A6A /* CategoryGrid.swift in Sources */,
 				AB3ABBAC285AF085002F9DD9 /* PresetColor+Extensions.swift in Sources */,
 				C06CE1502851DC5C00BBDA68 /* CodeOutputView.swift in Sources */,

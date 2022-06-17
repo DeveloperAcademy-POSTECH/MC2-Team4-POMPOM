@@ -32,7 +32,7 @@ struct ClothesManager {
     func loadClothes(userCode: String, competion: @escaping ([ClothCategory : Cloth]) -> Void) {
         var returnValue: [ClothCategory: Cloth] = [:]
         
-        clothesRef.document(userCode).getDocument { snapShot, error in
+        clothesRef.document(userCode).addSnapshotListener { snapShot, error in
             guard let data = snapShot?.data() else { competion(returnValue)
                 return
             }
