@@ -29,14 +29,8 @@ struct CodeInputView: View {
                 } catch ConnectionManagerResultType.invalidPartnerCode {
                     delegate?.showAlertwith(message: "유효하지 않은 코드입니다.")
                 }
-                
-               
-                
-                DispatchQueue.main.async {
-                    afterAction()
-                }
             }
-        })
+        }, afterAction: afterAction)
     }
 }
 

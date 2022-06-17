@@ -18,6 +18,7 @@ struct CodeOutputView: View {
             Text(code)
         }, buttonTitle: "복사") {
             pasteboard.string = code
+        } afterAction: {
             afterCopy()
         }
     }
