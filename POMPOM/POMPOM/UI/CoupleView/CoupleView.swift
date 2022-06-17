@@ -68,13 +68,17 @@ struct CoupleView: View {
         }
     }
     
-    var resetButtonHorizontalOffset: CGFloat {
+    var resetButtonHorizontalPosition: CGFloat {
         switch sheetMode {
         case .none:
-            return Constant.screenWidth * 0.55
+            return Constant.screenWidth + 44
         default:
-            return Constant.screenWidth * 0.55 - 63
+            return Constant.screenWidth - 31
         }
+    }
+    
+    var resetButtonVerticalPosition: CGFloat {
+        Constant.screenHeight * (396 / 844) - 90
     }
     
     var body: some View {
@@ -160,9 +164,8 @@ struct CoupleView: View {
                         .font(.system(size: 24))
                 }
                 .frame(width: 44, height: 44)
-                .offset(x: resetButtonHorizontalOffset, y: -121)
                 .opacity(0.3)
-                
+                .offset(x: resetButtonHorizontalPosition - 0.5 * Constant.screenWidth, y: resetButtonVerticalPosition  - 0.5 * Constant.screenHeight)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
