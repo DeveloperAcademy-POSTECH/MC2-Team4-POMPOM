@@ -23,6 +23,7 @@ struct MessageListView: View {
                     ForEach(data.messages) { message in
                         MessageBubbleView(chatMessage: message.messageContent,
                                           isUserBubble: message.messageFrom == myCode ? true : false,
+                                          recievedBubble: message.messageTo == myCode ? true : false,
                                           commentedTime: message.timestamp)
                             .task {
                                 self.myCode = CodeManager().getCode()
