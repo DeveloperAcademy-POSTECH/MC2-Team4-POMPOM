@@ -218,6 +218,8 @@ struct CoupleView_Previews: PreviewProvider {
     }
 }
 
+
+//MARK: - SubViews
 struct ClothView: View {
     @ObservedObject var vm: ClothViewModel
     var category: ClothCategory
