@@ -73,7 +73,7 @@ struct CoupleView: View {
         case .none:
             return Constant.screenWidth * 0.55
         default:
-            return Constant.screenWidth * 0.55 - 45
+            return Constant.screenWidth * 0.55 - 63
         }
     }
     
@@ -160,7 +160,8 @@ struct CoupleView: View {
                         .font(.system(size: 24))
                 }
                 .frame(width: 44, height: 44)
-                .offset(x: resetButtonHorizontalOffset, y: -110)
+                .offset(x: resetButtonHorizontalOffset, y: -121)
+                .opacity(0.3)
                 
             }
             .toolbar {
