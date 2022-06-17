@@ -42,13 +42,12 @@ struct MessageBubbleView: View {
     }
     
     func getCurrentTime(time: Date) -> String { //시간 string return
-        let timeKR = Date()
-        let formatter = DateFormatter()
+        let date = time
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let min = calendar.component(.minute, from: date)
+        let timeString = "\(hour):\(min)"
         
-        formatter.locale = Locale(identifier: "ko_kr")
-        formatter.dateFormat = "a hh:mm"
-        formatter.amSymbol = "오전"
-        formatter.pmSymbol = "오후"
-        
-        return formatter.string(from: timeKR)    }
+        return timeString
+    }
 }

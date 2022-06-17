@@ -22,13 +22,15 @@ struct CodeInputView: View {
             Task {
                 do {
                     try await codeViewModel.connectWithPartner(partnerCode: textInput)
-                } catch ConnectionManagerError.callMySelf {
+                } catch ConnectionManagerResultType.success {
+                    delegate?.didConnectedPartner()
+                } catch ConnectionManagerResultType.callMySelf {
                     delegate?.showAlertwith(message: "자신의 코드는 입력할 수 없습니다.")
-                } catch ConnectionManagerError.invalidPartnerCode {
+                } catch ConnectionManagerResultType.invalidPartnerCode {
                     delegate?.showAlertwith(message: "유효하지 않은 코드입니다.")
                 }
                 
-                delegate?.didConnectedPartner()
+               
                 
                 DispatchQueue.main.async {
                     afterAction()
