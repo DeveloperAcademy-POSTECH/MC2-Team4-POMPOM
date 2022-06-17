@@ -195,6 +195,11 @@ struct CoupleView: View {
                         Button("완료") {
                             myClothViewModel.uploadItem()
                             sheetMode = .none
+                            
+                            Task {
+                                await myClothViewModel.requestClothes()
+                                await partnerClothViewModel.requestPartnerClothes()
+                            }
                         }
                     }
                 }
@@ -260,7 +265,7 @@ struct ClothView: View {
     var category: ClothCategory
     
     var body: some View {
-        if vm.selectedItems[category] != nil {
+        if vm.isValidItem(with: category) {
             ZStack {
                 Image(vm.fetchImageString(with: category) + "B")
                     .resizable()
@@ -281,7 +286,7 @@ struct AccesoriesView: View {
     @ObservedObject var vm: ClothViewModel
    
     var body: some View {
-        if vm.selectedItems[.accessories] != nil {
+        if vm.isValidItem(with: .accessories) {
             ZStack {
                 Image(vm.fetchImageString(with: .accessories))
                     .resizable()

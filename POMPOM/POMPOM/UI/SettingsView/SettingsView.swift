@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
+    private let codeManager: CodeManager = CodeManager()
     @State private var actionSheetPresented = false
     @State private var codeInput = ""
     @Binding var showAlert: Bool
