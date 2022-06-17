@@ -85,7 +85,6 @@ struct CoupleView: View {
                                         .opacity(isConnectedPartner ? 1 : 0.3)
                                     
                                     if !isConnectedPartner {
-                                        
                                         Text("초대하기")
                                             .foregroundColor(.orange)
                                     } else {
@@ -96,7 +95,6 @@ struct CoupleView: View {
                             }
                             .disabled(isConnectedPartner)
                         }
-                        
                         ZStack {
                             Image("Gom0")
                                 .resizable()
@@ -117,10 +115,8 @@ struct CoupleView: View {
                     .animation(.default, value: characterHeight)
                     .animation(.default, value: characterOffset)
                     Spacer()
-                   //CommentTextField(textInput: $commentInput)
                 }
                 CardContent()
-                
                 SheetView(sheetMode: $sheetMode) {
                     ClothPickerView(vm: myClothViewModel)
                 }
