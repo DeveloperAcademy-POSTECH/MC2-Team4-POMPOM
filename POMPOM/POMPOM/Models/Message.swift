@@ -17,6 +17,7 @@ class messageData: ObservableObject{
     }
     
     func readMessages() {
+        var myCode = CodeManager().getCode()
         reference.collection("message").order(by: "timestamp", descending: false).addSnapshotListener {
             (snap, err) in
             
@@ -30,12 +31,15 @@ class messageData: ObservableObject{
             data.documentChanges.forEach { change in
                 
                 if change.type == .added {
-                    let newMsg: Message = Message(_id : change.document.get("id") as! Int,
-                                                  _messageContent: change.document.get("messageContent") as! String,
-                                                  _messageFrom: change.document.get("messageFrom") as! String,
-                                                  _messageTo: change.document.get("messageTo") as! String,
-                                                  _timestamp: (change.document.get("timestamp") as! Timestamp).dateValue())
-                    self.messages.append(newMsg)
+                    if (change.document.get("messageFrom") as! String  == myCode || change.document.get("messageTo") as! String == myCode) {
+                        let newMsg: Message = Message(_id : change.document.get("id") as! Int,
+                                                      _messageContent: change.document.get("messageContent") as! String,
+                                                      _messageFrom: change.document.get("messageFrom") as! String,
+                                                      _messageTo: change.document.get("messageTo") as! String,
+                                                      _timestamp: (change.document.get("timestamp") as! Timestamp).dateValue())
+                        self.messages.append(newMsg)
+                    }
+
                 }
             }
         }
