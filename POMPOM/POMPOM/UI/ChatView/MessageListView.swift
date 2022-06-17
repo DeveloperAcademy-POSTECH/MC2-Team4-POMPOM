@@ -10,39 +10,31 @@ import SwiftUI
 //코멘트 리스트
 struct MessageListView: View {
     @StateObject var data = messageData()
-    @State private var scrolled = false
     @State private var myCode: String?
     
-    
-    
     var body: some View {
-        ScrollViewReader { value in
+        ScrollViewReader { val in
             ScrollView {
                 VStack(spacing: 15) {
                     //버블간 간격 15
                     ForEach(data.messages) { message in
-                        MessageBubbleView(chatMessage: message.messageContent, isUserBubble: message.messageFrom == myCode ? true : false, commentedTime: message.timestamp) //temp
+                        MessageBubbleView(chatMessage: message.messageContent,
+                                          isUserBubble: message.messageFrom == myCode ? true : false,
+                                          commentedTime: message.timestamp)
                             .task {
-                                self.myCode = await CodeManager().getCode()
+                                self.myCode = CodeManager().getCode()
                             }
-                            .onAppear {
-                                if message.id == self.data.messages.last!.id && scrolled {
-                                    value.scrollTo(data.messages.last!.id, anchor: .bottom)
-                                    scrolled = true
-                                }
-                            }
-                    }.onChange(of: data.messages) { newValue in
-                        value.scrollTo(data.messages.last!.id, anchor: .bottom)
+                        
+                    }
+                    .onChange(of: data.messages) { newValue in
+                        val.scrollTo(data.messages.last!.id, anchor: .bottom)
+                    }
+                    .onAppear{
+                        val.scrollTo(data.messages.last!.id, anchor: .bottom)
                     }
                     
                 }.padding(16)
             }
         }
-    }
-}
-
-struct MessageListView_Previews: PreviewProvider {
-    static var previews: some View {
-        MessageListView()
     }
 }
