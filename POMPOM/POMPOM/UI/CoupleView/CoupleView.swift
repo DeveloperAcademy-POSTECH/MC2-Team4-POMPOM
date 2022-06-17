@@ -68,6 +68,14 @@ struct CoupleView: View {
         }
     }
     
+    var resetButtonHorizontalOffset: CGFloat {
+        switch sheetMode {
+        case .none:
+            return Constant.screenWidth * 0.55
+        default:
+            return Constant.screenWidth * 0.55 - 45
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -143,6 +151,17 @@ struct CoupleView: View {
                         codeOutputViewIsPresented = false
                     }
                 }
+                
+                Button {
+                    myClothViewModel.clearSelectedItem()
+                } label: {
+                    Image(systemName: "arrow.uturn.left.circle")
+                        .foregroundColor(Color(UIColor.label))
+                        .font(.system(size: 24))
+                }
+                .frame(width: 44, height: 44)
+                .offset(x: resetButtonHorizontalOffset, y: -110)
+                
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
