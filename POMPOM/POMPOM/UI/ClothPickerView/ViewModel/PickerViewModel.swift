@@ -87,7 +87,7 @@ class PickerViewModel: ClothViewModel {
     func selectItem(name: String, hex: String) {
         if selectedItems[currentType] != nil {
             if selectedItems[currentType]?.id == name {
-                selectedItems[currentType] = Cloth(id: "", hex: "", category: currentType)
+                selectedItems[currentType] = Cloth(id: " ", hex: " ", category: currentType)
             } else {
                 //해당 key 에 해당하는 객체가 이미 존재하는 경우에는 새 객체를 생성하는 것이 아닌 값만 변경해준다.
                 selectedItems[currentType]?.hex = hex
