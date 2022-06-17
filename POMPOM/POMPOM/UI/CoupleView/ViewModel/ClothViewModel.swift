@@ -41,7 +41,7 @@ class ClothViewModel: ObservableObject {
     func clearSelectedItem() {
 //        selectedItems.removeAll()
         for key in selectedItems.keys {
-            selectedItems[key] = Cloth(id: "", hex: "", category: key)
+            selectedItems[key] = Cloth(id: " ", hex: " ", category: key)
         }
         print(selectedItems)
     }
@@ -51,7 +51,7 @@ class ClothViewModel: ObservableObject {
             return false
         }
         
-        return selectedItem.id != ""
+        return selectedItem.id != " "
     }
     
     func fetchImageString(with category: ClothCategory) -> String {

@@ -136,9 +136,10 @@ struct CoupleView: View {
                 
                 
 
-                if sheetMode == .none {
+                if sheetMode == .none && isConnectedPartner {
                     CardContent()
                 }
+                
                 SheetView(sheetMode: $sheetMode) {
                     ClothPickerView(vm: myClothViewModel)
                 }
