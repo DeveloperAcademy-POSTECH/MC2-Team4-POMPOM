@@ -55,7 +55,7 @@ struct CardView: ViewModifier {
                 .frame(width: 40, height: 5.0)
                 .foregroundColor(Color.secondary)
                 .padding(10)
-                .gesture(dragGesture)
+                .gesture(keyboard.isShowing? nil : dragGesture)
         }.onChange(of: keyboard.isShowing) { newValue in
             if keyboard.isShowing {
                 if curHeight > UIScreen.main.bounds.height - keyboard.height - 300 {
