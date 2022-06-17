@@ -9,8 +9,9 @@ import SwiftUI
 
 struct CodeInputView: View {
     @Binding var textInput: String
-    var delegate: AlertDelegate?
+    var delegate: NetworkDelegate?
     private let codeViewModel: CodeManager = CodeManager()
+    let afterAction: () -> ()
     
     var body: some View {
         CodeView(title: "초대코드 입력", content: {
@@ -21,8 +22,16 @@ struct CodeInputView: View {
             Task {
                 do {
                     try await codeViewModel.connectWithPartner(partnerCode: textInput)
+                } catch ConnectionManagerError.callMySelf {
+                    delegate?.showAlertwith(message: "자신의 코드는 입력할 수 없습니다.")
                 } catch ConnectionManagerError.invalidPartnerCode {
                     delegate?.showAlertwith(message: "유효하지 않은 코드입니다.")
+                }
+                
+                delegate?.didConnectedPartner()
+                
+                DispatchQueue.main.async {
+                    afterAction()
                 }
             }
         })
@@ -32,7 +41,7 @@ struct CodeInputView: View {
 struct CodeInputView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CodeInputView(textInput: .constant(""))
+            CodeInputView(textInput: .constant(""), afterAction: {})
                 .navigationTitle("POMPOM")
                 .navigationBarTitleDisplayMode(.inline)
         }

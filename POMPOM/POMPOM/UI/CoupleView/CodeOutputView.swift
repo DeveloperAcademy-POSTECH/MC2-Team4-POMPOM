@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CodeOutputView: View {
     let code: String = CodeManager().getCode()
-    let afterCopy: () -> () = { }
+    let afterCopy: () -> ()
     private let pasteboard = UIPasteboard.general
     private let codeViewModel: CodeManager = CodeManager()
     
@@ -25,6 +25,6 @@ struct CodeOutputView: View {
 
 struct CodeOutputView_Previews: PreviewProvider {
     static var previews: some View {
-        CodeOutputView()
+        CodeOutputView(afterCopy: {})
     }
 }
