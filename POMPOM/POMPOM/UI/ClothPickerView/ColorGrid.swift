@@ -35,18 +35,20 @@ struct ColorGrid: View {
                         }
                 }
             }
-            Circle()
-                .fill(Color(hex: "D8D8D8"))
-                .frame(width: 44)
-                .overlay(
-                    Image(systemName: "plus")
-                        .font(.title2)
-                        
-                )
-                .onTapGesture {
-                    print("DEBUG : Button tapped")
-                    vm.addPreset(hex: "23F323")
-                }
+            
+            // Preset 추가 기능 일단 제거
+//            Circle()
+//                .fill(Color(hex: "D8D8D8"))
+//                .frame(width: 44)
+//                .overlay(
+//                    Image(systemName: "plus")
+//                        .font(.title2)
+//
+//                )
+//                .onTapGesture {
+//                    print("DEBUG : Button tapped")
+//                    vm.addPreset(hex: "23F323")
+//                }
         }
     }
 }
