@@ -44,6 +44,16 @@ struct ConnectionManager {
         }
     }
     
+    func deletePartnerCode(oneId: String) {
+        usersRef.document(oneId).updateData([
+            "partner_code" : ""
+        ]) { err in
+            if let err = err {
+                print("DEBUG: 파트너 코드 삭제 실패")
+            }
+        }
+    }
+    
     func getIdByCode(code: String) async -> String {
         var returnValue: String = ""
         
