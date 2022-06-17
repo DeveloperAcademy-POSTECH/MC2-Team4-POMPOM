@@ -153,7 +153,7 @@ struct CoupleView: View {
                 Button {
                     myClothViewModel.clearSelectedItem()
                 } label: {
-                    Image(systemName: "arrow.uturn.left.circle")
+                    Image(systemName: "gobackward")
                         .foregroundColor(Color(UIColor.label))
                         .font(.system(size: 24))
                 }
