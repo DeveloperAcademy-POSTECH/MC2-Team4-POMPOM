@@ -176,8 +176,6 @@ struct CoupleView: View {
                         }
                     }
                 }
-                
-              
             }
             .actionSheet(isPresented: $actionSheetPresented) {
                 ActionSheet(title: Text("초대코드 확인/입력"), buttons: [
