@@ -42,7 +42,7 @@ struct SlideModalView<Content> : View where Content : View {
 struct CardView: ViewModifier {
     @ObservedObject var keyboard: KeyboardObserver
     @State private var isDragging = false
-    @State private var curHeight: CGFloat = 300
+    @State private var curHeight: CGFloat = UIScreen.main.bounds.height * 0.22
     let minHeight: CGFloat = 200
     let maxHeight: CGFloat = 500
     
