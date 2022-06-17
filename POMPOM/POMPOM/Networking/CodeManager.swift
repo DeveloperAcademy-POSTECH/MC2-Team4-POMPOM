@@ -102,7 +102,8 @@ struct CodeManager {
     
     func deletePartnerCode(completion: @escaping (String) -> Void) {
         Task {
-            await connectionManager.updatePartnerCodeBy(ownCode:getCode())
+            await connectionManager.updatePartnerCodeBy(ownCode: getPartnerCode())
+            await connectionManager.updatePartnerCodeBy(ownCode: getCode())
         }
         
         if let _ = UserDefaults.standard.string(forKey: "partner_code") {

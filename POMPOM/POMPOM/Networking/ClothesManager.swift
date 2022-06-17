@@ -36,6 +36,8 @@ struct ClothesManager {
             guard let data = snapShot?.data() else { competion(returnValue)
                 return
             }
+            
+            print("Here is listener")
 
             switch error {
             case .none:
