@@ -29,8 +29,8 @@ struct ConnectionManager {
         ]) { err in
             if let err = err {
                 dump("Error adding users 아래 문서: \(err)")
+                print("DEBUG: ConnectionManager - \(err.localizedDescription)")
             }
-            print(err)
         }
     }
     
@@ -39,7 +39,7 @@ struct ConnectionManager {
             "partner_code": anotherCode
         ]) { err in
             if let err = err {
-                print("Error updating users 아래 문서: \(err)")
+                print("DEBUG: ConnectionManager - \(err)")
             }
         }
     }
@@ -49,7 +49,7 @@ struct ConnectionManager {
             "partner_code" : ""
         ]) { err in
             if let err = err {
-                print("DEBUG: 파트너 코드 삭제 실패")
+                print("DEBUG: ConnectionManager - \(err.localizedDescription)")
             }
         }
     }
