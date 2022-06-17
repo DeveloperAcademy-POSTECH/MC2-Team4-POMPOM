@@ -23,6 +23,7 @@
 		AE8509F72859C0FE00D11812 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8509F62859C0FE00D11812 /* KeyboardObserver.swift */; };
 		AE8509F92859C10E00D11812 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8509F82859C10E00D11812 /* TextFieldView.swift */; };
 		AE850A07285B238D00D11812 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE850A06285B238D00D11812 /* Message.swift */; };
+		AE850A25285C725100D11812 /* hideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE850A24285C725100D11812 /* hideKeyboard.swift */; };
 		AEA32AAB285741CF006A31D4 /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA32AAA285741CF006A31D4 /* MessageListView.swift */; };
 		AEA32AAD285741DB006A31D4 /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA32AAC285741DB006A31D4 /* MessageBubbleView.swift */; };
 		C0182C3828598407000F0A6A /* ColorGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0182C3728598407000F0A6A /* ColorGrid.swift */; };
@@ -80,6 +81,7 @@
 		AE8509F62859C0FE00D11812 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		AE8509F82859C10E00D11812 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		AE850A06285B238D00D11812 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		AE850A24285C725100D11812 /* hideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hideKeyboard.swift; sourceTree = "<group>"; };
 		AEA32AAA285741CF006A31D4 /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
 		AEA32AAC285741DB006A31D4 /* MessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleView.swift; sourceTree = "<group>"; };
 		B4D6499D492346083126C119 /* Pods-POMPOM-POMPOMUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-POMPOM-POMPOMUITests.debug.xcconfig"; path = "Target Support Files/Pods-POMPOM-POMPOMUITests/Pods-POMPOM-POMPOMUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				C0ED4159285868F1007E5502 /* Color.swift */,
+				AE850A24285C725100D11812 /* hideKeyboard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				C0182C4028598470000F0A6A /* Seperator.swift in Sources */,
 				D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */,
 				D430FCFE2859A76900F216CB /* ColorPickerView.swift in Sources */,
+				AE850A25285C725100D11812 /* hideKeyboard.swift in Sources */,
 				AEA32AAD285741DB006A31D4 /* MessageBubbleView.swift in Sources */,
 				C06CE1652851DDAB00BBDA68 /* LoginViewModel.swift in Sources */,
 				AB3ABBA8285AEB28002F9DD9 /* CoreDataManager.swift in Sources */,
