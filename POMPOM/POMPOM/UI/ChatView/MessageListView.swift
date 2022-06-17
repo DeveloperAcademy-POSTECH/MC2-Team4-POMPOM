@@ -20,6 +20,9 @@ struct MessageListView: View {
             ScrollView {
                 VStack(spacing: 15) {
                     //버블간 간격 15
+                    
+                    DateDisplayView()
+                    
                     ForEach(data.messages) { message in
                         MessageBubbleView(chatMessage: message.messageContent, isUserBubble: message.messageFrom == myCode ? true : false, commentedTime: message.timestamp) //temp
                             .task {
@@ -34,9 +37,10 @@ struct MessageListView: View {
                     }.onChange(of: data.messages) { newValue in
                         value.scrollTo(data.messages.last!.id, anchor: .bottom)
                     }
-                    
                 }.padding(16)
+                 .rotationEffect(Angle(degrees: 180))
             }
+            .rotationEffect(Angle(degrees: 180))
         }
     }
 }

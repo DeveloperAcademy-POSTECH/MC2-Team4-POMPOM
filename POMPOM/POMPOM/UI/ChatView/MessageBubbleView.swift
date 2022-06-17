@@ -37,16 +37,18 @@ struct MessageBubbleView: View {
     
     var chatTime: some View {
         return Text(getCurrentTime(time: commentedTime))
+            .font(.system(size: 12))
             .foregroundColor(Color(UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1.0)))
     }
     
     func getCurrentTime(time: Date) -> String { //시간 string return
-        let date = time
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: date)
-        let min = calendar.component(.minute, from: date)
-        let timeString = "\(hour):\(min)"
+        let timeKR = Date()
+        let formatter = DateFormatter()
         
-        return timeString
-    }
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.dateFormat = "a hh:mm"
+        formatter.amSymbol = "오전"
+        formatter.pmSymbol = "오후"
+        
+        return formatter.string(from: timeKR)    }
 }

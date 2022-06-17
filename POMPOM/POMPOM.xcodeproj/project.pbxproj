@@ -56,6 +56,7 @@
 		D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F41832857135D0037B3EB /* OnboardingViewModel.swift */; };
 		D40F418628571FE70037B3EB /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F418528571FE70037B3EB /* OnboardingPageView.swift */; };
 		D430FCFE2859A76900F216CB /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430FCFD2859A76900F216CB /* ColorPickerView.swift */; };
+		D430FD42285B984200F216CB /* DayDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430FD41285B984200F216CB /* DayDisplayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,7 @@
 		D40F41832857135D0037B3EB /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		D40F418528571FE70037B3EB /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		D430FCFD2859A76900F216CB /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		D430FD41285B984200F216CB /* DayDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDisplayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 				AE8509F42859C0EF00D11812 /* SlideModalView.swift */,
 				AE8509F62859C0FE00D11812 /* KeyboardObserver.swift */,
 				AE8509F82859C10E00D11812 /* TextFieldView.swift */,
+				D430FD41285B984200F216CB /* DayDisplayView.swift */,
 			);
 			path = ChatView;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				AE850A07285B238D00D11812 /* Message.swift in Sources */,
 				C0C7EE9A285B42A2003DA1A9 /* CustomAlert.swift in Sources */,
 				C0F90CB32850729E00CC2C0E /* Secret.swift in Sources */,
+				D430FD42285B984200F216CB /* DayDisplayView.swift in Sources */,
 				C0182C3A28598411000F0A6A /* CategoryGrid.swift in Sources */,
 				AB3ABBAC285AF085002F9DD9 /* PresetColor+Extensions.swift in Sources */,
 				C06CE1502851DC5C00BBDA68 /* CodeOutputView.swift in Sources */,
