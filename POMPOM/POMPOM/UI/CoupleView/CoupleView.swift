@@ -203,7 +203,7 @@ struct CoupleView: View {
                             
                             Task {
                                 await myClothViewModel.requestClothes()
-                                await partnerClothViewModel.requestPartnerClothes()
+
                             }
                         }
                     }
