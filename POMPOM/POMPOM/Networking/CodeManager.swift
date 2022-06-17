@@ -88,10 +88,29 @@ struct CodeManager {
                     dump("\(err)")
                 } else {
                     guard let data = snapShot?.data()?["partner_code"] as? String else { return }
-                    UserDefaults.standard.set(data, forKey: "partner_code")
-                    completion(data)
+                    var temp = ""
+                    print(data)
+                    if data != " " {
+                        temp = data
+                    }
+                    UserDefaults.standard.set(temp, forKey: "partner_code")
+                    print(temp + "wow")
+                    completion(temp)
                 }
             }
+    }
+    
+    func deletePartnerCode(completion: @escaping (String) -> Void) {
+        Task {
+            await connectionManager.updatePartnerCodeBy(ownCode: getPartnerCode())
+            await connectionManager.updatePartnerCodeBy(ownCode: getCode())
+        }
+        
+        if let _ = UserDefaults.standard.string(forKey: "partner_code") {
+            UserDefaults.standard.removeObject(forKey: "partner_code")
+            
+        }
+        completion("연동이 해지되었습니다.")
     }
 }
 

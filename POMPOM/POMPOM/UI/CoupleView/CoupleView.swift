@@ -192,7 +192,7 @@ struct CoupleView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if sheetMode == .none {
                         NavigationLink(destination:
-                                        SettingsView(showAlert: $showAlert, alertMessage: $alertMessage)
+                                        SettingsView(showAlert: $showAlert, alertMessage: $alertMessage, isPartnerConnected: $isConnectedPartner)
                         ) {
                             Image(systemName: "gearshape.fill")
                                 .foregroundColor(Color(UIColor.label))
@@ -231,9 +231,10 @@ struct CoupleView: View {
                 Task {
                     await codeViewModel.getPartnerCodeFromServer { partnerCode in
                         print("DEBUG: getPartnerCodeFromServer completion")
-                        if partnerCode.isEmpty {
+                        if partnerCode == "" {
                             self.isConnectedPartner = false
                         } else {
+                            print(partnerCode)
                             self.isConnectedPartner = true
                             Task {
                                 await partnerClothViewModel.requestPartnerClothes()
