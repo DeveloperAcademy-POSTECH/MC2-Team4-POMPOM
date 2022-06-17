@@ -33,9 +33,12 @@ struct CodeView<Content: View>: View {
     let buttonTitle: String
     let buttonAction: () -> ()
     
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
         ZStack {
-            Color(UIColor.systemGray4)
+            Color(UIColor.systemGray5)
+                .opacity(0.4)
             ZStack {
                 RoundedRectangle(cornerRadius: 14)
                     .foregroundColor(Color.white)
@@ -52,7 +55,10 @@ struct CodeView<Content: View>: View {
                                 .foregroundColor(Color(UIColor.systemGray5))
                         )
                         .padding(.bottom, Constant.screenHeight * (20 / 844))
-                    Button(buttonTitle, action: buttonAction)
+                    Button(buttonTitle) {
+                        presentationMode.wrappedValue.dismiss()
+                        buttonAction()
+                    }
                     .frame(width: buttonWidth, height: buttonHeight)
                     .accentColor(.white)
                     .background(Color.blue)
