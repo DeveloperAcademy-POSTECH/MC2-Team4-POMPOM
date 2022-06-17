@@ -13,8 +13,13 @@ enum CharacterSize {
 
 struct CoupleView: View {
     @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
-    @State @AppStorage("isConnectedPartner") var isConnectedPartner: Bool = false
-    
+    @AppStorage("isConnectedPartner") var isConnectedPartnerStorage: Bool = false
+
+    @State var isConnectedPartner = false {
+        didSet {
+            isConnectedPartnerStorage = isConnectedPartner
+        }
+    }
     var characterSpacing: CGFloat {
         Constant.screenWidth * (33 / 390)
     }
@@ -130,7 +135,7 @@ struct CoupleView: View {
                 }
                 
                 
-                
+
                 if sheetMode == .none {
                     CardContent()
                 }
@@ -215,12 +220,27 @@ struct CoupleView: View {
                     }, .cancel(Text("돌아가기"))])
             }
             .onAppear {
+                codeViewModel.getCode()
                 UITabBar.appearance().isHidden = true
                 Task {
                     await myClothViewModel.requestClothes()
-                    await partnerClothViewModel.requestPartnerClothes()
+                    print("DEBUG: wow")
                 }
                 print(isFirstLaunching)
+                Task {
+                    await codeViewModel.getPartnerCodeFromServer { partnerCode in
+                        print("DEBUG: getPartnerCodeFromServer completion")
+                        if partnerCode.isEmpty {
+                            self.isConnectedPartner = false
+                        } else {
+                            self.isConnectedPartner = true
+                            Task {
+                                await partnerClothViewModel.requestPartnerClothes()
+                                print("DEBUG: partnerClothViewModel.requestPartnerClothes")
+                            }
+                        }
+                    }
+                }
                 
             }
             

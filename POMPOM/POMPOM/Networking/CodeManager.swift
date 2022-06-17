@@ -78,6 +78,21 @@ struct CodeManager {
             return ""
         }
     }
+    
+    func getPartnerCodeFromServer(completion: @escaping (String) -> Void) async {
+        
+        
+        connectionManager.usersRef.document(await connectionManager.getIdByCode(code: getCode()))
+            .addSnapshotListener { snapShot, err in
+                if let err = err {
+                    dump("\(err)")
+                } else {
+                    guard let data = snapShot?.data()?["partner_code"] as? String else { return }
+                    UserDefaults.standard.set(data, forKey: "partner_code")
+                    completion(data)
+                }
+            }
+    }
 }
 
 enum ConnectionManagerResultType: Error {
