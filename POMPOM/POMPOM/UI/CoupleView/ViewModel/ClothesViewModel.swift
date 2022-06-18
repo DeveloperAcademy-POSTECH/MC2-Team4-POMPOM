@@ -8,33 +8,49 @@
 import Foundation
 import SwiftUI
 
-class ClothViewModel: ObservableObject {
+enum ClothError: Error {
+    case noUserCode
+    case networking
+}
+
+class ClothesViewModel: ObservableObject {
     //MARK: - Propeties
     @Published var selectedItems: [ClothCategory : Cloth] = [:]
     
     var networkManager: ClothesManager = ClothesManager()
     
-    //CouplleView
-    
-    func requestClothes() async {
+    func requestMyClothes(completion: @escaping (Error?) -> Void) {
         if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
-            networkManager.loadClothes(userCode: defaultCode) { clothes in
-                withAnimation {
-                    self.selectedItems = clothes
+            print("DEBUG: requestMyClothes - userCode \(defaultCode) ")
+            networkManager.fetchClohtes(userCode: defaultCode) { result in
+                switch result {
+                case .success(let loadedItem):
+                    self.selectedItems = loadedItem
+                    print("DEBUG: requestMyClothes - response \(loadedItem) ")
+                    completion(nil)
+                case .failure(let error):
+                    completion(error)
                 }
             }
         } else {
-            print("DEBUG: 사용자 코드 조회 실패")
+            completion(ClothError.noUserCode)
         }
     }
     
-    func requestPartnerClothes() async {
+    //옷 불러오는 리스너 -> completion 핸들러 필요.
+    func addPartnerClothesListenr(completion: @escaping (Error?) -> Void)  {
         if let defaultCode: String = UserDefaults.standard.string(forKey: "partner_code") {
-            networkManager.loadClothes(userCode: defaultCode) { clothes in
-                    self.selectedItems = clothes
+            networkManager.addClothesListner(userCode: defaultCode) { result in
+                switch result {
+                case .success(let loadedItem):
+                    self.selectedItems = loadedItem
+                    completion(nil)
+                case .failure(let error):
+                    completion(error)
+                }
             }
         } else {
-            print("DEBUG: 사용자 코드 조회 실패")
+            completion(ClothError.noUserCode)
         }
     }
     

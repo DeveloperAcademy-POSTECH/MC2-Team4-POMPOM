@@ -18,7 +18,7 @@ struct CoupleView: View {
     
     @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
     @AppStorage("isConnectedPartner") var isConnectedPartnerStorage: Bool = false
-
+    
     @State var isConnectedPartner = false {
         didSet {
             isConnectedPartnerStorage = isConnectedPartner
@@ -55,7 +55,7 @@ struct CoupleView: View {
     }
     
     @StateObject var myClothViewModel = PickerViewModel()
-    @StateObject var partnerClothViewModel = ClothViewModel()
+    @StateObject var partnerClothViewModel = ClothesViewModel()
     var codeViewModel = CodeManager()
     @State private var actionSheetPresented = false
     @State private var codeInput = ""
@@ -139,7 +139,7 @@ struct CoupleView: View {
                 }
                 
                 
-
+                
                 if sheetMode == .none && isConnectedPartner {
                     CardContent()
                 }
@@ -177,10 +177,12 @@ struct CoupleView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     if sheetMode != .none {
                         Button("취소") {
-                            Task {
-                                await myClothViewModel.requestClothes()
-                            }
                             sheetMode = .none
+                            myClothViewModel.requestMyClothes { error in
+                                if error != nil {
+                                    showCustomAlert(with: "이전 착장을 불러오는데 실패하였습니다.")
+                                }
+                            }
                         }
                         .foregroundColor(.red)
                     }
@@ -209,7 +211,7 @@ struct CoupleView: View {
                                 }
                                 .store(in: &subscriptions)
                             sheetMode = .none
- 
+                            
                         }
                     }
                 }
@@ -227,27 +229,33 @@ struct CoupleView: View {
             .onAppear {
                 codeViewModel.getCode()
                 UITabBar.appearance().isHidden = true
-                Task {
-                    await myClothViewModel.requestClothes()
-                    print("DEBUG: wow")
+                
+                myClothViewModel.requestMyClothes { error in
+                    if let error = error {
+                        showCustomAlert(with: error.localizedDescription)
+                    } else {
+                        showCustomAlert(with: "이전 착장 불러오기 완료")
+                    }
                 }
-                print(isFirstLaunching)
-                Task {
-                    await codeViewModel.getPartnerCodeFromServer { partnerCode in
-                        print("DEBUG: getPartnerCodeFromServer completion")
-                        if partnerCode == "" {
-                            self.isConnectedPartner = false
-                        } else {
-                            print(partnerCode)
-                            self.isConnectedPartner = true
-                            Task {
-                                await partnerClothViewModel.requestPartnerClothes()
-                                print("DEBUG: partnerClothViewModel.requestPartnerClothes")
+                
+                
+                if !isConnectedPartnerStorage {
+                    Task {
+                        await codeViewModel.getPartnerCodeFromServer { partnerCode in
+                            print("DEBUG: getPartnerCodeFromServer completion")
+                            if partnerCode == "" {
+                                self.isConnectedPartner = false
+                            } else {
+                                self.isConnectedPartner = true
+                                
+                                partnerClothViewModel.addPartnerClothesListenr { error in
+                                    showCustomAlert(with: error?.localizedDescription ?? "파트너의 옷을 불러오는데 실패하였습니다")
+                                    
+                                }
                             }
                         }
                     }
                 }
-                
             }
             
         }
@@ -262,28 +270,32 @@ struct CoupleView: View {
         alertMessage = message
         showAlert = true
     }
-    
-    
 }
 
-extension CoupleView: NetworkDelegate {
-    func showAlertwith(message: String) {
-        alertMessage = message
-        showAlert.toggle()
-    }
-    
-    func didConnectedPartner() {
-        Task {
-            await partnerClothViewModel.requestPartnerClothes()
-        }
-        isConnectedPartner = true
-    }
-}
+//MARK: - NetworkDelegate
 
 protocol NetworkDelegate {
     func showAlertwith(message: String)
     func didConnectedPartner()
 }
+
+
+extension CoupleView: NetworkDelegate {
+    func showAlertwith(message: String) {
+        showCustomAlert(with: message)
+    }
+    
+    func didConnectedPartner() {
+        partnerClothViewModel.addPartnerClothesListenr { error in
+            if let error = error {
+                showCustomAlert(with: "파트너의 옷을 불러오는 데 실패하였습니다.")
+            } else {
+                isConnectedPartner = true
+            }
+        }
+    }
+}
+
 
 struct CoupleView_Previews: PreviewProvider {
     static var previews: some View {
@@ -294,7 +306,7 @@ struct CoupleView_Previews: PreviewProvider {
 
 //MARK: - SubViews
 struct ClothView: View {
-    @ObservedObject var vm: ClothViewModel
+    @ObservedObject var vm: ClothesViewModel
     var category: ClothCategory
     
     var body: some View {
@@ -316,7 +328,7 @@ struct ClothView: View {
 }
 
 struct AccesoriesView: View {
-    @ObservedObject var vm: ClothViewModel
+    @ObservedObject var vm: ClothesViewModel
    
     var body: some View {
         if vm.isValidItem(with: .accessories) {
@@ -330,7 +342,7 @@ struct AccesoriesView: View {
 }
 
 struct ClothesView: View {
-    @ObservedObject var vm: ClothViewModel
+    @ObservedObject var vm: ClothesViewModel
     
     var body: some View {
         ZStack {

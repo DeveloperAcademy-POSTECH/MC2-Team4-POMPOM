@@ -9,7 +9,7 @@ import SwiftUI
 import SystemConfiguration
 import Combine
 
-class PickerViewModel: ClothViewModel {
+class PickerViewModel: ClothesViewModel {
     //MARK: - Propeties
     @Published var currentType: ClothCategory = .hat
     //UI 에 보여지는 컬러, 옷
@@ -105,7 +105,7 @@ class PickerViewModel: ClothViewModel {
     func uploadItem() -> Future<Bool, Never> {
         return Future<Bool, Never> { promise in
             if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
-                self.networkManager.saveClothes(userCode: defaultCode, clothes: self.selectedItems) { result in
+                self.networkManager.setClothes(userCode: defaultCode, clothes: self.selectedItems) { result in
                     switch result {
                     case .success:
                         promise(.success(true))
