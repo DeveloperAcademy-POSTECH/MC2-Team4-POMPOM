@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SystemConfiguration
+import Combine
 
 class PickerViewModel: ClothViewModel {
     //MARK: - Propeties
@@ -101,11 +102,20 @@ class PickerViewModel: ClothViewModel {
         }
     }
     
-    func uploadItem() {
-        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
-            networkManager.saveClothes(userCode: defaultCode, clothes: selectedItems)
-        } else {
-            print("DEBUG: 사용자 코드 조회 실패")
+    func uploadItem() -> Future<Bool, Never> {
+        return Future<Bool, Never> { promise in
+            if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
+                self.networkManager.saveClothes(userCode: defaultCode, clothes: self.selectedItems) { result in
+                    switch result {
+                    case .success:
+                        promise(.success(true))
+                    case .failure(let error):
+                        promise(.success(false))
+                    }
+                }
+            } else {
+                promise(.success(false))
+            }
         }
     }
 }

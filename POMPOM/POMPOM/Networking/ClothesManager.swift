@@ -8,14 +8,23 @@
 import Foundation
 import FirebaseFirestore
 
+
+
 struct ClothesManager {
     let clothesRef = Firestore.firestore().collection("clothes")
     
-    func saveClothes(userCode: String, clothes: [ClothCategory: Cloth]) {
-        clothesRef.document(userCode).setData(parseClothes(clothes: clothes))
+    func saveClothes(userCode: String, clothes: [ClothCategory: Cloth], completion: @escaping (Result<Void, Error>) -> Void) {
+      
+        clothesRef.document().setData(parseClothes(clothes: clothes)) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
     }
     
-    func parseClothes(clothes: [ClothCategory: Cloth]) -> [String: Any] {
+    private func parseClothes(clothes: [ClothCategory: Cloth]) -> [String: Any] {
         var returnValue: [String: Any] = [:]
         
         for clothCategory in ClothCategory.allCases {

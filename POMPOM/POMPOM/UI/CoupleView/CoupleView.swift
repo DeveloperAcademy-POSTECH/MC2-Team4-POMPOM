@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import Combine
 
 enum CharacterSize {
     case large, medium, small
 }
+var subscriptions: [AnyCancellable] = []
 
 struct CoupleView: View {
+    
+    
     @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
     @AppStorage("isConnectedPartner") var isConnectedPartnerStorage: Bool = false
 
@@ -200,12 +204,12 @@ struct CoupleView: View {
                     } else {
                         Button("완료") {
                             myClothViewModel.uploadItem()
+                                .sink { isSuccess in
+                                    showCustomAlert(with: isSuccess ? "업로드에 성공하였습니다" : "업로드에 실패하였습니다")
+                                }
+                                .store(in: &subscriptions)
                             sheetMode = .none
-                            
-                            Task {
-                                await myClothViewModel.requestClothes()
-
-                            }
+ 
                         }
                     }
                 }
@@ -251,8 +255,15 @@ struct CoupleView: View {
             OnboardingView(isFirstLunching: $isFirstLaunching)
         }
         .addCustomAlert(with: alertMessage, presenting: $showAlert)
-        
     }
+    
+    //MARK: - Helpers
+    func showCustomAlert(with message: String) {
+        alertMessage = message
+        showAlert = true
+    }
+    
+    
 }
 
 extension CoupleView: NetworkDelegate {
