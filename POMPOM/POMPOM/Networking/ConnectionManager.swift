@@ -1,76 +1,120 @@
 //
-//  ConnectionManager.swift
+//  CodeViewModel.swift
 //  POMPOM
 //
 //  Created by GOngTAE on 2022/06/09.
 //
 
 import Foundation
-import FirebaseFirestore
 
-struct CodeManager {
-    let usersRef = Firestore.firestore().collection("users")
+struct ConnectionManager {
+    private let code: String = ""
+    private let codeManager: CodeManager = CodeManager()
     
-    func isExistingCode(code: String) async -> Bool {
-        var returnValue: Bool = false
-        
-        do {
-            let querySnapShot = try await usersRef.whereField("code", isEqualTo: code).getDocuments()
-            returnValue = querySnapShot.isEmpty ? false : true
-        } catch { }
-        
-        return returnValue
-    }
-    
-    func saveCode(code: String) {
-        usersRef.addDocument(data: [
-            "code": code,
-            "partner_code": ""
-        ]) { err in
-            if let err = err {
-                dump("Error adding users 아래 문서: \(err)")
-                print("DEBUG: ConnectionManager - \(err.localizedDescription)")
+    @discardableResult
+    func getCode() -> String {
+        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
+            // UserDefaults에 이미 code가 있을 때
+            return defaultCode
+        } else {
+            // UserDefaults에 code가 없을 때
+            let newCode = generateCode(length: 10)
+            DispatchQueue.global().async {
+                codeManager.saveCode(code: newCode)
             }
+            UserDefaults.standard.set(newCode, forKey: "code")
+            print("DEUBG: 코드 생성 완료 - \(newCode)")
+            return newCode
         }
     }
     
-    func updatePartnerCode(oneId: String, anotherCode: String) {
-        usersRef.document(oneId).updateData([
-            "partner_code": anotherCode
-        ]) { err in
-            if let err = err {
-                print("DEBUG: ConnectionManager - \(err)")
-            }
-        }
-    }
-    
-    func deletePartnerCode(oneId: String) {
-        usersRef.document(oneId).updateData([
-            "partner_code" : ""
-        ]) { err in
-            if let err = err {
-                print("DEBUG: ConnectionManager - \(err.localizedDescription)")
-            }
-        }
-    }
-    
-    func getIdByCode(code: String) async -> String {
-        var returnValue: String = ""
+    func setNewCode() async -> String {
+        var newCode: String = ""
         
-        do {
-            let querySnapShot = try await usersRef.whereField("code", isEqualTo: code).getDocuments()
-            returnValue = querySnapShot.documents[0].documentID
-        } catch { }
+        repeat {
+            newCode = generateCode(length: 10)
+        } while await codeManager.isExistingCode(code: newCode)
         
-        return returnValue
+        return newCode
     }
     
-    func updatePartnerCodeBy(ownCode: String) async {
-        do {
-            try await usersRef.document(getIdByCode(code: ownCode))
-            .updateData(["partner_code": " "])
-        } catch {
-            print("cannot get document by code")
+    // 길이가 length고, 숫자와 영문 대문자로만 이뤄진 코드 생성 및 반환
+    private func generateCode(length: Int) -> String {
+        let elements = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        return String((0 ..< length).map { _ in elements.randomElement()! })
+    }
+    
+    func connectWithPartner(partnerCode: String) async throws {
+        // partnerCode를 본인의 코드로 입력했는지 확인
+        guard partnerCode != getCode() else {
+            throw ConnectionManagerResultType.callMySelf
         }
+        
+        // partnerCode가 존재하는지부터 확인
+        guard await codeManager.isExistingCode(code: partnerCode) else {
+            throw ConnectionManagerResultType.invalidPartnerCode
+        }
+        
+        let ownCode: String = getCode()
+        
+        let ownId: String = await codeManager.getIdByCode(code: ownCode)
+        let partnerId: String = await codeManager.getIdByCode(code: partnerCode)
+        
+        codeManager.updatePartnerCode(oneId: ownId, anotherCode: partnerCode)
+        codeManager.updatePartnerCode(oneId: partnerId, anotherCode: ownCode)
+        UserDefaults.standard.set(partnerCode, forKey: "partner_code")
+        throw ConnectionManagerResultType.success
+    }
+    
+    func getPartnerCode() -> String {
+        // UserDefaults에 partner_code가 있을 때
+        if let partnerCode: String = UserDefaults.standard.string(forKey: "partner_code") {
+            return partnerCode
+        }
+        // UserDefaults에 partner_code가 없을 때
+        else {
+            return ""
+        }
+    }
+    
+    func getPartnerCodeFromServer(completion: @escaping (String) -> Void) async {
+
+        codeManager.usersRef.document(await codeManager.getIdByCode(code: getCode()))
+            .addSnapshotListener { snapShot, err in
+                if let err = err {
+                    dump("\(err)")
+                } else {
+                    guard let data = snapShot?.data()?["partner_code"] as? String else { return }
+                    var temp = ""
+                    print(data)
+                    if data != " " {
+                        temp = data
+                    }
+                    UserDefaults.standard.set(temp, forKey: "partner_code")
+                    print(temp + "wow")
+                    completion(temp)
+                }
+            }
+    }
+    
+    func deletePartnerCode(completion: @escaping (String) -> Void) {
+        Task {
+            await codeManager.updatePartnerCodeBy(ownCode: getPartnerCode())
+            await codeManager.updatePartnerCodeBy(ownCode: getCode())
+        }
+        
+        if let _ = UserDefaults.standard.string(forKey: "partner_code") {
+            UserDefaults.standard.removeObject(forKey: "partner_code")
+            
+        }
+        completion("연동이 해지되었습니다.")
     }
 }
+
+enum ConnectionManagerResultType: Error {
+    case success
+    case callMySelf // 자신의 코드를 불러오는 경우
+    case invalidPartnerCode // 일치하는 파트너 코드가 없는 경우
+}
+
+
