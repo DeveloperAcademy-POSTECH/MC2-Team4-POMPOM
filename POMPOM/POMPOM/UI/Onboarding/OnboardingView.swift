@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingView: View {
     
     @Binding var isFirstLunching: Bool
-    let codeManger = CodeManager()
+    let codeManger = ConnectionManager()
     
     let onboardingViewData : [OnboardingViewModel] = [
         OnboardingViewModel(

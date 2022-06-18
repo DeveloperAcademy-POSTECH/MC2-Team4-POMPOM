@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestore
 
-struct ConnectionManager {
+struct CodeManager {
     let usersRef = Firestore.firestore().collection("users")
     
     func isExistingCode(code: String) async -> Bool {

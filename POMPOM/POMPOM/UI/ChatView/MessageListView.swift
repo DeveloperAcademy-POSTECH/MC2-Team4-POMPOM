@@ -26,7 +26,7 @@ struct MessageListView: View {
                                           recievedBubble: message.messageTo == myCode ? true : false,
                                           commentedTime: message.timestamp)
                             .task {
-                                self.myCode = CodeManager().getCode()
+                                self.myCode = ConnectionManager().getCode()
                             }
                         
                     }

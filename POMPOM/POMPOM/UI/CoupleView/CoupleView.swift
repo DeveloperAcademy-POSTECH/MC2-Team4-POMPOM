@@ -56,7 +56,7 @@ struct CoupleView: View {
     
     @StateObject var myClothViewModel = PickerViewModel()
     @StateObject var partnerClothViewModel = ClothesViewModel()
-    var codeViewModel = CodeManager()
+    var codeViewModel = ConnectionManager()
     @State private var actionSheetPresented = false
     @State private var codeInput = ""
     @State private var commentInput = ""

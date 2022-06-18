@@ -10,7 +10,7 @@ import SwiftUI
 struct CodeInputView: View {
     @Binding var textInput: String
     var delegate: NetworkDelegate?
-    private let codeManager: CodeManager = CodeManager()
+    private let codeManager: ConnectionManager = ConnectionManager()
     let afterAction: () -> ()
     
     var body: some View {

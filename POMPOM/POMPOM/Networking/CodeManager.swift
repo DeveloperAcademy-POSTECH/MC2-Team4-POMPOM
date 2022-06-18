@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct CodeManager {
+struct ConnectionManager {
     private let code: String = ""
-    private let connectionManager: ConnectionManager = ConnectionManager()
+    private let codeManager: CodeManager = CodeManager()
     
     @discardableResult
     func getCode() -> String {
@@ -22,7 +22,7 @@ struct CodeManager {
 //            let newCode = await setNewCode()
             let newCode = generateCode(length: 10)
             DispatchQueue.global().async {
-                connectionManager.saveCode(code: newCode)
+                codeManager.saveCode(code: newCode)
             }
             UserDefaults.standard.set(newCode, forKey: "code")
             print("DEUBG: 코드 생성 완료 - \(newCode)")
@@ -35,7 +35,7 @@ struct CodeManager {
         
         repeat {
             newCode = generateCode(length: 10)
-        } while await connectionManager.isExistingCode(code: newCode)
+        } while await codeManager.isExistingCode(code: newCode)
         
         return newCode
     }
@@ -53,17 +53,17 @@ struct CodeManager {
         }
         
         // partnerCode가 존재하는지부터 확인
-        guard await connectionManager.isExistingCode(code: partnerCode) else {
+        guard await codeManager.isExistingCode(code: partnerCode) else {
             throw ConnectionManagerResultType.invalidPartnerCode
         }
         
         let ownCode: String = getCode()
         
-        let ownId: String = await connectionManager.getIdByCode(code: ownCode)
-        let partnerId: String = await connectionManager.getIdByCode(code: partnerCode)
+        let ownId: String = await codeManager.getIdByCode(code: ownCode)
+        let partnerId: String = await codeManager.getIdByCode(code: partnerCode)
         
-        connectionManager.updatePartnerCode(oneId: ownId, anotherCode: partnerCode)
-        connectionManager.updatePartnerCode(oneId: partnerId, anotherCode: ownCode)
+        codeManager.updatePartnerCode(oneId: ownId, anotherCode: partnerCode)
+        codeManager.updatePartnerCode(oneId: partnerId, anotherCode: ownCode)
         UserDefaults.standard.set(partnerCode, forKey: "partner_code")
         throw ConnectionManagerResultType.success
     }
@@ -82,7 +82,7 @@ struct CodeManager {
     func getPartnerCodeFromServer(completion: @escaping (String) -> Void) async {
         
         
-        connectionManager.usersRef.document(await connectionManager.getIdByCode(code: getCode()))
+        codeManager.usersRef.document(await codeManager.getIdByCode(code: getCode()))
             .addSnapshotListener { snapShot, err in
                 if let err = err {
                     dump("\(err)")
@@ -102,8 +102,8 @@ struct CodeManager {
     
     func deletePartnerCode(completion: @escaping (String) -> Void) {
         Task {
-            await connectionManager.updatePartnerCodeBy(ownCode: getPartnerCode())
-            await connectionManager.updatePartnerCodeBy(ownCode: getCode())
+            await codeManager.updatePartnerCodeBy(ownCode: getPartnerCode())
+            await codeManager.updatePartnerCodeBy(ownCode: getCode())
         }
         
         if let _ = UserDefaults.standard.string(forKey: "partner_code") {

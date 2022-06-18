@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CodeOutputView: View {
-    let code: String = CodeManager().getCode()
+    let code: String = ConnectionManager().getCode()
     let afterCopy: () -> ()
     private let pasteboard = UIPasteboard.general
-    private let codeViewModel: CodeManager = CodeManager()
+    private let codeViewModel: ConnectionManager = ConnectionManager()
     
     var body: some View {
         CodeView(title: "초대코드 확인", content: {
