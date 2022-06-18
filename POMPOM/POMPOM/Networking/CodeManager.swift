@@ -13,13 +13,11 @@ struct ConnectionManager {
     
     @discardableResult
     func getCode() -> String {
-        // UserDefaults에 이미 code가 있을 때
         if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
+            // UserDefaults에 이미 code가 있을 때
             return defaultCode
-        }
-        // UserDefaults에 code가 없을 때
-        else {
-//            let newCode = await setNewCode()
+        } else {
+            // UserDefaults에 code가 없을 때
             let newCode = generateCode(length: 10)
             DispatchQueue.global().async {
                 codeManager.saveCode(code: newCode)
