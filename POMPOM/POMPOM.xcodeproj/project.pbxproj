@@ -27,8 +27,8 @@
 		C0182C3A28598411000F0A6A /* CategoryGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0182C3928598411000F0A6A /* CategoryGrid.swift */; };
 		C0182C3C2859841A000F0A6A /* ClothGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0182C3B2859841A000F0A6A /* ClothGrid.swift */; };
 		C0182C4028598470000F0A6A /* Seperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0182C3F28598470000F0A6A /* Seperator.swift */; };
+		C041C0A2285F6B1C008219C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CA2849E1C60086810C /* Assets.xcassets */; };
 		C04FCAF6284E24020040F790 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04FCAF5284E24020040F790 /* GoogleService-Info.plist */; };
-		C05797BD285F5A36003756EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CA2849E1C60086810C /* Assets.xcassets */; };
 		C06CE14B2851DC0900BBDA68 /* CoupleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14A2851DC0900BBDA68 /* CoupleView.swift */; };
 		C06CE14E2851DC5100BBDA68 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14D2851DC5100BBDA68 /* CodeInputView.swift */; };
 		C06CE1502851DC5C00BBDA68 /* CodeOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14F2851DC5C00BBDA68 /* CodeOutputView.swift */; };
@@ -194,7 +194,6 @@
 				AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */,
 				C0A779CD2849E1C60086810C /* Preview Assets.xcassets */,
 				C04FCAF5284E24020040F790 /* GoogleService-Info.plist */,
-				C0A779CA2849E1C60086810C /* Assets.xcassets */,
 				C0A779D12849E1C60086810C /* Model.xcdatamodeld */,
 			);
 			path = Resources;
@@ -288,6 +287,7 @@
 		C0A779C52849E1C50086810C /* POMPOM */ = {
 			isa = PBXGroup;
 			children = (
+				C0A779CA2849E1C60086810C /* Assets.xcassets */,
 				C0ED415B2858697D007E5502 /* Models */,
 				C0ED4157285868D7007E5502 /* Util */,
 				C059279A2852FF8C0071751A /* Info.plist */,
@@ -430,7 +430,7 @@
 				C0A779CE2849E1C60086810C /* Preview Assets.xcassets in Resources */,
 				AB132FE92854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf in Resources */,
 				C04FCAF6284E24020040F790 /* GoogleService-Info.plist in Resources */,
-				C05797BD285F5A36003756EA /* Assets.xcassets in Resources */,
+				C041C0A2285F6B1C008219C2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
