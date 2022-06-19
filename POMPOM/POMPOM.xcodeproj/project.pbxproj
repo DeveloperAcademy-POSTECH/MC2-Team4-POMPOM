@@ -13,9 +13,6 @@
 		AB132FE92854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */; };
 		AB132FEA2854BE5C0023DBD0 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */; };
 		AB132FED2854BF500023DBD0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB132FEC2854BF500023DBD0 /* Constant.swift */; };
-		AB3ABBA8285AEB28002F9DD9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3ABBA7285AEB28002F9DD9 /* CoreDataManager.swift */; };
-		AB3ABBAA285AECCA002F9DD9 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3ABBA9285AECCA002F9DD9 /* BaseModel.swift */; };
-		AB3ABBAC285AF085002F9DD9 /* PresetColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3ABBAB285AF085002F9DD9 /* PresetColor+Extensions.swift */; };
 		ABC4C5192859A6FB00D064E4 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC4C5182859A6FB00D064E4 /* SheetView.swift */; };
 		ABFEE2122855A86D007817D3 /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE2112855A86D007817D3 /* CodeView.swift */; };
 		ABFEE2142855F2C1007817D3 /* CommentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE2132855F2C1007817D3 /* CommentTextField.swift */; };
@@ -31,6 +28,7 @@
 		C0182C3C2859841A000F0A6A /* ClothGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0182C3B2859841A000F0A6A /* ClothGrid.swift */; };
 		C0182C4028598470000F0A6A /* Seperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0182C3F28598470000F0A6A /* Seperator.swift */; };
 		C04FCAF6284E24020040F790 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04FCAF5284E24020040F790 /* GoogleService-Info.plist */; };
+		C05797BD285F5A36003756EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CA2849E1C60086810C /* Assets.xcassets */; };
 		C06CE14B2851DC0900BBDA68 /* CoupleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14A2851DC0900BBDA68 /* CoupleView.swift */; };
 		C06CE14E2851DC5100BBDA68 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14D2851DC5100BBDA68 /* CodeInputView.swift */; };
 		C06CE1502851DC5C00BBDA68 /* CodeOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14F2851DC5C00BBDA68 /* CodeOutputView.swift */; };
@@ -43,7 +41,6 @@
 		C06CE1652851DDAB00BBDA68 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE1642851DDAB00BBDA68 /* LoginViewModel.swift */; };
 		C0A779C72849E1C50086810C /* POMPOMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779C62849E1C50086810C /* POMPOMApp.swift */; };
 		C0A779C92849E1C50086810C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779C82849E1C50086810C /* ContentView.swift */; };
-		C0A779CB2849E1C60086810C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CA2849E1C60086810C /* Assets.xcassets */; };
 		C0A779CE2849E1C60086810C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CD2849E1C60086810C /* Preview Assets.xcassets */; };
 		C0A779D32849E1C60086810C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0A779D12849E1C60086810C /* Model.xcdatamodeld */; };
 		C0C7EE9A285B42A2003DA1A9 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7EE99285B42A2003DA1A9 /* CustomAlert.swift */; };
@@ -71,9 +68,6 @@
 		AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		AB132FEC2854BF500023DBD0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		AB3ABBA7285AEB28002F9DD9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		AB3ABBA9285AECCA002F9DD9 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
-		AB3ABBAB285AF085002F9DD9 /* PresetColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresetColor+Extensions.swift"; sourceTree = "<group>"; };
 		ABC4C5182859A6FB00D064E4 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
 		ABFEE2112855A86D007817D3 /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
 		ABFEE2132855F2C1007817D3 /* CommentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextField.swift; sourceTree = "<group>"; };
@@ -170,16 +164,6 @@
 				AB132FEC2854BF500023DBD0 /* Constant.swift */,
 			);
 			path = Constants;
-			sourceTree = "<group>";
-		};
-		AB3ABBA6285AEB1C002F9DD9 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				AB3ABBA7285AEB28002F9DD9 /* CoreDataManager.swift */,
-				AB3ABBA9285AECCA002F9DD9 /* BaseModel.swift */,
-				AB3ABBAB285AF085002F9DD9 /* PresetColor+Extensions.swift */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 		AEA32AA7285741B5006A31D4 /* ChatView */ = {
@@ -304,7 +288,6 @@
 		C0A779C52849E1C50086810C /* POMPOM */ = {
 			isa = PBXGroup;
 			children = (
-				AB3ABBA6285AEB1C002F9DD9 /* CoreData */,
 				C0ED415B2858697D007E5502 /* Models */,
 				C0ED4157285868D7007E5502 /* Util */,
 				C059279A2852FF8C0071751A /* Info.plist */,
@@ -446,8 +429,8 @@
 				AB132FEA2854BE5C0023DBD0 /* Montserrat-Bold.ttf in Resources */,
 				C0A779CE2849E1C60086810C /* Preview Assets.xcassets in Resources */,
 				AB132FE92854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf in Resources */,
-				C0A779CB2849E1C60086810C /* Assets.xcassets in Resources */,
 				C04FCAF6284E24020040F790 /* GoogleService-Info.plist in Resources */,
+				C05797BD285F5A36003756EA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,10 +496,8 @@
 				C0A779C72849E1C50086810C /* POMPOMApp.swift in Sources */,
 				AE850A07285B238D00D11812 /* Message.swift in Sources */,
 				C0C7EE9A285B42A2003DA1A9 /* CustomAlert.swift in Sources */,
-				C0F90CB32850729E00CC2C0E /* Secret.swift in Sources */,
 				D430FD42285B984200F216CB /* DayDisplayView.swift in Sources */,
 				C0182C3A28598411000F0A6A /* CategoryGrid.swift in Sources */,
-				AB3ABBAC285AF085002F9DD9 /* PresetColor+Extensions.swift in Sources */,
 				C06CE1502851DC5C00BBDA68 /* CodeOutputView.swift in Sources */,
 				C0F1DC0328575BCB00F8EAA0 /* PickerViewModel.swift in Sources */,
 				C06CE14E2851DC5100BBDA68 /* CodeInputView.swift in Sources */,
@@ -524,9 +505,7 @@
 				ABFEE2122855A86D007817D3 /* CodeView.swift in Sources */,
 				8A0732CE285B057B00E72AD9 /* SettingsView.swift in Sources */,
 				C06CE15B2851DCFE00BBDA68 /* ConnectionManager.swift in Sources */,
-				AB3ABBAA285AECCA002F9DD9 /* BaseModel.swift in Sources */,
 				AB132FED2854BF500023DBD0 /* Constant.swift in Sources */,
-				C0A779C72849E1C50086810C /* POMPOMApp.swift in Sources */,
 				C06CE1602851DD6700BBDA68 /* NotificationManager.swift in Sources */,
 				D40F418628571FE70037B3EB /* OnboardingPageView.swift in Sources */,
 				AE8509F72859C0FE00D11812 /* KeyboardObserver.swift in Sources */,
@@ -543,7 +522,6 @@
 				AE850A25285C725100D11812 /* hideKeyboard.swift in Sources */,
 				AEA32AAD285741DB006A31D4 /* MessageBubbleView.swift in Sources */,
 				C06CE1652851DDAB00BBDA68 /* LoginViewModel.swift in Sources */,
-				AB3ABBA8285AEB28002F9DD9 /* CoreDataManager.swift in Sources */,
 				C0F1DC0028575BA700F8EAA0 /* ClothPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -601,7 +579,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -655,7 +633,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -671,6 +649,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = POMPOM/POMPOM.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -685,6 +664,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -705,6 +685,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = POMPOM/POMPOM.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -719,6 +700,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
