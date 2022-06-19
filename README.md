@@ -1,4 +1,5 @@
-![Let's POMPOM](https://user-images.githubusercontent.com/89325126/174469713-8a624147-0a14-4337-b043-490874e69363.jpeg)
+![폼폼 배너](https://user-images.githubusercontent.com/89325126/174489978-e420790d-22aa-4a73-9321-2413d4ddc27d.jpg)
+
 
 
 # POMPOM
