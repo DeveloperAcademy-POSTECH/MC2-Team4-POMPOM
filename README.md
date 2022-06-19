@@ -54,5 +54,3 @@ import FirebaseFirestore
 
 ## : Authors
 
-
-[Documentation](./Docs/)
