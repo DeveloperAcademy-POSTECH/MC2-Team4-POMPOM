@@ -193,7 +193,6 @@
 				AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */,
 				AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */,
 				C0A779CD2849E1C60086810C /* Preview Assets.xcassets */,
-				C04FCAF5284E24020040F790 /* GoogleService-Info.plist */,
 				C0A779D12849E1C60086810C /* Model.xcdatamodeld */,
 			);
 			path = Resources;
@@ -288,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				C0A779CA2849E1C60086810C /* Assets.xcassets */,
+				C04FCAF5284E24020040F790 /* GoogleService-Info.plist */,
 				C0ED415B2858697D007E5502 /* Models */,
 				C0ED4157285868D7007E5502 /* Util */,
 				C059279A2852FF8C0071751A /* Info.plist */,

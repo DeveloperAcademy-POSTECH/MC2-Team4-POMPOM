@@ -26,11 +26,11 @@ struct SettingsView: View {
                     //Text("초대코드 입력")을 CodeInputView()로 변경
                     NavigationLink("초대코드 입력하기", destination: CodeInputView(textInput: $codeInput, delegate: self, afterAction: {}))
                     
-                    //"연결 해지" View 필요
-                    Button("연결 해지") {
-                        actionSheetPresented = true
-                    }
-                    .tint(Color(UIColor.label))
+//                    //"연결 해지" View 필요
+//                    Button("연결 해지") {
+//                        actionSheetPresented = true
+//                    }
+//                    .tint(Color(UIColor.label))
                 }
             }
             .listStyle(InsetGroupedListStyle())
