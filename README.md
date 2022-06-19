@@ -14,14 +14,14 @@
 - 실시간 채팅 : 옷을 맞춰보는 과정에서 채팅앱으로 이동하지 않고 바로 소통
 
 
-##  Design
+## Design
 
 
 
 
-## :fireworks: Screenshots
+## Screenshots
 
-## :sparkles: Skills & Tech Stack
+## Skills & Tech Stack
 1. 이슈관리 : Notion
 2. 형상관리 : Github
 3. 커뮤니케이션 : Ryver, Notion
@@ -30,14 +30,14 @@
 - IDE : Xcode 13.4.1
 5. 상세사용
 - Application : SwiftUI
-- Design : Sketch, AfterEffect, Illustrator<br>
+- Design : Sketch, Illustrator<br>
 6. 라이브러리
 ```swift
 import SwiftUI
 import Combine
 import FirebaseFirestore
 ```
-## 🔀 Git
+## Git
 
 1. Commit 컨벤션
     - `ADD` : 새로운 기능 추가
