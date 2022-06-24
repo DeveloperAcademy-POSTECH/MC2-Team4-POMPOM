@@ -97,7 +97,6 @@ class PickerViewModel: ClothViewModel {
             withAnimation(.easeOut) {
                 selectedItems[currentType] = Cloth(id: name, hex: hex , category: currentType)
             }
-            
         }
     }
     
