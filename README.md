@@ -1,4 +1,5 @@
-![Let's POMPOM](https://user-images.githubusercontent.com/89325126/174469713-8a624147-0a14-4337-b043-490874e69363.jpeg)
+![폼폼 배너](https://user-images.githubusercontent.com/89325126/174489978-e420790d-22aa-4a73-9321-2413d4ddc27d.jpg)
+
 
 
 # POMPOM
@@ -19,6 +20,13 @@
 
 
 ## Screenshots
+
+![13-1](https://user-images.githubusercontent.com/89325126/174545593-344e9eeb-c135-4d41-9c90-249b69bdce91.jpg)
+![13-2](https://user-images.githubusercontent.com/89325126/174545601-0f33d46f-d0dd-4103-9147-d282fa9414f3.jpg)
+![13-3](https://user-images.githubusercontent.com/89325126/174545609-9c73eadc-be3f-45be-a25c-0f4696f63945.jpg)
+![13-4](https://user-images.githubusercontent.com/89325126/174545614-1df524cc-ffad-4dcf-b4f1-05728e162341.jpg)
+![13-5](https://user-images.githubusercontent.com/89325126/174545621-790f554b-913f-4066-8ada-2244765a219f.jpg)
+
 
 ## Skills & Tech Stack
 1. 이슈관리 : Notion
