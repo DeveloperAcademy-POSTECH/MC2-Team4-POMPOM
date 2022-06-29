@@ -283,19 +283,19 @@ struct CoupleView_Previews: PreviewProvider {
 
 //MARK: - SubViews
 struct ClothView: View {
-    @ObservedObject var vm: ClothViewModel
+    @ObservedObject var vm: ClothCombineViewModel
     var category: ClothCategory
     
     var body: some View {
-        if vm.isValidItem(with: category) {
+        if !vm.mainImageString.isEmpty {
             ZStack {
-                Image(vm.fetchImageString(with: category) + "B")
+                Image(vm.mainImageString)
                     .resizable()
-                    .foregroundColor(Color(hex: vm.selectedItems[category]?.hex ?? "FFFFFF"))
+                    .foregroundColor(Color(hex: vm.hex))
                 
-                Image(vm.fetchImageString(with: category))
+                Image(vm.strokeIamgeString)
                     .resizable()
-                    .foregroundColor(Color(hex: vm.selectedItems[category]?.hex ?? "FFFFFF" == "000000" ? "D0D0D0" : "000000"))
+                    .foregroundColor(Color(hex: vm.strokeHex))
             }
             .transition(.opacity)
 //            .transition(.slide)
@@ -323,11 +323,21 @@ struct ClothesView: View {
     
     var body: some View {
         ZStack {
-            ClothView(vm: vm, category: .hat)
-            ClothView(vm: vm, category: .shoes)
-            ClothView(vm: vm, category: .bottom)
+          
+            let hatViewModel = ClothCombineViewModel(cloth: vm.selectedItems[.hat], category: .hat)
+            ClothView(vm: hatViewModel, category: .hat)
+            
+            let shoesViewModel = ClothCombineViewModel(cloth: vm.selectedItems[.shoes], category: .shoes)
+            ClothView(vm: shoesViewModel, category: .shoes)
+            
+            let bottomViewModel = ClothCombineViewModel(cloth: vm.selectedItems[.bottom], category: .bottom)
+            ClothView(vm: bottomViewModel, category: .bottom)
+            
             AccesoriesView(vm: vm)
-            ClothView(vm: vm, category: .top)
+            
+            
+            let topViewModel = ClothCombineViewModel(cloth: vm.selectedItems[.top], category: .top)
+            ClothView(vm: topViewModel, category: .top)
         }
     }
 }

@@ -5,13 +5,82 @@
 //  Created by GOngTAE on 2022/06/13.
 //
 
+import Combine
 import SwiftUI
 import SystemConfiguration
 
 final class PickerCombineViewModel: ObservableObject {
+    @Published var selectedItems: [ClothCategory : Cloth] = [:]
     @Published var currentCategory: ClothCategory = .hat
     @Published var currentHex: String = "FFFFFF"
+    @Published var categoryGridOffset: CGFloat = Constant.screenWidth / 2 - 60
     
+    @Published var presets: [String] = []
+    @Published var items: [Cloth.ID] = []
+    
+    private let categorySubject = CurrentValueSubject<ClothCategory, Never>(.hat)
+    private let colorSubject = CurrentValueSubject<String, Never>("FFFFFF")
+    private let itemSubject = CurrentValueSubject<Cloth.ID, Never>("")
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    init(clothes: [Cloth]) {
+        
+        categorySubject
+            .compactMap { $0 }
+            .removeDuplicates()
+            .sink { currentCategory in
+                self.currentCategory = currentCategory
+                self.presets = self.presetDic[currentCategory] ?? []
+                self.items = self.itemDic[currentCategory] ?? []
+            }
+            .store(in: &cancellables)
+        
+        
+        
+        colorSubject
+            .compactMap { $0 }
+            .removeDuplicates()
+            .assign(to: \.currentHex, on: self)
+            .store(in: &cancellables)
+        
+        itemSubject
+            .compactMap{ $0 }
+            .removeDuplicates()
+            .sink { clothName in
+                self.selectedItems[self.currentCategory] = Cloth(id: clothName, hex: self.currentHex, category: self.currentCategory)
+            }
+            .store(in: &cancellables)
+        
+        
+    }
+    
+    func setCategory(_ category: ClothCategory) {
+        categorySubject.send(category)
+    }
+    
+    func setColor(withHex hex: String) {
+        colorSubject.send(hex)
+    }
+    
+    
+    
+    // 기본 컬러 프리셋
+    var presetDic: [ClothCategory : [String]] = [
+        .hat : ["FFFFFF", "000000", "325593", "2E614E", "AD5139", "DF002B", "6F6F71", "D0DBE2", "DAC7C5"],
+        .top : ["FFFFFF", "000000", "BAD2F5", "C5C5C7", "23293F", "00914E", "FF5100", "3F2D24", "32323B", "FAF6EA", "E3EDE8", "F7EDF8"],
+        .bottom : ["FFFFFF", "C5C5C7", "ACC8E0","7489A3", "1D2433", "FAF3E6", "CBAF86", "6D7A3B"],
+        .shoes : ["FFFFFF", "000000", "8D8983", "AC9F80"],
+        .accessories : ["FFFFFF", "000000", "325593", "2E614E", "AD5139", "DF002B"]
+    ]
+    
+    var itemDic: [ClothCategory: [String]] = [
+        .hat : ["cap", "suncap"],
+        .top : [ "short", "long",  "shirts", "shirtslong", "sleeveless", "pkshirts", "onepiece", "pkonepiece"],
+        .bottom : ["shorts", "skirtshort", "skirta", "long", "skirtlong"],
+        .shoes : ["sandals", "sneakers", "women"],
+        .accessories : ["glasses", "sunglasses"]
+    ]
 }
 
 class PickerViewModel: ClothViewModel {
