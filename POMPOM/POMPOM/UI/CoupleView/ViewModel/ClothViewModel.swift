@@ -5,8 +5,48 @@
 //  Created by GOngTAE on 2022/06/09.
 //
 
-import Foundation
+import Combine
 import SwiftUI
+
+final class ClothCombineViewModel: ObservableObject {
+    @Published private(set) var currentHex: String = "FFFFFF"
+    @Published private(set) var currentClothName: String = ""
+    @Published private(set) var currentStrokeHex: String = "000000"
+    
+    private let clothSubject = CurrentValueSubject<Cloth?, Never>(nil)
+    private var cancellables = Set<AnyCancellable>()
+    
+    init(cloth: Cloth) {
+        let clothSharedPublisher = clothSubject
+            .compactMap { $0 }
+            .share()
+        
+        clothSharedPublisher
+            .map(\.hex)
+            .removeDuplicates()
+            .assign(to: \.currentHex, on: self)
+            .store(in: &cancellables)
+        
+        
+        clothSharedPublisher
+            .map(\.hex)
+            .removeDuplicates()
+            .map { hex in
+                // //MARK: 옷 색에 따라 테두리 색을 바꿔주는 map 필요
+                return hex
+            }
+            .assign(to: \.currentStrokeHex, on: self)
+            .store(in: &cancellables)
+        
+        clothSharedPublisher
+            .map(\.id)
+            .removeDuplicates()
+            .assign(to: \.currentClothName, on: self)
+            .store(in: &cancellables)
+        
+        clothSubject.send(cloth)
+    }
+}
 
 class ClothViewModel: ObservableObject {
     //MARK: - Propeties
