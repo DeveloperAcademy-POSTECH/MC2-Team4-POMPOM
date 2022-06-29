@@ -8,6 +8,12 @@
 import SwiftUI
 import SystemConfiguration
 
+final class PickerCombineViewModel: ObservableObject {
+    @Published var currentCategory: ClothCategory = .hat
+    @Published var currentHex: String = "FFFFFF"
+    
+}
+
 class PickerViewModel: ClothViewModel {
     //MARK: - Propeties
     @Published var currentType: ClothCategory = .hat
