@@ -243,7 +243,6 @@ struct CoupleView: View {
                         }
                     }
                 }
-                
             }
             
         }
@@ -251,10 +250,13 @@ struct CoupleView: View {
             OnboardingView(isFirstLunching: $isFirstLaunching)
         }
         .addCustomAlert(with: alertMessage, presenting: $showAlert)
-        
     }
+    
+    //MARK: - Helpers
 }
 
+
+//MARK: - Delegates
 extension CoupleView: NetworkDelegate {
     func showAlertwith(message: String) {
         alertMessage = message
@@ -282,9 +284,22 @@ struct CoupleView_Previews: PreviewProvider {
 
 
 //MARK: - SubViews
+struct ClothesView: View {
+    @ObservedObject var vm: ClothViewModel
+    let iteration: [ClothCategory] = [.hat, .shoes, .bottom, .top]
+    var body: some View {
+        ZStack {
+            ForEach(iteration) { category in
+                let vm = ClothCombineViewModel(cloth: vm.selectedItems[category], category: category)
+                ClothView(vm: vm)
+            }
+            AccesoriesView(vm: vm)
+        }
+    }
+}
+
 struct ClothView: View {
     @ObservedObject var vm: ClothCombineViewModel
-    
     var body: some View {
         if !vm.mainImageString.isEmpty {
             ZStack {
@@ -297,15 +312,12 @@ struct ClothView: View {
                     .foregroundColor(Color(hex: vm.strokeHex))
             }
             .transition(.opacity)
-//            .transition(.slide)
-            
         }
     }
 }
 
 struct AccesoriesView: View {
     @ObservedObject var vm: ClothViewModel
-   
     var body: some View {
         if vm.isValidItem(with: .accessories) {
             ZStack {
@@ -317,19 +329,4 @@ struct AccesoriesView: View {
     }
 }
 
-struct ClothesView: View {
-    @ObservedObject var vm: ClothViewModel
-    let iteration: [ClothCategory] = [.hat, .shoes, .bottom, .top]
-    
-    var body: some View {
-        ZStack {
-            ForEach(iteration) { category in
-                let vm = ClothCombineViewModel(cloth: vm.selectedItems[category], category: category)
-                ClothView(vm: vm)
-            }
-            AccesoriesView(vm: vm)
-
-        }
-    }
-}
 
