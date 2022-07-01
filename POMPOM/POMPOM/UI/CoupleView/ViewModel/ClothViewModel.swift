@@ -13,6 +13,7 @@ final class ClothCombineViewModel: ObservableObject {
     @Published private(set) var mainImageString: String = ""
     @Published private(set) var strokeIamgeString: String = ""
     @Published private(set) var strokeHex: String = "000000"
+    @Published private(set) var isEmpty: Bool = true
     let category: ClothCategory
     
     private let clothSubject = CurrentValueSubject<Cloth?, Never>(nil)
@@ -49,19 +50,10 @@ final class ClothCombineViewModel: ObservableObject {
         clothSharedPublisher
             .map(\.id)
             .removeDuplicates()
-            .map { id in
-                return "\(category)-\(id)B"
+            .sink { id in
+                self.mainImageString = "\(category)-\(id)B"
+                self.strokeIamgeString = "\(category)-\(id)"
             }
-            .assign(to: \.mainImageString, on: self)
-            .store(in: &cancellables)
-        
-        clothSharedPublisher
-            .map(\.id)
-            .removeDuplicates()
-            .map { id in
-                return "\(category)-\(id)"
-            }
-            .assign(to: \.strokeIamgeString, on: self)
             .store(in: &cancellables)
         
         if let cloth = cloth {

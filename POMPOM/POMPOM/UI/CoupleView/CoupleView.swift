@@ -284,7 +284,6 @@ struct CoupleView_Previews: PreviewProvider {
 //MARK: - SubViews
 struct ClothView: View {
     @ObservedObject var vm: ClothCombineViewModel
-    var category: ClothCategory
     
     var body: some View {
         if !vm.mainImageString.isEmpty {
@@ -320,24 +319,16 @@ struct AccesoriesView: View {
 
 struct ClothesView: View {
     @ObservedObject var vm: ClothViewModel
+    let iteration: [ClothCategory] = [.hat, .shoes, .bottom, .top]
     
     var body: some View {
         ZStack {
-          
-            let hatViewModel = ClothCombineViewModel(cloth: vm.selectedItems[.hat], category: .hat)
-            ClothView(vm: hatViewModel, category: .hat)
-            
-            let shoesViewModel = ClothCombineViewModel(cloth: vm.selectedItems[.shoes], category: .shoes)
-            ClothView(vm: shoesViewModel, category: .shoes)
-            
-            let bottomViewModel = ClothCombineViewModel(cloth: vm.selectedItems[.bottom], category: .bottom)
-            ClothView(vm: bottomViewModel, category: .bottom)
-            
+            ForEach(iteration) { category in
+                let vm = ClothCombineViewModel(cloth: vm.selectedItems[category], category: category)
+                ClothView(vm: vm)
+            }
             AccesoriesView(vm: vm)
-            
-            
-            let topViewModel = ClothCombineViewModel(cloth: vm.selectedItems[.top], category: .top)
-            ClothView(vm: topViewModel, category: .top)
+
         }
     }
 }
