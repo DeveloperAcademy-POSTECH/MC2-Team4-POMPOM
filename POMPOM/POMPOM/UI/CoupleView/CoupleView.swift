@@ -51,7 +51,7 @@ struct CoupleView: View {
     }
     
     @StateObject var myClothViewModel = PickerViewModel()
-    @StateObject var partnerClothViewModel = ClothViewModel()
+    @StateObject var partnerClothViewModel = ClothesViewModel()
     var codeViewModel = CodeManager()
     @State private var actionSheetPresented = false
     @State private var codeInput = ""
@@ -285,12 +285,12 @@ struct CoupleView_Previews: PreviewProvider {
 
 //MARK: - SubViews
 struct ClothesView: View {
-    @ObservedObject var vm: ClothViewModel
-    let iteration: [ClothCategory] = [.hat, .shoes, .bottom, .top]
+    @ObservedObject var vm: ClothesViewModel
+    let zIndexIteration: [ClothCategory] = [.hat, .shoes, .bottom, .top]
     var body: some View {
         ZStack {
-            ForEach(iteration) { category in
-                let vm = ClothCombineViewModel(cloth: vm.selectedItems[category], category: category)
+            ForEach(zIndexIteration) { category in
+                let vm = ClothViewModel(cloth: vm.selectedItems[category], category: category)
                 ClothView(vm: vm)
             }
             AccesoriesView(vm: vm)
@@ -299,7 +299,7 @@ struct ClothesView: View {
 }
 
 struct ClothView: View {
-    @ObservedObject var vm: ClothCombineViewModel
+    @ObservedObject var vm: ClothViewModel
     var body: some View {
         if !vm.mainImageString.isEmpty {
             ZStack {
@@ -317,7 +317,7 @@ struct ClothView: View {
 }
 
 struct AccesoriesView: View {
-    @ObservedObject var vm: ClothViewModel
+    @ObservedObject var vm: ClothesViewModel
     var body: some View {
         if vm.isValidItem(with: .accessories) {
             ZStack {

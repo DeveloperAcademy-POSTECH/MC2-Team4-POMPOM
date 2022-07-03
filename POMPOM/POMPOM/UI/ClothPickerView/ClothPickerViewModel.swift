@@ -83,7 +83,7 @@ final class PickerCombineViewModel: ObservableObject {
     ]
 }
 
-class PickerViewModel: ClothViewModel {
+class PickerViewModel: ClothesViewModel {
     //MARK: - Propeties
     @Published var currentType: ClothCategory = .hat
     //UI 에 보여지는 컬러, 옷

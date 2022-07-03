@@ -8,7 +8,7 @@
 import Combine
 import SwiftUI
 
-final class ClothCombineViewModel: ObservableObject {
+final class ClothViewModel: ObservableObject {
     @Published private(set) var hex: String = "FFFFFF"
     @Published private(set) var mainImageString: String = ""
     @Published private(set) var strokeIamgeString: String = ""
@@ -32,7 +32,6 @@ final class ClothCombineViewModel: ObservableObject {
             .assign(to: \.hex, on: self)
             .store(in: &cancellables)
         
-        
         clothSharedPublisher
             .map(\.hex)
             .removeDuplicates()
@@ -51,19 +50,20 @@ final class ClothCombineViewModel: ObservableObject {
             .map(\.id)
             .removeDuplicates()
             .sink { id in
-                self.mainImageString = "\(category)-\(id)B"
-                self.strokeIamgeString = "\(category)-\(id)"
+                if !id.isEmpty && id != " " {
+                    self.mainImageString = "\(category)-\(id)B"
+                    self.strokeIamgeString = "\(category)-\(id)"
+                }
             }
             .store(in: &cancellables)
         
         if let cloth = cloth {
             clothSubject.send(cloth)
-
         }
     }
 }
 
-class ClothViewModel: ObservableObject {
+class ClothesViewModel: ObservableObject {
     //MARK: - Propeties
     @Published var selectedItems: [ClothCategory : Cloth] = [:]
     
