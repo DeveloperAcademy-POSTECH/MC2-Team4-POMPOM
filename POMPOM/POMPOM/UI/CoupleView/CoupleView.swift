@@ -255,6 +255,10 @@ struct CoupleView: View {
     //MARK: - Helpers
 }
 
+extension CoupleView {
+    
+}
+
 
 //MARK: - Delegates
 extension CoupleView: NetworkDelegate {
@@ -298,23 +302,7 @@ struct ClothesView: View {
     }
 }
 
-struct ClothView: View {
-    @ObservedObject var vm: ClothViewModel
-    var body: some View {
-        if !vm.mainImageString.isEmpty {
-            ZStack {
-                Image(vm.mainImageString)
-                    .resizable()
-                    .foregroundColor(Color(hex: vm.hex))
-                
-                Image(vm.strokeIamgeString)
-                    .resizable()
-                    .foregroundColor(Color(hex: vm.strokeHex))
-            }
-            .transition(.opacity)
-        }
-    }
-}
+
 
 struct AccesoriesView: View {
     @ObservedObject var vm: ClothesViewModel

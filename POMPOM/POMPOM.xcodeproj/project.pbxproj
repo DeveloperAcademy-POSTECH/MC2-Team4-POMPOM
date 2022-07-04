@@ -26,6 +26,8 @@
 		C0182C4028598470000F0A6A /* Seperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0182C3F28598470000F0A6A /* Seperator.swift */; };
 		C041C0A2285F6B1C008219C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CA2849E1C60086810C /* Assets.xcassets */; };
 		C04FCAF6284E24020040F790 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04FCAF5284E24020040F790 /* GoogleService-Info.plist */; };
+		C069E25728729988000874BB /* ClothView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069E25628729988000874BB /* ClothView.swift */; };
+		C069E259287299A7000874BB /* ClothViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069E258287299A7000874BB /* ClothViewModel.swift */; };
 		C06CE14B2851DC0900BBDA68 /* CoupleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14A2851DC0900BBDA68 /* CoupleView.swift */; };
 		C06CE14E2851DC5100BBDA68 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14D2851DC5100BBDA68 /* CodeInputView.swift */; };
 		C06CE1502851DC5C00BBDA68 /* CodeOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE14F2851DC5C00BBDA68 /* CodeOutputView.swift */; };
@@ -79,6 +81,8 @@
 		C0182C3F28598470000F0A6A /* Seperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seperator.swift; sourceTree = "<group>"; };
 		C04FCAF5284E24020040F790 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C059279A2852FF8C0071751A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C069E25628729988000874BB /* ClothView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothView.swift; sourceTree = "<group>"; };
+		C069E258287299A7000874BB /* ClothViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothViewModel.swift; sourceTree = "<group>"; };
 		C06CE14A2851DC0900BBDA68 /* CoupleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleView.swift; sourceTree = "<group>"; };
 		C06CE14D2851DC5100BBDA68 /* CodeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeInputView.swift; sourceTree = "<group>"; };
 		C06CE14F2851DC5C00BBDA68 /* CodeOutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeOutputView.swift; sourceTree = "<group>"; };
@@ -223,6 +227,8 @@
 			children = (
 				C06CE1512851DC6300BBDA68 /* ViewModel */,
 				C06CE14A2851DC0900BBDA68 /* CoupleView.swift */,
+				C069E25628729988000874BB /* ClothView.swift */,
+				C069E258287299A7000874BB /* ClothViewModel.swift */,
 				C06CE14D2851DC5100BBDA68 /* CodeInputView.swift */,
 				C06CE14F2851DC5C00BBDA68 /* CodeOutputView.swift */,
 				ABFEE2112855A86D007817D3 /* CodeView.swift */,
@@ -476,6 +482,7 @@
 				ABC4C5192859A6FB00D064E4 /* SheetView.swift in Sources */,
 				C06CE1592851DCD600BBDA68 /* CodeManager.swift in Sources */,
 				C0A779C72849E1C50086810C /* POMPOMApp.swift in Sources */,
+				C069E259287299A7000874BB /* ClothViewModel.swift in Sources */,
 				AE850A07285B238D00D11812 /* Message.swift in Sources */,
 				C0C7EE9A285B42A2003DA1A9 /* CustomAlert.swift in Sources */,
 				D430FD42285B984200F216CB /* DayDisplayView.swift in Sources */,
@@ -483,6 +490,7 @@
 				C0F1DC0328575BCB00F8EAA0 /* ClothPickerViewModel.swift in Sources */,
 				C06CE14E2851DC5100BBDA68 /* CodeInputView.swift in Sources */,
 				ABFEE2122855A86D007817D3 /* CodeView.swift in Sources */,
+				C069E25728729988000874BB /* ClothView.swift in Sources */,
 				8A0732CE285B057B00E72AD9 /* SettingsView.swift in Sources */,
 				C06CE15B2851DCFE00BBDA68 /* ConnectionManager.swift in Sources */,
 				AB132FED2854BF500023DBD0 /* Constant.swift in Sources */,
