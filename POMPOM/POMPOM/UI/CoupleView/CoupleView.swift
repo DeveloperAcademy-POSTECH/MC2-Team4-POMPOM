@@ -20,35 +20,6 @@ struct CoupleView: View {
             isConnectedPartnerStorage = isConnectedPartner
         }
     }
-    var characterSpacing: CGFloat {
-        Constant.screenWidth * (33 / 390)
-    }
-    
-    var characterWidth: CGFloat {
-        switch characterSize {
-        case .large:
-            return Constant.screenWidth * (145 / 390)
-        case .medium:
-            return Constant.screenWidth * (114 / 390)
-        case .small:
-            return Constant.screenWidth * (54 / 390)
-        }
-    }
-    
-    var characterOffset: CGFloat {
-        switch characterSize {
-        case .large:
-            return Constant.screenHeight * (93 / 844)
-        case .medium:
-            return Constant.screenHeight * (-29 / 844)
-        case .small:
-            return Constant.screenHeight * (-43 / 844)
-        }
-    }
-    
-    var characterHeight: CGFloat {
-        characterWidth * (215.68 / 114)
-    }
     
     @StateObject var myClothViewModel = PickerViewModel()
     @StateObject var partnerClothViewModel = ClothesViewModel()
@@ -256,7 +227,35 @@ struct CoupleView: View {
 }
 
 extension CoupleView {
+    var characterSpacing: CGFloat {
+        Constant.screenWidth * (33 / 390)
+    }
     
+    var characterWidth: CGFloat {
+        switch characterSize {
+        case .large:
+            return Constant.screenWidth * (145 / 390)
+        case .medium:
+            return Constant.screenWidth * (114 / 390)
+        case .small:
+            return Constant.screenWidth * (54 / 390)
+        }
+    }
+    
+    var characterOffset: CGFloat {
+        switch characterSize {
+        case .large:
+            return Constant.screenHeight * (93 / 844)
+        case .medium:
+            return Constant.screenHeight * (-29 / 844)
+        case .small:
+            return Constant.screenHeight * (-43 / 844)
+        }
+    }
+    
+    var characterHeight: CGFloat {
+        characterWidth * (215.68 / 114)
+    }
 }
 
 
