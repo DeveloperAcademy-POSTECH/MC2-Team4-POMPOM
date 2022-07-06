@@ -37,11 +37,7 @@ final class ClothViewModel: ObservableObject {
             .removeDuplicates()
             .map { hex in
                 // //MARK: 옷 색에 따라 테두리 색을 바꿔주는 map 필요
-                if hex == "000000" {
-                    return "DADADA"
-                } else {
-                    return "121212"
-                }
+                return hex == "000000" ? "DADADA" : "121212"
             }
             .assign(to: \.strokeHex, on: self)
             .store(in: &cancellables)
