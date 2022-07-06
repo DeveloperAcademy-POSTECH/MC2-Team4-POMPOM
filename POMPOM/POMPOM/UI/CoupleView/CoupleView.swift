@@ -20,38 +20,9 @@ struct CoupleView: View {
             isConnectedPartnerStorage = isConnectedPartner
         }
     }
-    var characterSpacing: CGFloat {
-        Constant.screenWidth * (33 / 390)
-    }
-    
-    var characterWidth: CGFloat {
-        switch characterSize {
-        case .large:
-            return Constant.screenWidth * (145 / 390)
-        case .medium:
-            return Constant.screenWidth * (114 / 390)
-        case .small:
-            return Constant.screenWidth * (54 / 390)
-        }
-    }
-    
-    var characterOffset: CGFloat {
-        switch characterSize {
-        case .large:
-            return Constant.screenHeight * (93 / 844)
-        case .medium:
-            return Constant.screenHeight * (-29 / 844)
-        case .small:
-            return Constant.screenHeight * (-43 / 844)
-        }
-    }
-    
-    var characterHeight: CGFloat {
-        characterWidth * (215.68 / 114)
-    }
     
     @StateObject var myClothViewModel = PickerViewModel()
-    @StateObject var partnerClothViewModel = ClothViewModel()
+    @StateObject var partnerClothViewModel = ClothesViewModel()
     var codeViewModel = CodeManager()
     @State private var actionSheetPresented = false
     @State private var codeInput = ""
@@ -243,7 +214,6 @@ struct CoupleView: View {
                         }
                     }
                 }
-                
             }
             
         }
@@ -251,10 +221,45 @@ struct CoupleView: View {
             OnboardingView(isFirstLunching: $isFirstLaunching)
         }
         .addCustomAlert(with: alertMessage, presenting: $showAlert)
-        
+    }
+    
+    //MARK: - Helpers
+}
+
+extension CoupleView {
+    var characterSpacing: CGFloat {
+        Constant.screenWidth * (33 / 390)
+    }
+    
+    var characterWidth: CGFloat {
+        switch characterSize {
+        case .large:
+            return Constant.screenWidth * (145 / 390)
+        case .medium:
+            return Constant.screenWidth * (114 / 390)
+        case .small:
+            return Constant.screenWidth * (54 / 390)
+        }
+    }
+    
+    var characterOffset: CGFloat {
+        switch characterSize {
+        case .large:
+            return Constant.screenHeight * (93 / 844)
+        case .medium:
+            return Constant.screenHeight * (-29 / 844)
+        case .small:
+            return Constant.screenHeight * (-43 / 844)
+        }
+    }
+    
+    var characterHeight: CGFloat {
+        characterWidth * (215.68 / 114)
     }
 }
 
+
+//MARK: - Delegates
 extension CoupleView: NetworkDelegate {
     func showAlertwith(message: String) {
         alertMessage = message
@@ -282,31 +287,24 @@ struct CoupleView_Previews: PreviewProvider {
 
 
 //MARK: - SubViews
-struct ClothView: View {
-    @ObservedObject var vm: ClothViewModel
-    var category: ClothCategory
-    
+struct ClothesView: View {
+    @ObservedObject var vm: ClothesViewModel
+    let zIndexIteration: [ClothCategory] = [.hat, .shoes, .bottom, .top]
     var body: some View {
-        if vm.isValidItem(with: category) {
-            ZStack {
-                Image(vm.fetchImageString(with: category) + "B")
-                    .resizable()
-                    .foregroundColor(Color(hex: vm.selectedItems[category]?.hex ?? "FFFFFF"))
-                
-                Image(vm.fetchImageString(with: category))
-                    .resizable()
-                    .foregroundColor(Color(hex: vm.selectedItems[category]?.hex ?? "FFFFFF" == "000000" ? "D0D0D0" : "000000"))
+        ZStack {
+            ForEach(zIndexIteration) { category in
+                let vm = ClothViewModel(cloth: vm.selectedItems[category], category: category)
+                ClothView(vm: vm)
             }
-            .transition(.opacity)
-//            .transition(.slide)
-            
+            AccesoriesView(vm: vm)
         }
     }
 }
 
+
+
 struct AccesoriesView: View {
-    @ObservedObject var vm: ClothViewModel
-   
+    @ObservedObject var vm: ClothesViewModel
     var body: some View {
         if vm.isValidItem(with: .accessories) {
             ZStack {
@@ -318,17 +316,4 @@ struct AccesoriesView: View {
     }
 }
 
-struct ClothesView: View {
-    @ObservedObject var vm: ClothViewModel
-    
-    var body: some View {
-        ZStack {
-            ClothView(vm: vm, category: .hat)
-            ClothView(vm: vm, category: .shoes)
-            ClothView(vm: vm, category: .bottom)
-            AccesoriesView(vm: vm)
-            ClothView(vm: vm, category: .top)
-        }
-    }
-}
 
