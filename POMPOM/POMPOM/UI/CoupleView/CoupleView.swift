@@ -17,30 +17,6 @@ struct CoupleView: View {
     @StateObject var coupleViewModel = CoupleViewModel()
     var codeViewModel = CodeManager()
     
-    var characterSize: CharacterSize {
-        switch coupleViewModel.sheetMode {
-        case .none:
-            return .large
-        case .mid:
-            return .medium
-        case .high:
-            return .small
-        }
-    }
-    
-    var resetButtonHorizontalPosition: CGFloat {
-        switch coupleViewModel.sheetMode {
-        case .none:
-            return Constant.screenWidth + 44
-        default:
-            return Constant.screenWidth - 31
-        }
-    }
-    
-    var resetButtonVerticalPosition: CGFloat {
-        Constant.screenHeight * (396 / 844) - 90
-    }
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -210,7 +186,32 @@ struct CoupleView: View {
     //MARK: - Helpers
 }
 
+// MARK: - Computed properties related to layout
 extension CoupleView {
+    var characterSize: CharacterSize {
+        switch coupleViewModel.sheetMode {
+        case .none:
+            return .large
+        case .mid:
+            return .medium
+        case .high:
+            return .small
+        }
+    }
+    
+    var resetButtonHorizontalPosition: CGFloat {
+        switch coupleViewModel.sheetMode {
+        case .none:
+            return Constant.screenWidth + 44
+        default:
+            return Constant.screenWidth - 31
+        }
+    }
+    
+    var resetButtonVerticalPosition: CGFloat {
+        Constant.screenHeight * (396 / 844) - 90
+    }
+    
     var characterSpacing: CGFloat {
         Constant.screenWidth * (33 / 390)
     }
