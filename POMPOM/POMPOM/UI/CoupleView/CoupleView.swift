@@ -12,29 +12,13 @@ enum CharacterSize {
 }
 
 struct CoupleView: View {
-    @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
-    @AppStorage("isConnectedPartner") var isConnectedPartnerStorage: Bool = false
-
-    @State var isConnectedPartner = false {
-        didSet {
-            isConnectedPartnerStorage = isConnectedPartner
-        }
-    }
-    
     @StateObject var myClothViewModel = PickerViewModel()
     @StateObject var partnerClothViewModel = ClothesViewModel()
+    @StateObject var coupleViewModel = CoupleViewModel()
     var codeViewModel = CodeManager()
-    @State private var actionSheetPresented = false
-    @State private var codeInput = ""
-    @State private var commentInput = ""
-    @State private var codeInputViewIsPresented = false
-    @State private var codeOutputViewIsPresented = false
-    @State private var sheetMode = SheetMode.none
-    @State var showAlert = false
-    @State var alertMessage: String = "유효하지 않은 동작입니다."
     
     var characterSize: CharacterSize {
-        switch sheetMode {
+        switch coupleViewModel.sheetMode {
         case .none:
             return .large
         case .mid:
@@ -45,7 +29,7 @@ struct CoupleView: View {
     }
     
     var resetButtonHorizontalPosition: CGFloat {
-        switch sheetMode {
+        switch coupleViewModel.sheetMode {
         case .none:
             return Constant.screenWidth + 44
         default:
@@ -64,15 +48,15 @@ struct CoupleView: View {
                     HStack(spacing: characterSpacing) {
                         if characterSize == .large {
                             Button {
-                                actionSheetPresented = true
+                                coupleViewModel.actionSheetPresented = true
                             } label: {
                                 ZStack {
                                     Image("Gom0")
                                         .resizable()
                                         .frame(width: characterWidth, height: characterHeight)
-                                        .opacity(isConnectedPartner ? 1 : 0.3)
+                                        .opacity(coupleViewModel.isConnectedPartner ? 1 : 0.3)
                                     
-                                    if !isConnectedPartner {
+                                    if !coupleViewModel.isConnectedPartner {
                                         Text("초대하기")
                                             .foregroundColor(.orange)
                                     } else {
@@ -81,7 +65,7 @@ struct CoupleView: View {
                                 }
                                 .frame(width: characterWidth, height: characterHeight)
                             }
-                            .disabled(isConnectedPartner)
+                            .disabled(coupleViewModel.isConnectedPartner)
                         }
                         ZStack {
                             Image("Gom0")
@@ -94,7 +78,7 @@ struct CoupleView: View {
                         .frame(width: characterWidth, height: characterHeight)
                         .onTapGesture {
                             withAnimation {
-                                sheetMode = .mid
+                                coupleViewModel.sheetMode = .mid
                             }
                         }
                     }
@@ -107,23 +91,23 @@ struct CoupleView: View {
                 
                 
 
-                if sheetMode == .none && isConnectedPartner {
+                if coupleViewModel.sheetMode == .none && coupleViewModel.isConnectedPartner {
                     CardContent()
                 }
                 
-                SheetView(sheetMode: $sheetMode) {
+                SheetView(sheetMode: $coupleViewModel.sheetMode) {
                     ClothPickerView(vm: myClothViewModel)
                 }
                 
-                if codeInputViewIsPresented {
-                    CodeInputView(textInput: $codeInput, delegate: self) {
-                        codeInputViewIsPresented = false
+                if coupleViewModel.codeInputViewIsPresented {
+                    CodeInputView(textInput: $coupleViewModel.codeInput, delegate: self) {
+                        coupleViewModel.codeInputViewIsPresented = false
                     }
                 }
                 
-                if codeOutputViewIsPresented {
+                if coupleViewModel.codeOutputViewIsPresented {
                     CodeOutputView {
-                        codeOutputViewIsPresented = false
+                        coupleViewModel.codeOutputViewIsPresented = false
                     }
                 }
                 
@@ -142,12 +126,12 @@ struct CoupleView: View {
             
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    if sheetMode != .none {
+                    if coupleViewModel.sheetMode != .none {
                         Button("취소") {
                             Task {
                                 await myClothViewModel.requestClothes()
                             }
-                            sheetMode = .none
+                            coupleViewModel.sheetMode = .none
                         }
                         .foregroundColor(.red)
                     }
@@ -155,15 +139,15 @@ struct CoupleView: View {
                 
                 
                 ToolbarItem(placement: .principal) {
-                    if sheetMode == .none {
+                    if coupleViewModel.sheetMode == .none {
                         Text("POMPOM")
                             .font(.custom("Montserrat-ExtraBold", size: 20))
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    if sheetMode == .none {
+                    if coupleViewModel.sheetMode == .none {
                         NavigationLink(destination:
-                                        SettingsView(showAlert: $showAlert, alertMessage: $alertMessage, isPartnerConnected: $isConnectedPartner)
+                                        SettingsView(showAlert: $coupleViewModel.showAlert, alertMessage: $coupleViewModel.alertMessage, isPartnerConnected: $coupleViewModel.isConnectedPartner)
                         ) {
                             Image(systemName: "gearshape.fill")
                                 .foregroundColor(Color(UIColor.label))
@@ -171,7 +155,7 @@ struct CoupleView: View {
                     } else {
                         Button("완료") {
                             myClothViewModel.uploadItem()
-                            sheetMode = .none
+                            coupleViewModel.sheetMode = .none
                             
                             Task {
                                 await myClothViewModel.requestClothes()
@@ -181,14 +165,14 @@ struct CoupleView: View {
                     }
                 }
             }
-            .actionSheet(isPresented: $actionSheetPresented) {
+            .actionSheet(isPresented: $coupleViewModel.actionSheetPresented) {
                 ActionSheet(title: Text("초대코드 확인/입력"), buttons: [
                     .default(Text("초대코드 확인하기")) {
-                        codeOutputViewIsPresented = true
+                        coupleViewModel.codeOutputViewIsPresented = true
                     },
                     .default(Text("초대코드 입력하기")) {
-                        codeInputViewIsPresented = true
-                        codeInput = ""
+                        coupleViewModel.codeInputViewIsPresented = true
+                        coupleViewModel.codeInput = ""
                     }, .cancel(Text("돌아가기"))])
             }
             .onAppear {
@@ -198,15 +182,15 @@ struct CoupleView: View {
                     await myClothViewModel.requestClothes()
                     print("DEBUG: wow")
                 }
-                print(isFirstLaunching)
+                print(coupleViewModel.isFirstLaunching)
                 Task {
                     await codeViewModel.getPartnerCodeFromServer { partnerCode in
                         print("DEBUG: getPartnerCodeFromServer completion")
                         if partnerCode == "" {
-                            self.isConnectedPartner = false
+                            coupleViewModel.isConnectedPartner = false
                         } else {
                             print(partnerCode)
-                            self.isConnectedPartner = true
+                            coupleViewModel.isConnectedPartner = true
                             Task {
                                 await partnerClothViewModel.requestPartnerClothes()
                                 print("DEBUG: partnerClothViewModel.requestPartnerClothes")
@@ -217,10 +201,10 @@ struct CoupleView: View {
             }
             
         }
-        .fullScreenCover(isPresented: $isFirstLaunching) {
-            OnboardingView(isFirstLunching: $isFirstLaunching)
+        .fullScreenCover(isPresented: $coupleViewModel.isFirstLaunching) {
+            OnboardingView(isFirstLunching: $coupleViewModel.isFirstLaunching)
         }
-        .addCustomAlert(with: alertMessage, presenting: $showAlert)
+        .addCustomAlert(with: coupleViewModel.alertMessage, presenting: $coupleViewModel.showAlert)
     }
     
     //MARK: - Helpers
@@ -262,15 +246,15 @@ extension CoupleView {
 //MARK: - Delegates
 extension CoupleView: NetworkDelegate {
     func showAlertwith(message: String) {
-        alertMessage = message
-        showAlert.toggle()
+        coupleViewModel.alertMessage = message
+        coupleViewModel.showAlert.toggle()
     }
     
     func didConnectedPartner() {
         Task {
             await partnerClothViewModel.requestPartnerClothes()
         }
-        isConnectedPartner = true
+        coupleViewModel.isConnectedPartner = true
     }
 }
 
