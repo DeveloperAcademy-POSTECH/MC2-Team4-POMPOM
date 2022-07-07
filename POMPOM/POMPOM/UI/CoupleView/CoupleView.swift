@@ -23,33 +23,12 @@ struct CoupleView: View {
                 VStack {
                     HStack(spacing: characterSpacing) {
                         if characterSize == .large {
-                            Button {
-                                coupleViewModel.actionSheetPresented = true
-                            } label: {
-                                ZStack {
-                                    Image("Gom0")
-                                        .resizable()
-                                        .frame(width: characterWidth, height: characterHeight)
-                                        .opacity(coupleViewModel.isConnectedPartner ? 1 : 0.3)
-                                    
-                                    if !coupleViewModel.isConnectedPartner {
-                                        Text("초대하기")
-                                            .foregroundColor(.orange)
-                                    } else {
-                                        ClothesView(vm: partnerClothViewModel)
-                                    }
-                                }
-                                .frame(width: characterWidth, height: characterHeight)
-                            }
-                            .disabled(coupleViewModel.isConnectedPartner)
+                            partnerCharacterView
                         }
                         ZStack {
                             Image("Gom0")
                                 .resizable()
-                            
-                            
                             ClothesView(vm: myClothViewModel)
-                            
                         }
                         .frame(width: characterWidth, height: characterHeight)
                         .onTapGesture {
@@ -65,8 +44,6 @@ struct CoupleView: View {
                     Spacer()
                 }
                 
-                
-
                 if coupleViewModel.sheetMode == .none && coupleViewModel.isConnectedPartner {
                     CardContent()
                 }
@@ -87,32 +64,15 @@ struct CoupleView: View {
                     }
                 }
                 
-                Button {
-                    myClothViewModel.clearSelectedItem()
-                } label: {
-                    Image(systemName: "gobackward")
-                        .foregroundColor(Color(UIColor.label))
-                        .font(.system(size: 24))
-                }
-                .frame(width: 44, height: 44)
-                .opacity(0.3)
-                .offset(x: resetButtonHorizontalPosition - 0.5 * Constant.screenWidth, y: resetButtonVerticalPosition  - 0.5 * Constant.screenHeight)
+                resetButton
             }
-            
             
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     if coupleViewModel.sheetMode != .none {
-                        Button("취소") {
-                            Task {
-                                await myClothViewModel.requestClothes()
-                            }
-                            coupleViewModel.sheetMode = .none
-                        }
-                        .foregroundColor(.red)
+                        cancelOutfitButton
                     }
                 }
-                
                 
                 ToolbarItem(placement: .principal) {
                     if coupleViewModel.sheetMode == .none {
@@ -120,24 +80,12 @@ struct CoupleView: View {
                             .font(.custom("Montserrat-ExtraBold", size: 20))
                     }
                 }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if coupleViewModel.sheetMode == .none {
-                        NavigationLink(destination:
-                                        SettingsView(showAlert: $coupleViewModel.showAlert, alertMessage: $coupleViewModel.alertMessage, isPartnerConnected: $coupleViewModel.isConnectedPartner)
-                        ) {
-                            Image(systemName: "gearshape.fill")
-                                .foregroundColor(Color(UIColor.label))
-                        }
+                        settingsButton
                     } else {
-                        Button("완료") {
-                            myClothViewModel.uploadItem()
-                            coupleViewModel.sheetMode = .none
-                            
-                            Task {
-                                await myClothViewModel.requestClothes()
-
-                            }
-                        }
+                        finishOutfitButton
                     }
                 }
             }
@@ -153,7 +101,6 @@ struct CoupleView: View {
             }
             .onAppear {
                 codeViewModel.getCode()
-                UITabBar.appearance().isHidden = true
                 Task {
                     await myClothViewModel.requestClothes()
                     print("DEBUG: wow")
@@ -182,8 +129,6 @@ struct CoupleView: View {
         }
         .addCustomAlert(with: coupleViewModel.alertMessage, presenting: $coupleViewModel.showAlert)
     }
-    
-    //MARK: - Helpers
 }
 
 // MARK: - Computed properties related to layout
@@ -270,7 +215,6 @@ struct CoupleView_Previews: PreviewProvider {
     }
 }
 
-
 //MARK: - SubViews
 struct ClothesView: View {
     @ObservedObject var vm: ClothesViewModel
@@ -286,8 +230,6 @@ struct ClothesView: View {
     }
 }
 
-
-
 struct AccesoriesView: View {
     @ObservedObject var vm: ClothesViewModel
     var body: some View {
@@ -301,4 +243,76 @@ struct AccesoriesView: View {
     }
 }
 
+// MARK: - Computed properties of subviews
+extension CoupleView {
+    var partnerCharacterView: some View {
+        Button {
+            coupleViewModel.actionSheetPresented = true
+        } label: {
+            ZStack {
+                Image("Gom0")
+                    .resizable()
+                    .frame(width: characterWidth, height: characterHeight)
+                    .opacity(coupleViewModel.isConnectedPartner ? 1 : 0.3)
+                
+                if !coupleViewModel.isConnectedPartner {
+                    Text("초대하기")
+                        .foregroundColor(.orange)
+                } else {
+                    ClothesView(vm: partnerClothViewModel)
+                }
+            }
+            .frame(width: characterWidth, height: characterHeight)
+        }
+        .disabled(coupleViewModel.isConnectedPartner)
+    }
+    
+    var resetButton: some View {
+        Button {
+            myClothViewModel.clearSelectedItem()
+        } label: {
+            Image(systemName: "gobackward")
+                .foregroundColor(Color(UIColor.label))
+                .font(.system(size: 24))
+        }
+        .frame(width: 44, height: 44)
+        .opacity(0.3)
+        .offset(x: resetButtonHorizontalPosition - 0.5 * Constant.screenWidth, y: resetButtonVerticalPosition  - 0.5 * Constant.screenHeight)
+    }
+    
+    var settingsButton: some View {
+        NavigationLink(destination:
+                        SettingsView(showAlert: $coupleViewModel.showAlert, alertMessage: $coupleViewModel.alertMessage, isPartnerConnected: $coupleViewModel.isConnectedPartner)
+        ) {
+            Image(systemName: "gearshape.fill")
+                .foregroundColor(Color(UIColor.label))
+        }
+    }
+    
+    var finishOutfitButton: some View {
+        Button("완료") {
+            myClothViewModel.uploadItem()
+            coupleViewModel.sheetMode = .none
+            
+            Task {
+                await myClothViewModel.requestClothes()
 
+            }
+        }
+    }
+    
+    var cancelOutfitButton: some View {
+        Button("취소") {
+            Task {
+                await myClothViewModel.requestClothes()
+            }
+            coupleViewModel.sheetMode = .none
+        }
+        .foregroundColor(.red)
+    }
+}
+
+// MARK: - methods
+extension CoupleView {
+    
+}
