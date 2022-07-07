@@ -100,27 +100,7 @@ struct CoupleView: View {
                     }, .cancel(Text("돌아가기"))])
             }
             .onAppear {
-                codeViewModel.getCode()
-                Task {
-                    await myClothViewModel.requestClothes()
-                    print("DEBUG: wow")
-                }
-                print(coupleViewModel.isFirstLaunching)
-                Task {
-                    await codeViewModel.getPartnerCodeFromServer { partnerCode in
-                        print("DEBUG: getPartnerCodeFromServer completion")
-                        if partnerCode == "" {
-                            coupleViewModel.isConnectedPartner = false
-                        } else {
-                            print(partnerCode)
-                            coupleViewModel.isConnectedPartner = true
-                            Task {
-                                await partnerClothViewModel.requestPartnerClothes()
-                                print("DEBUG: partnerClothViewModel.requestPartnerClothes")
-                            }
-                        }
-                    }
-                }
+                connectPartner()
             }
             
         }
@@ -314,5 +294,27 @@ extension CoupleView {
 
 // MARK: - methods
 extension CoupleView {
-    
+    private func connectPartner() {
+        codeViewModel.getCode()
+        Task {
+            await myClothViewModel.requestClothes()
+            print("DEBUG: wow")
+        }
+        print(coupleViewModel.isFirstLaunching)
+        Task {
+            await codeViewModel.getPartnerCodeFromServer { partnerCode in
+                print("DEBUG: getPartnerCodeFromServer completion")
+                if partnerCode == "" {
+                    coupleViewModel.isConnectedPartner = false
+                } else {
+                    print(partnerCode)
+                    coupleViewModel.isConnectedPartner = true
+                    Task {
+                        await partnerClothViewModel.requestPartnerClothes()
+                        print("DEBUG: partnerClothViewModel.requestPartnerClothes")
+                    }
+                }
+            }
+        }
+    }
 }
