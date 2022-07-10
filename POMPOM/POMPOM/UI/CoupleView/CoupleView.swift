@@ -90,14 +90,7 @@ struct CoupleView: View {
                 }
             }
             .actionSheet(isPresented: $coupleViewModel.actionSheetPresented) {
-                ActionSheet(title: Text("초대코드 확인/입력"), buttons: [
-                    .default(Text("초대코드 확인하기")) {
-                        coupleViewModel.codeOutputViewIsPresented = true
-                    },
-                    .default(Text("초대코드 입력하기")) {
-                        coupleViewModel.codeInputViewIsPresented = true
-                        coupleViewModel.codeInput = ""
-                    }, .cancel(Text("돌아가기"))])
+                codeActionSheet
             }
             .onAppear {
                 connectPartner()
