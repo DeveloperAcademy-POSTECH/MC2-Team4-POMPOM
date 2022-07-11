@@ -20,10 +20,11 @@
 
 
 ## Screenshots
-
+<figure class="third">
 <img src="https://user-images.githubusercontent.com/89325126/174545593-344e9eeb-c135-4d41-9c90-249b69bdce91.jpg  width="200" height="400"/>
 <img src="https://user-images.githubusercontent.com/89325126/174545601-0f33d46f-d0dd-4103-9147-d282fa9414f3.jpg  width="200" height="400"/>
 <img src="https://user-images.githubusercontent.com/89325126/174545609-9c73eadc-be3f-45be-a25c-0f4696f63945.jpg  width="200" height="400"/>
+figure>
 <img src="https://user-images.githubusercontent.com/89325126/174545614-1df524cc-ffad-4dcf-b4f1-05728e162341.jpg  width="200" height="400"/>
 <img src="https://user-images.githubusercontent.com/89325126/174545621-790f554b-913f-4066-8ada-2244765a219f.jpg  width="200" height="400"/>
 
