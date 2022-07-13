@@ -14,6 +14,7 @@ final class PickerCombineViewModel: ObservableObject {
     @Published var currentCategory: ClothCategory = .hat
     @Published var currentHex: String = "FFFFFF"
     @Published var categoryGridOffset: CGFloat = Constant.screenWidth / 2 - 60
+    @Published var isColorEnable: Bool = true
     
     @Published var presets: [String] = []
     @Published var items: [Cloth.ID] = []
@@ -35,18 +36,26 @@ final class PickerCombineViewModel: ObservableObject {
         
         setCategory
             .removeDuplicates()
-            .compactMap { currentCategory in
-                self.presetDic[currentCategory]
+            .compactMap { category in
+                self.presetDic[category]
             }
             .assign(to: \.presets, on: self)
             .store(in: &cancellables)
         
         setCategory
             .removeDuplicates()
-            .compactMap { currentCategory in
-                self.itemDic[currentCategory]
+            .compactMap { category in
+                self.itemDic[category]
             }
             .assign(to: \.items, on: self)
+            .store(in: &cancellables)
+        
+        setCategory
+            .removeDuplicates()
+            .map { category in
+                category != .accessories
+            }
+            .assign(to: \.isColorEnable, on: self)
             .store(in: &cancellables)
         
         
@@ -77,8 +86,6 @@ final class PickerCombineViewModel: ObservableObject {
     func selectItem(cloth: Cloth?) {
         selectItemSubject.send(cloth)
     }
-    
-    
     
     // 기본 컬러 프리셋
     var presetDic: [ClothCategory : [String]] = [

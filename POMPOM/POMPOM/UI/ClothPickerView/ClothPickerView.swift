@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ClothPickerView: View {
-    @ObservedObject var vm: PickerViewModel
+    @ObservedObject var vm: PickerCombineViewModel
     @State var currentCategory = ClothCategory.hat
     @State var currentHex: String = "FFFFFF"
     @State var offSet: CGFloat = Constant.screenWidth / 2 - 60
@@ -32,7 +32,7 @@ struct ClothPickerView: View {
                     .padding(.leading, 20)
                     .padding(.top, 15)
                     
-                    if vm.isCategoryColorEnable {
+                    if vm.isColorEnable {
                         ScrollView(.horizontal, showsIndicators: false) {
                             colorPresetGrid
                                 .padding(.leading, 10)
