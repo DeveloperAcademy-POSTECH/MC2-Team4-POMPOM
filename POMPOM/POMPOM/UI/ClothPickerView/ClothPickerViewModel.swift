@@ -16,8 +16,8 @@ final class PickerCombineViewModel: ObservableObject {
     @Published var categoryGridOffset: CGFloat = Constant.screenWidth / 2 - 60
     @Published var isColorEnable: Bool = true
     
-    @Published var presets: [String] = []
-    @Published var items: [Cloth.ID] = []
+    @Published var currentPresets: [String] = []
+    @Published var currentItems: [Cloth.ID] = []
     
     private let setCategorySubject = CurrentValueSubject<ClothCategory, Never>(.hat)
     private let setColorSubject = CurrentValueSubject<String?, Never>("FFFFFF")
@@ -25,7 +25,7 @@ final class PickerCombineViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(clothes: [Cloth]) {
+    init() {
         
         let setCategory = setCategorySubject.share()
         
@@ -39,7 +39,7 @@ final class PickerCombineViewModel: ObservableObject {
             .compactMap { category in
                 self.presetDic[category]
             }
-            .assign(to: \.presets, on: self)
+            .assign(to: \.currentPresets, on: self)
             .store(in: &cancellables)
         
         setCategory
@@ -47,7 +47,7 @@ final class PickerCombineViewModel: ObservableObject {
             .compactMap { category in
                 self.itemDic[category]
             }
-            .assign(to: \.items, on: self)
+            .assign(to: \.currentItems, on: self)
             .store(in: &cancellables)
         
         setCategory
@@ -83,8 +83,14 @@ final class PickerCombineViewModel: ObservableObject {
         setColorSubject.send(hex)
     }
     
-    func selectItem(cloth: Cloth?) {
+    func selectItem(name: String?) {
+        guard let name = name else { return }
+        let cloth = Cloth(id: name, hex: currentHex, category: currentCategory)
         selectItemSubject.send(cloth)
+    }
+    
+    func fetchImageString(withName name: String) -> String {
+        return "c-\(currentCategory)-\(name)"
     }
     
     // 기본 컬러 프리셋
