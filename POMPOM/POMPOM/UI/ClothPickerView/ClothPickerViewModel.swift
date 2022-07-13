@@ -26,14 +26,29 @@ final class PickerCombineViewModel: ObservableObject {
     
     init(clothes: [Cloth]) {
         
-        setCategorySubject
+        let setCategory = setCategorySubject.share()
+        
+        setCategory
             .removeDuplicates()
-            .sink { currentCategory in
-                self.currentCategory = currentCategory
-                self.presets = self.presetDic[currentCategory] ?? []
-                self.items = self.itemDic[currentCategory] ?? []
-            }
+            .assign(to: \.currentCategory, on: self)
             .store(in: &cancellables)
+        
+        setCategory
+            .removeDuplicates()
+            .compactMap { currentCategory in
+                self.presetDic[currentCategory]
+            }
+            .assign(to: \.presets, on: self)
+            .store(in: &cancellables)
+        
+        setCategory
+            .removeDuplicates()
+            .compactMap { currentCategory in
+                self.itemDic[currentCategory]
+            }
+            .assign(to: \.items, on: self)
+            .store(in: &cancellables)
+        
         
         setColorSubject
             .replaceNil(with: "FFFFFF") //값이 nil 일 경우 흰색으로 대체
