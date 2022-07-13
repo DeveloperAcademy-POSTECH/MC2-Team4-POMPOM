@@ -21,7 +21,7 @@ struct CoupleView: View {
         }
     }
     
-    @StateObject var myClothViewModel = PickerViewModel()
+    @StateObject var myClothViewModel = PickerCombineViewModel()
     @StateObject var partnerClothViewModel = ClothesViewModel()
     var codeViewModel = CodeManager()
     @State private var actionSheetPresented = false

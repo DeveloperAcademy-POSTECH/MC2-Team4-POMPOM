@@ -9,8 +9,8 @@ import Combine
 import SwiftUI
 import SystemConfiguration
 
-final class PickerCombineViewModel: ObservableObject {
-    @Published var selectedItems: [ClothCategory : Cloth] = [:]
+final class PickerCombineViewModel: ClothesViewModel {
+//    @Published var selectedItems: [ClothCategory : Cloth] = [:]
     @Published var currentCategory: ClothCategory = .hat
     @Published var currentHex: String = "FFFFFF"
     @Published var categoryGridOffset: CGFloat = Constant.screenWidth / 2 - 60
@@ -25,8 +25,8 @@ final class PickerCombineViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
-        
+    override init() {
+        super.init()
         let setCategory = setCategorySubject.share()
         
         setCategory
@@ -87,6 +87,14 @@ final class PickerCombineViewModel: ObservableObject {
         guard let name = name else { return }
         let cloth = Cloth(id: name, hex: currentHex, category: currentCategory)
         selectItemSubject.send(cloth)
+    }
+    
+    func uploadItem() {
+        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
+            networkManager.saveClothes(userCode: defaultCode, clothes: selectedItems)
+        } else {
+            print("DEBUG: 사용자 코드 조회 실패")
+        }
     }
     
     func fetchImageString(withName name: String) -> String {
@@ -182,6 +190,14 @@ class PickerViewModel: ClothesViewModel {
         }
     }
     
+    func uploadItem() {
+        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
+            networkManager.saveClothes(userCode: defaultCode, clothes: selectedItems)
+        } else {
+            print("DEBUG: 사용자 코드 조회 실패")
+        }
+    }
+    
     func fetchAssetName(name: String) -> String {
         let str = "c-\(currentType)-\(name)"
         return str
@@ -200,14 +216,6 @@ class PickerViewModel: ClothesViewModel {
             withAnimation(.easeOut) {
                 selectedItems[currentType] = Cloth(id: name, hex: hex , category: currentType)
             }
-        }
-    }
-    
-    func uploadItem() {
-        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
-            networkManager.saveClothes(userCode: defaultCode, clothes: selectedItems)
-        } else {
-            print("DEBUG: 사용자 코드 조회 실패")
         }
     }
 }

@@ -97,6 +97,8 @@ extension ClothPickerView {
                                 Circle()
                                     .stroke(Color(hex: "BABABA"), lineWidth: 3)
                                     .frame(width: 60, height: 60, alignment: .center)
+                            } else {
+                                EmptyView()
                             }
                         }
                         .onTapGesture {
@@ -125,13 +127,13 @@ extension ClothPickerView {
                         .resizable()
                         .aspectRatio(1, contentMode: .fit)
                         .foregroundColor(vm.currentHex == "000000" ? .gray : .black)
-                        .overlay {
-                            if vm.selectedItem?.id == item.wrappedValue {
+                        .overlay(
+//                            if vm.selectedItems[vm.currentCategory] == item.wrappedValue {
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color(hex: "BABABA"), lineWidth: 4)
                                     .frame(width: 180, height: 180, alignment: .center)
-                            }
-                        }
+//                            }
+                        )
                         .onTapGesture {
                             withAnimation {
                                 vm.selectItem(name: item.wrappedValue)
