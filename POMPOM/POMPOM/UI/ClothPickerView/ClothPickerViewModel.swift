@@ -18,16 +18,15 @@ final class PickerCombineViewModel: ObservableObject {
     @Published var presets: [String] = []
     @Published var items: [Cloth.ID] = []
     
-    private let categorySubject = CurrentValueSubject<ClothCategory, Never>(.hat)
-    private let colorSubject = CurrentValueSubject<String, Never>("FFFFFF")
-    private let itemSubject = CurrentValueSubject<Cloth.ID, Never>("")
+    private let setCategorySubject = CurrentValueSubject<ClothCategory, Never>(.hat)
+    private let setColorSubject = CurrentValueSubject<String?, Never>("FFFFFF")
+    private let selectItemSubject = PassthroughSubject<Cloth?, Never>()
     
     private var cancellables = Set<AnyCancellable>()
     
     init(clothes: [Cloth]) {
         
-        categorySubject
-            .compactMap { $0 }
+        setCategorySubject
             .removeDuplicates()
             .sink { currentCategory in
                 self.currentCategory = currentCategory
@@ -36,17 +35,16 @@ final class PickerCombineViewModel: ObservableObject {
             }
             .store(in: &cancellables)
         
-        colorSubject
-            .compactMap { $0 }
+        setColorSubject
+            .replaceNil(with: "FFFFFF") //값이 nil 일 경우 흰색으로 대체
             .removeDuplicates()
             .assign(to: \.currentHex, on: self)
             .store(in: &cancellables)
         
-        itemSubject
-            .compactMap{ $0 }
-            .removeDuplicates()
-            .sink { clothName in
-                self.selectedItems[self.currentCategory] = Cloth(id: clothName, hex: self.currentHex, category: self.currentCategory)
+        selectItemSubject
+            .compactMap{ $0 } //nil 값 제거
+            .sink { cloth in
+                self.selectedItems[self.currentCategory] = cloth
             }
             .store(in: &cancellables)
         
@@ -54,11 +52,15 @@ final class PickerCombineViewModel: ObservableObject {
     }
     
     func setCategory(_ category: ClothCategory) {
-        categorySubject.send(category)
+        setCategorySubject.send(category)
     }
     
-    func setColor(withHex hex: String) {
-        colorSubject.send(hex)
+    func setColor(withHex hex: String?) {
+        setColorSubject.send(hex)
+    }
+    
+    func selectItem(cloth: Cloth?) {
+        selectItemSubject.send(cloth)
     }
     
     
