@@ -127,13 +127,16 @@ extension ClothPickerView {
                         .resizable()
                         .aspectRatio(1, contentMode: .fit)
                         .foregroundColor(vm.currentHex == "000000" ? .gray : .black)
-                        .overlay(
-//                            if vm.selectedItems[vm.currentCategory] == item.wrappedValue {
+                        .overlay(content: {
+                            if item.wrappedValue == vm.currentItem?.id {
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color(hex: "BABABA"), lineWidth: 4)
                                     .frame(width: 180, height: 180, alignment: .center)
-//                            }
-                        )
+                            }
+                        })
+//                        .overlay(
+//
+//                        )
                         .onTapGesture {
                             withAnimation {
                                 vm.selectItem(name: item.wrappedValue)

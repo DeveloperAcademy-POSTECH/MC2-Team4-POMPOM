@@ -12,12 +12,20 @@ import SystemConfiguration
 final class PickerCombineViewModel: ClothesViewModel {
 //    @Published var selectedItems: [ClothCategory : Cloth] = [:]
     @Published var currentCategory: ClothCategory = .hat
-    @Published var currentHex: String = "FFFFFF"
+    @Published var currentHex: String = "FFFFFF" {
+        didSet {
+            selectedItems[currentCategory]?.hex = currentHex
+        }
+    }
     @Published var categoryGridOffset: CGFloat = Constant.screenWidth / 2 - 60
     @Published var isColorEnable: Bool = true
     
     @Published var currentPresets: [String] = []
     @Published var currentItems: [Cloth.ID] = []
+    
+    var currentItem: Cloth? {
+        selectedItems[currentCategory]
+    }
     
     private let setCategorySubject = CurrentValueSubject<ClothCategory, Never>(.hat)
     private let setColorSubject = CurrentValueSubject<String?, Never>("FFFFFF")
@@ -58,6 +66,16 @@ final class PickerCombineViewModel: ClothesViewModel {
             .assign(to: \.isColorEnable, on: self)
             .store(in: &cancellables)
         
+        setCategory
+            .removeDuplicates()
+            .compactMap { category in
+                self.selectedItems[category]?.hex
+            }
+            .sink { hex in
+                self.setColorSubject.send(hex)
+            }
+            .store(in: &cancellables)
+        
         
         setColorSubject
             .replaceNil(with: "FFFFFF") //값이 nil 일 경우 흰색으로 대체
@@ -66,13 +84,14 @@ final class PickerCombineViewModel: ClothesViewModel {
             .store(in: &cancellables)
         
         selectItemSubject
-            .compactMap{ $0 } //nil 값 제거
+//            .compactMap{ $0 } //nil 값 제거
             .sink { cloth in
                 self.selectedItems[self.currentCategory] = cloth
             }
             .store(in: &cancellables)
         
-        
+        setCategorySubject.send(.hat)
+        selectItemSubject.send(selectedItems[currentCategory])
     }
     
     func setCategory(_ category: ClothCategory) {
@@ -86,7 +105,12 @@ final class PickerCombineViewModel: ClothesViewModel {
     func selectItem(name: String?) {
         guard let name = name else { return }
         let cloth = Cloth(id: name, hex: currentHex, category: currentCategory)
-        selectItemSubject.send(cloth)
+        if selectedItems[currentCategory]?.id == name {
+            selectItemSubject.send(nil)
+        } else {
+            selectItemSubject.send(cloth)
+        }
+        
     }
     
     func uploadItem() {
