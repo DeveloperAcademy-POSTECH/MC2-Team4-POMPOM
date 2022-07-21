@@ -11,6 +11,7 @@ struct CodeManager {
     private let code: String = ""
     private let connectionManager: ConnectionManager = ConnectionManager()
     
+    // UserDefault 에서 코드를 가져옴. 없으면 코드를 생성해서 서버에 저장함..
     @discardableResult
     func getCode() -> String {
         // UserDefaults에 이미 code가 있을 때
@@ -30,22 +31,24 @@ struct CodeManager {
         }
     }
     
+    //새로운 코드를 발급
     func setNewCode() async -> String {
         var newCode: String = ""
         
         repeat {
             newCode = generateCode(length: 10)
-        } while await connectionManager.isExistingCode(code: newCode)
+        } while await connectionManager.isExistingCode(code: newCode) // 서버에 중복된 코드가 존재하지 않도록 함.
         
         return newCode
     }
     
-    // 길이가 length고, 숫자와 영문 대문자로만 이뤄진 코드 생성 및 반환
+    // Local에서 임의의 코드를 생성.
     private func generateCode(length: Int) -> String {
         let elements = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         return String((0 ..< length).map { _ in elements.randomElement()! })
     }
     
+    //파트너 코드를 넣으면 파트너와 연결해주는 로직
     func connectWithPartner(partnerCode: String) async throws {
         // partnerCode를 본인의 코드로 입력했는지 확인
         guard partnerCode != getCode() else {
@@ -65,9 +68,10 @@ struct CodeManager {
         connectionManager.updatePartnerCode(oneId: ownId, anotherCode: partnerCode)
         connectionManager.updatePartnerCode(oneId: partnerId, anotherCode: ownCode)
         UserDefaults.standard.set(partnerCode, forKey: "partner_code")
-        throw ConnectionManagerResultType.success
+        throw ConnectionManagerResultType.success // ⚠️ 고쳐야 된다!
     }
     
+    // UserDefaults 에서 파트너 코드를 가져옴.
     func getPartnerCode() -> String {
         // UserDefaults에 partner_code가 있을 때
         if let partnerCode: String = UserDefaults.standard.string(forKey: "partner_code") {
@@ -79,6 +83,7 @@ struct CodeManager {
         }
     }
     
+    // FireBase 에서 파트너 코드를 가져옴.
     func getPartnerCodeFromServer(completion: @escaping (String) -> Void) async {
         
         
@@ -100,6 +105,7 @@ struct CodeManager {
             }
     }
     
+    // 파트너 코드를 삭제함. 연동해지
     func deletePartnerCode(completion: @escaping (String) -> Void) {
         Task {
             await connectionManager.updatePartnerCodeBy(ownCode: getPartnerCode())
@@ -114,8 +120,10 @@ struct CodeManager {
     }
 }
 
+
+//에러 타입.
 enum ConnectionManagerResultType: Error {
-    case success
+    case success // ⚠️ 고치자!
     case callMySelf // 자신의 코드를 불러오는 경우
     case invalidPartnerCode // 일치하는 파트너 코드가 없는 경우
 }

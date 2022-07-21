@@ -11,10 +11,12 @@ import FirebaseFirestore
 struct ClothesManager {
     let clothesRef = Firestore.firestore().collection("clothes")
     
+    // 옷 저장 딕셔너리 형태로 저장.
     func saveClothes(userCode: String, clothes: [ClothCategory: Cloth]) {
         clothesRef.document(userCode).setData(parseClothes(clothes: clothes))
     }
     
+    // Cloth 인코딩 메서드
     func parseClothes(clothes: [ClothCategory: Cloth]) -> [String: Any] {
         var returnValue: [String: Any] = [:]
         
@@ -29,6 +31,7 @@ struct ClothesManager {
         return returnValue
     }
     
+    // Cloth 를 코드로 불러옴. (파싱까지 해서)
     func loadClothes(userCode: String, competion: @escaping ([ClothCategory : Cloth]) -> Void) {
         var returnValue: [ClothCategory: Cloth] = [:]
         
