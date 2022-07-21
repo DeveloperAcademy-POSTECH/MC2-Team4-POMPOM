@@ -23,39 +23,8 @@ struct CoupleView: View {
     
     @StateObject var myClothViewModel = PickerCombineViewModel()
     @StateObject var partnerClothViewModel = ClothesViewModel()
+    @StateObject var coupleViewModel = CoupleViewModel()
     var codeViewModel = CodeManager()
-    @State private var actionSheetPresented = false
-    @State private var codeInput = ""
-    @State private var commentInput = ""
-    @State private var codeInputViewIsPresented = false
-    @State private var codeOutputViewIsPresented = false
-    @State private var sheetMode = SheetMode.none
-    @State var showAlert = false
-    @State var alertMessage: String = "유효하지 않은 동작입니다."
-    
-    var characterSize: CharacterSize {
-        switch sheetMode {
-        case .none:
-            return .large
-        case .mid:
-            return .medium
-        case .high:
-            return .small
-        }
-    }
-    
-    var resetButtonHorizontalPosition: CGFloat {
-        switch sheetMode {
-        case .none:
-            return Constant.screenWidth + 44
-        default:
-            return Constant.screenWidth - 31
-        }
-    }
-    
-    var resetButtonVerticalPosition: CGFloat {
-        Constant.screenHeight * (396 / 844) - 90
-    }
     
     var body: some View {
         NavigationView {
@@ -63,38 +32,17 @@ struct CoupleView: View {
                 VStack {
                     HStack(spacing: characterSpacing) {
                         if characterSize == .large {
-                            Button {
-                                actionSheetPresented = true
-                            } label: {
-                                ZStack {
-                                    Image("Gom0")
-                                        .resizable()
-                                        .frame(width: characterWidth, height: characterHeight)
-                                        .opacity(isConnectedPartner ? 1 : 0.3)
-                                    
-                                    if !isConnectedPartner {
-                                        Text("초대하기")
-                                            .foregroundColor(.orange)
-                                    } else {
-                                        ClothesView(vm: partnerClothViewModel)
-                                    }
-                                }
-                                .frame(width: characterWidth, height: characterHeight)
-                            }
-                            .disabled(isConnectedPartner)
+                            partnerCharacterView
                         }
                         ZStack {
                             Image("Gom0")
                                 .resizable()
-                            
-                            
                             ClothesView(vm: myClothViewModel)
-                            
                         }
                         .frame(width: characterWidth, height: characterHeight)
                         .onTapGesture {
                             withAnimation {
-                                sheetMode = .mid
+                                coupleViewModel.sheetMode = .mid
                             }
                         }
                     }
@@ -105,178 +53,64 @@ struct CoupleView: View {
                     Spacer()
                 }
                 
-                
-
-                if sheetMode == .none && isConnectedPartner {
+                if coupleViewModel.sheetMode == .none && coupleViewModel.isConnectedPartner {
                     CardContent()
                 }
                 
-                SheetView(sheetMode: $sheetMode) {
+                SheetView(sheetMode: $coupleViewModel.sheetMode) {
                     ClothPickerView(vm: myClothViewModel)
                 }
                 
-                if codeInputViewIsPresented {
-                    CodeInputView(textInput: $codeInput, delegate: self) {
-                        codeInputViewIsPresented = false
+                if coupleViewModel.codeInputViewIsPresented {
+                    CodeInputView(textInput: $coupleViewModel.codeInput, delegate: self) {
+                        coupleViewModel.codeInputViewIsPresented = false
                     }
                 }
                 
-                if codeOutputViewIsPresented {
+                if coupleViewModel.codeOutputViewIsPresented {
                     CodeOutputView {
-                        codeOutputViewIsPresented = false
+                        coupleViewModel.codeOutputViewIsPresented = false
                     }
                 }
                 
-                Button {
-                    myClothViewModel.clearSelectedItem()
-                } label: {
-                    Image(systemName: "gobackward")
-                        .foregroundColor(Color(UIColor.label))
-                        .font(.system(size: 24))
-                }
-                .frame(width: 44, height: 44)
-                .opacity(0.3)
-                .offset(x: resetButtonHorizontalPosition - 0.5 * Constant.screenWidth, y: resetButtonVerticalPosition  - 0.5 * Constant.screenHeight)
+                resetButton
             }
-            
             
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    if sheetMode != .none {
-                        Button("취소") {
-                            Task {
-                                await myClothViewModel.requestClothes()
-                            }
-                            sheetMode = .none
-                        }
-                        .foregroundColor(.red)
+                    if coupleViewModel.sheetMode != .none {
+                        cancelOutfitButton
                     }
                 }
                 
-                
                 ToolbarItem(placement: .principal) {
-                    if sheetMode == .none {
+                    if coupleViewModel.sheetMode == .none {
                         Text("POMPOM")
                             .font(.custom("Montserrat-ExtraBold", size: 20))
                     }
                 }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    if sheetMode == .none {
-                        NavigationLink(destination:
-                                        SettingsView(showAlert: $showAlert, alertMessage: $alertMessage, isPartnerConnected: $isConnectedPartner)
-                        ) {
-                            Image(systemName: "gearshape.fill")
-                                .foregroundColor(Color(UIColor.label))
-                        }
+                    if coupleViewModel.sheetMode == .none {
+                        settingsButton
                     } else {
-                        Button("완료") {
-                            myClothViewModel.uploadItem()
-                            sheetMode = .none
-                            
-                            Task {
-                                await myClothViewModel.requestClothes()
-
-                            }
-                        }
+                        finishOutfitButton
                     }
                 }
             }
-            .actionSheet(isPresented: $actionSheetPresented) {
-                ActionSheet(title: Text("초대코드 확인/입력"), buttons: [
-                    .default(Text("초대코드 확인하기")) {
-                        codeOutputViewIsPresented = true
-                    },
-                    .default(Text("초대코드 입력하기")) {
-                        codeInputViewIsPresented = true
-                        codeInput = ""
-                    }, .cancel(Text("돌아가기"))])
+            .actionSheet(isPresented: $coupleViewModel.actionSheetPresented) {
+                codeActionSheet
             }
             .onAppear {
-                codeViewModel.getCode()
-                UITabBar.appearance().isHidden = true
-                Task {
-                    await myClothViewModel.requestClothes()
-                    print("DEBUG: wow")
-                }
-                print(isFirstLaunching)
-                Task {
-                    await codeViewModel.getPartnerCodeFromServer { partnerCode in
-                        print("DEBUG: getPartnerCodeFromServer completion")
-                        if partnerCode == "" {
-                            self.isConnectedPartner = false
-                        } else {
-                            print(partnerCode)
-                            self.isConnectedPartner = true
-                            Task {
-                                await partnerClothViewModel.requestPartnerClothes()
-                                print("DEBUG: partnerClothViewModel.requestPartnerClothes")
-                            }
-                        }
-                    }
-                }
+                connectPartner()
             }
             
         }
-        .fullScreenCover(isPresented: $isFirstLaunching) {
-            OnboardingView(isFirstLunching: $isFirstLaunching)
+        .fullScreenCover(isPresented: $coupleViewModel.isFirstLaunching) {
+            OnboardingView(isFirstLunching: $coupleViewModel.isFirstLaunching)
         }
-        .addCustomAlert(with: alertMessage, presenting: $showAlert)
+        .addCustomAlert(with: coupleViewModel.alertMessage, presenting: $coupleViewModel.showAlert)
     }
-    
-    //MARK: - Helpers
-}
-
-extension CoupleView {
-    var characterSpacing: CGFloat {
-        Constant.screenWidth * (33 / 390)
-    }
-    
-    var characterWidth: CGFloat {
-        switch characterSize {
-        case .large:
-            return Constant.screenWidth * (145 / 390)
-        case .medium:
-            return Constant.screenWidth * (114 / 390)
-        case .small:
-            return Constant.screenWidth * (54 / 390)
-        }
-    }
-    
-    var characterOffset: CGFloat {
-        switch characterSize {
-        case .large:
-            return Constant.screenHeight * (93 / 844)
-        case .medium:
-            return Constant.screenHeight * (-29 / 844)
-        case .small:
-            return Constant.screenHeight * (-43 / 844)
-        }
-    }
-    
-    var characterHeight: CGFloat {
-        characterWidth * (215.68 / 114)
-    }
-}
-
-
-//MARK: - Delegates
-extension CoupleView: NetworkDelegate {
-    func showAlertwith(message: String) {
-        alertMessage = message
-        showAlert.toggle()
-    }
-    
-    func didConnectedPartner() {
-        Task {
-            await partnerClothViewModel.requestPartnerClothes()
-        }
-        isConnectedPartner = true
-    }
-}
-
-protocol NetworkDelegate {
-    func showAlertwith(message: String)
-    func didConnectedPartner()
 }
 
 struct CoupleView_Previews: PreviewProvider {
@@ -284,36 +118,3 @@ struct CoupleView_Previews: PreviewProvider {
         CoupleView()
     }
 }
-
-
-//MARK: - SubViews
-struct ClothesView: View {
-    @ObservedObject var vm: ClothesViewModel
-    let zIndexIteration: [ClothCategory] = [.hat, .shoes, .bottom, .top]
-    var body: some View {
-        ZStack {
-            ForEach(zIndexIteration) { category in
-                let vm = ClothViewModel(cloth: vm.selectedItems[category], category: category)
-                ClothView(vm: vm)
-            }
-            AccesoriesView(vm: vm)
-        }
-    }
-}
-
-
-
-struct AccesoriesView: View {
-    @ObservedObject var vm: ClothesViewModel
-    var body: some View {
-        if vm.isValidItem(with: .accessories) {
-            ZStack {
-                Image(vm.fetchImageString(with: .accessories))
-                    .resizable()
-            }
-            .transition(.slide)
-        }
-    }
-}
-
-
