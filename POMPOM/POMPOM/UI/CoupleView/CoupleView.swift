@@ -12,7 +12,16 @@ enum CharacterSize {
 }
 
 struct CoupleView: View {
-    @StateObject var myClothViewModel = PickerViewModel()
+    @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
+    @AppStorage("isConnectedPartner") var isConnectedPartnerStorage: Bool = false
+
+    @State var isConnectedPartner = false {
+        didSet {
+            isConnectedPartnerStorage = isConnectedPartner
+        }
+    }
+    
+    @StateObject var myClothViewModel = PickerCombineViewModel()
     @StateObject var partnerClothViewModel = ClothesViewModel()
     @StateObject var coupleViewModel = CoupleViewModel()
     var codeViewModel = CodeManager()
