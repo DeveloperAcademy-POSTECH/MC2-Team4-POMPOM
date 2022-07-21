@@ -77,11 +77,22 @@ final class PickerCombineViewModel: ClothesViewModel {
             .store(in: &cancellables)
         
         
-        setColorSubject
+        let setColor = setColorSubject.share()
+        
+        setColor
             .replaceNil(with: "FFFFFF") //값이 nil 일 경우 흰색으로 대체
             .removeDuplicates()
             .assign(to: \.currentHex, on: self)
             .store(in: &cancellables)
+        
+        setColor
+            .replaceNil(with: "FFFFFF")
+            .removeDuplicates()
+            .sink { hex in
+                self.selectedItems[self.currentCategory]?.hex = hex
+             }
+            .store(in: &cancellables)
+            
         
         selectItemSubject
 //            .compactMap{ $0 } //nil 값 제거
