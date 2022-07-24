@@ -14,7 +14,7 @@ struct Cloth: Identifiable {
     var category: ClothCategory
 }
 
-enum ClothCategory: String, CaseIterable, Identifiable {
+enum ClothCategory: String, CaseIterable, Identifiable, Codable {
     case hat
     case top
     case bottom

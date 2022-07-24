@@ -15,7 +15,8 @@ struct Clothes: Codable {
     var accessories: Item
     
     struct Item: Codable {
-        let name: String
-        let hex: String
+        var id: String
+        var hex: String
+        let category: ClothCategory
     }
 }
