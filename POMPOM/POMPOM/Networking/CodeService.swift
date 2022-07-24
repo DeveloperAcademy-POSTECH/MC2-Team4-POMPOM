@@ -9,6 +9,10 @@ import Foundation
 import FirebaseFirestore
 
 struct CodeService {
+    static let shared = CodeService()
+    
+    private init() {}
+    
     let usersCollection = Firestore.firestore().collection("users")
     
     func isExistingCode(code: String) async throws -> Bool {
@@ -21,15 +25,19 @@ struct CodeService {
         try await usersCollection.document(code).setData([:])
     }
     
-    func updatePartnerCode(myCode: String, partnerCode: String) async throws {
+    func updatePartnerCode(myCode: String, partnerCode: String) async throws -> Bool {
         try await usersCollection.document(myCode).updateData([
             "partner_code": partnerCode
         ])
+        
+        return true // async let 사용 위해 dummy return 값 부여
     }
     
-    func deletePartnerCode(myCode: String) async throws {
+    func deletePartnerCode(in myCode: String) async throws -> Bool {
         try await usersCollection.document(myCode).updateData([
             "partner_code" : FieldValue.delete()
         ])
+        
+        return true // async let 사용 위해 dummy return 값 부여
     }
 }
