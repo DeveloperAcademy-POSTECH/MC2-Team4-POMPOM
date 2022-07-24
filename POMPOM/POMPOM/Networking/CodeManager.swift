@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum CodeError: Error {
+    case noLocalCode
+    case invalidCode
+}
+
 struct CodeManager {
     private let code: String = ""
     private let connectionManager: ConnectionManager = ConnectionManager()
