@@ -7,55 +7,51 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
-struct ClothesManager {
-    let clothesRef = Firestore.firestore().collection("clothes")
+class ClothesManagerTest {
+    private let clothService = ClothService()
     
-    // 옷 저장 딕셔너리 형태로 저장.
-    func saveClothes(userCode: String, clothes: [ClothCategory: Cloth]) {
-        clothesRef.document(userCode).setData(parseClothes(clothes: clothes))
-    }
-    
-    // Cloth 인코딩 메서드
-    func parseClothes(clothes: [ClothCategory: Cloth]) -> [String: Any] {
-        var returnValue: [String: Any] = [:]
-        
-        for clothCategory in ClothCategory.allCases {
-            if let cloth = clothes[clothCategory] {
-                returnValue[clothCategory.rawValue] = [ cloth.id, cloth.hex ]
-            } else {
-                returnValue[clothCategory.rawValue] = [ "", "" ]
-            }
+    func requestMyClothes() async throws -> Clothes {
+        guard let myCode = UserDefaults.standard.string(forKey: "code") else {
+            throw CodeError.noLocalCode
         }
-        
-        return returnValue
+        let clothes = try await clothService.requestClothesWith(userCode: myCode)
+        return clothes
     }
     
-    // Cloth 를 코드로 불러옴. (파싱까지 해서)
-    func loadClothes(userCode: String, competion: @escaping ([ClothCategory : Cloth]) -> Void) {
-        var returnValue: [ClothCategory: Cloth] = [:]
+    func updateMyClothes(clothes: Clothes) async throws {
+        guard let myCode = UserDefaults.standard.string(forKey: "code") else {
+            throw CodeError.noLocalCode
+        }
+        try await clothService.updateClothesWith(userCode: myCode, clothes: clothes)
+    }
+    
+    func addClothesListener(code: String, completion: @escaping (Clothes?, Error?) -> Void) {
+        let clothRef = Firestore.firestore().collection("clothes")
         
-        clothesRef.document(userCode).addSnapshotListener { snapShot, error in
-            guard let data = snapShot?.data() else { competion(returnValue)
+        clothRef.document(code).addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                completion(nil, error)
                 return
             }
-            
-            print("Here is listener")
-
-            switch error {
-            case .none:
+            var clothes: Clothes = Clothes(items: [:])
+            do {
+                clothes = try document.data(as: Clothes.self)
+            } catch {
+                var returnValue: [ClothCategory: Cloth] = [:]
                 for clothCategory in ClothCategory.allCases {
-                    if let cloth: [String] = data[clothCategory.rawValue] as! [String]? {
+                    if let cloth: [String] = document.data()?[clothCategory.rawValue] as! [String]? {
                         if !(cloth[0].isEmpty && cloth[1].isEmpty) {
                             returnValue[clothCategory] = Cloth(id: cloth[0], hex: cloth[1], category: clothCategory)
                         }
                     }
                 }
-                competion(returnValue)
-            case .some(let error):
-                print("DEBUG: 옷 불러오기 에러 - \(error)")
             }
-            
+            completion(clothes, nil)
         }
     }
 }
+
+
+

@@ -12,11 +12,7 @@ class CoupleViewModel: ObservableObject {
     @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
     @AppStorage("isConnectedPartner") var isConnectedPartnerStorage: Bool = false
 
-    @State var isConnectedPartner = false {
-        didSet {
-            isConnectedPartnerStorage = isConnectedPartner
-        }
-    }
+    @State var isConnectedPartner = false
     
     @Published var actionSheetPresented = false
     @Published var codeInput = ""

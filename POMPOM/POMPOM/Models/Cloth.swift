@@ -7,14 +7,17 @@
 
 import Foundation
 
-struct Cloth: Identifiable {
-    
+struct Cloth: Identifiable, Codable {
     var id: String
     var hex: String
     var category: ClothCategory
 }
 
-enum ClothCategory: String, CaseIterable, Identifiable {
+struct Clothes: Codable {
+    var items: [ClothCategory : Cloth]
+}
+
+enum ClothCategory: String, CaseIterable, Identifiable, Codable {
     case hat
     case top
     case bottom

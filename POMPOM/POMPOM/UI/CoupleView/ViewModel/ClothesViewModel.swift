@@ -11,30 +11,29 @@ import SwiftUI
 class ClothesViewModel: ObservableObject {
     //MARK: - Propeties
     @Published var selectedItems: [ClothCategory : Cloth] = [:]
+//    @Published var selectedClothes: Clothes = Clothes()
     
-    var networkManager: ClothesManager = ClothesManager()
+    var networkManager: ClothesManagerTest = ClothesManagerTest()
     
     //CouplleView
     
-    func requestClothes() async {
-        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
-            networkManager.loadClothes(userCode: defaultCode) { clothes in
-                withAnimation {
-                    self.selectedItems = clothes
-                }
-            }
-        } else {
-            print("DEBUG: 사용자 코드 조회 실패")
-        }
+    func requestClothes() async throws {
+        let clothes = try await networkManager.requestMyClothes()
+        selectedItems = clothes.items
+      
     }
     
-    func requestPartnerClothes() async {
-        if let defaultCode: String = UserDefaults.standard.string(forKey: "partner_code") {
-            networkManager.loadClothes(userCode: defaultCode) { clothes in
-                    self.selectedItems = clothes
+    func listenPartnerClothes() {
+        guard let partnerCode = UserDefaults.standard.string(forKey: "partner_code") else { return }
+        networkManager.addClothesListener(code: partnerCode) { clothes, error in
+            if let error = error {
+                print("ERROR: addListenerToPartner - \(error.localizedDescription)")
+            } else {
+                if let clothes = clothes {
+                    self.selectedItems = clothes.items
+                    
+                }
             }
-        } else {
-            print("DEBUG: 사용자 코드 조회 실패")
         }
     }
     
