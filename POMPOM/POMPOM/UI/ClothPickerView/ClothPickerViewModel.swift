@@ -9,59 +9,129 @@ import Combine
 import SwiftUI
 import SystemConfiguration
 
-final class PickerCombineViewModel: ObservableObject {
-    @Published var selectedItems: [ClothCategory : Cloth] = [:]
+final class PickerCombineViewModel: ClothesViewModel {
     @Published var currentCategory: ClothCategory = .hat
-    @Published var currentHex: String = "FFFFFF"
+    @Published var currentHex: String = "FFFFFF" {
+        didSet {
+            selectedItems[currentCategory]?.hex = currentHex
+        }
+    }
     @Published var categoryGridOffset: CGFloat = Constant.screenWidth / 2 - 60
+    @Published var isColorEnable: Bool = true
     
-    @Published var presets: [String] = []
-    @Published var items: [Cloth.ID] = []
+    @Published var currentPresets: [String] = []
+    @Published var currentItems: [Cloth.ID] = []
     
-    private let categorySubject = CurrentValueSubject<ClothCategory, Never>(.hat)
-    private let colorSubject = CurrentValueSubject<String, Never>("FFFFFF")
-    private let itemSubject = CurrentValueSubject<Cloth.ID, Never>("")
+    var currentItem: Cloth? {
+        selectedItems[currentCategory]
+    }
+    
+    private let setCategorySubject = CurrentValueSubject<ClothCategory, Never>(.hat)
+    private let setColorSubject = CurrentValueSubject<String?, Never>("FFFFFF")
+    private let selectItemSubject = PassthroughSubject<Cloth?, Never>()
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(clothes: [Cloth]) {
+    override init() {
+        super.init()
+        let setCategory = setCategorySubject.share()
         
-        categorySubject
-            .compactMap { $0 }
+        setCategory
             .removeDuplicates()
-            .sink { currentCategory in
-                self.currentCategory = currentCategory
-                self.presets = self.presetDic[currentCategory] ?? []
-                self.items = self.itemDic[currentCategory] ?? []
+            .assign(to: \.currentCategory, on: self)
+            .store(in: &cancellables)
+        
+        setCategory
+            .removeDuplicates()
+            .compactMap { category in
+                self.presetDic[category]
+            }
+            .assign(to: \.currentPresets, on: self)
+            .store(in: &cancellables)
+        
+        setCategory
+            .removeDuplicates()
+            .compactMap { category in
+                self.itemDic[category]
+            }
+            .assign(to: \.currentItems, on: self)
+            .store(in: &cancellables)
+        
+        setCategory
+            .removeDuplicates()
+            .map { category in
+                category != .accessories
+            }
+            .assign(to: \.isColorEnable, on: self)
+            .store(in: &cancellables)
+        
+        setCategory
+            .removeDuplicates()
+            .compactMap { category in
+                self.selectedItems[category]?.hex
+            }
+            .sink { hex in
+                self.setColorSubject.send(hex)
             }
             .store(in: &cancellables)
         
-        colorSubject
-            .compactMap { $0 }
+        
+        let setColor = setColorSubject.share()
+        
+        setColor
+            .replaceNil(with: "FFFFFF") //값이 nil 일 경우 흰색으로 대체
             .removeDuplicates()
             .assign(to: \.currentHex, on: self)
             .store(in: &cancellables)
         
-        itemSubject
-            .compactMap{ $0 }
+        setColor
+            .replaceNil(with: "FFFFFF")
             .removeDuplicates()
-            .sink { clothName in
-                self.selectedItems[self.currentCategory] = Cloth(id: clothName, hex: self.currentHex, category: self.currentCategory)
+            .sink { hex in
+                self.selectedItems[self.currentCategory]?.hex = hex
+             }
+            .store(in: &cancellables)
+            
+        selectItemSubject
+            .sink { cloth in
+                self.selectedItems[self.currentCategory] = cloth
             }
             .store(in: &cancellables)
         
-        
+        setCategorySubject.send(.hat)
+        selectItemSubject.send(selectedItems[currentCategory])
     }
     
     func setCategory(_ category: ClothCategory) {
-        categorySubject.send(category)
+        setCategorySubject.send(category)
     }
     
-    func setColor(withHex hex: String) {
-        colorSubject.send(hex)
+    func setColor(withHex hex: String?) {
+        setColorSubject.send(hex)
     }
     
+    func selectItem(name: String?) {
+        guard let name = name else { return }
+        let cloth = Cloth(id: name, hex: currentHex, category: currentCategory)
+        if selectedItems[currentCategory]?.id == name {
+            selectItemSubject.send(nil)
+        } else {
+            selectItemSubject.send(cloth)
+        }
+        
+    }
     
+    func uploadItem() {
+        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
+            networkManager.saveClothes(userCode: defaultCode, clothes: selectedItems)
+        } else {
+            print("DEBUG: 사용자 코드 조회 실패")
+        }
+    }
+    
+    func fetchImageString(withName name: String) -> String {
+        return "c-\(currentCategory)-\(name)"
+    }
     
     // 기본 컬러 프리셋
     var presetDic: [ClothCategory : [String]] = [
@@ -152,6 +222,14 @@ class PickerViewModel: ClothesViewModel {
         }
     }
     
+    func uploadItem() {
+        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
+            networkManager.saveClothes(userCode: defaultCode, clothes: selectedItems)
+        } else {
+            print("DEBUG: 사용자 코드 조회 실패")
+        }
+    }
+    
     func fetchAssetName(name: String) -> String {
         let str = "c-\(currentType)-\(name)"
         return str
@@ -170,14 +248,6 @@ class PickerViewModel: ClothesViewModel {
             withAnimation(.easeOut) {
                 selectedItems[currentType] = Cloth(id: name, hex: hex , category: currentType)
             }
-        }
-    }
-    
-    func uploadItem() {
-        if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
-            networkManager.saveClothes(userCode: defaultCode, clothes: selectedItems)
-        } else {
-            print("DEBUG: 사용자 코드 조회 실패")
         }
     }
 }

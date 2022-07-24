@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ClothPickerView: View {
-    @ObservedObject var vm: PickerViewModel
+    @ObservedObject var vm: PickerCombineViewModel
     @State var currentCategory = ClothCategory.hat
     @State var currentHex: String = "FFFFFF"
     @State var offSet: CGFloat = Constant.screenWidth / 2 - 60
@@ -32,7 +32,7 @@ struct ClothPickerView: View {
                     .padding(.leading, 20)
                     .padding(.top, 15)
                     
-                    if vm.isCategoryColorEnable {
+                    if vm.isColorEnable {
                         ScrollView(.horizontal, showsIndicators: false) {
                             colorPresetGrid
                                 .padding(.leading, 10)
@@ -58,14 +58,13 @@ extension ClothPickerView {
                 Text(category.koreanSubtitle)
                     .font(.body)
                     .fontWeight(.semibold)
-                    .foregroundColor(category == vm.currentType ? Color(hex: "FF5100") : Color(hex: "A0A0A0"))
+                    .foregroundColor(category == vm.currentCategory ? Color(hex: "FF5100") : Color(hex: "A0A0A0"))
                     .onTapGesture {
                         // 맥락 바꾸기.
-                        vm.changeCategory(with: category)
-                        currentHex = vm.currentPresets.first ?? "FFFFFF"
+                        vm.setCategory(category)
                         let spacing: CGFloat = 60
                         withAnimation(.spring()) {
-                            switch vm.currentType {
+                            switch vm.currentCategory {
                             case .hat:
                                 offSet = Constant.screenWidth / 2 - spacing
                             case .top:
@@ -93,17 +92,18 @@ extension ClothPickerView {
                         .fill(Color(hex: item.wrappedValue))
                         .frame(width: 44)
                         .shadow(radius: 5)
-                        .onTapGesture {
-                            withAnimation {
-                                currentHex = item.wrappedValue
-                                vm.changeSelectedColor(with: currentHex)
-                            }
-                        }
                         .overlay {
-                            if item.wrappedValue == vm.selectedItemColor ?? currentHex {
+                            if item.wrappedValue == vm.currentHex {
                                 Circle()
                                     .stroke(Color(hex: "BABABA"), lineWidth: 3)
                                     .frame(width: 60, height: 60, alignment: .center)
+                            } else {
+                                EmptyView()
+                            }
+                        }
+                        .onTapGesture {
+                            withAnimation {
+                                vm.setColor(withHex: item.wrappedValue)
                             }
                         }
                 }
@@ -118,27 +118,27 @@ extension ClothPickerView {
         ], spacing: 20) {
             ForEach($vm.currentItems, id: \.self) { item in
                 ZStack {
-                    Image(vm.fetchAssetName(name: item.wrappedValue) + "B")
+                    Image(vm.fetchImageString(withName: item.wrappedValue) + "B")
                         .resizable()
                         .aspectRatio(1, contentMode: .fit)
-                        .foregroundColor(Color(hex: vm.selectedItemColor ?? currentHex)) // ‼️ 카테고리 변경후 tap 시 색이 다시 빠지는 현상 발생 -> 객체 자체가 변경되기 때문이 아닐까?
+                        .foregroundColor(Color(hex: vm.currentHex)) // ‼️ 카테고리 변경후 tap 시 색이 다시 빠지는 현상 발생 -> 객체 자체가 변경되기 때문이 아닐까?
                     
-                    Image(vm.fetchAssetName(name: item.wrappedValue))
+                    Image(vm.fetchImageString(withName: item.wrappedValue))
                         .resizable()
                         .aspectRatio(1, contentMode: .fit)
-                        .foregroundColor(currentHex == "000000" ? .gray : .black) // 검정색일 때 옷 테두리 색상 변경
-                        .overlay {
-                            if vm.selectedItem?.id == item.wrappedValue {
+                        .foregroundColor(vm.currentHex == "000000" ? .gray : .black)
+                        .overlay(content: {
+                            if item.wrappedValue == vm.currentItem?.id {
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color(hex: "BABABA"), lineWidth: 4)
                                     .frame(width: 180, height: 180, alignment: .center)
                             }
+                        })
+                        .onTapGesture {
+                            withAnimation {
+                                vm.selectItem(name: item.wrappedValue)
+                            }
                         }
-                }
-                .onTapGesture {
-                    withAnimation {
-                        vm.selectItem(name: item.wrappedValue, hex: vm.selectedItemColor ?? currentHex)
-                    }
                 }
             }
         }
@@ -147,6 +147,6 @@ extension ClothPickerView {
 
 struct ClothPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        ClothPickerView(vm: PickerViewModel())
+        ClothPickerView(vm: PickerCombineViewModel())
     }
 }
