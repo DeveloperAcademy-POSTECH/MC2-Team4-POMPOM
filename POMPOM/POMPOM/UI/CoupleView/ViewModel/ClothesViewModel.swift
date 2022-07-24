@@ -11,6 +11,7 @@ import SwiftUI
 class ClothesViewModel: ObservableObject {
     //MARK: - Propeties
     @Published var selectedItems: [ClothCategory : Cloth] = [:]
+    @Published var selectedClothes: Clothes = Clothes()
     
     var networkManager: ClothesManager = ClothesManager()
     

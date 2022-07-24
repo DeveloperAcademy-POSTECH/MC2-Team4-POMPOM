@@ -123,7 +123,14 @@ final class PickerCombineViewModel: ClothesViewModel {
     
     func uploadItem() {
         if let defaultCode: String = UserDefaults.standard.string(forKey: "code") {
-            networkManager.saveClothes(userCode: defaultCode, clothes: selectedItems)
+//            networkManager.saveClothes(userCode: defaultCode, clothes: selectedItems) // 이전 코드
+            let clotheService = ClothService()
+            let clothes = Clothes(hat: selectedItems[.hat], top: selectedItems[.top], bottom: selectedItems[.bottom], shoes: selectedItems[.shoes], accessories: selectedItems[.accessories])
+            do {
+                try clotheService.createClothesWith(userCode: defaultCode, clothes: clothes)
+            } catch {
+                print("ERROR: upload fail  \(error.localizedDescription)")
+            }
         } else {
             print("DEBUG: 사용자 코드 조회 실패")
         }

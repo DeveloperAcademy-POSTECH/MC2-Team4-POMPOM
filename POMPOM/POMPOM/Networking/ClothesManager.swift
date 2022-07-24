@@ -36,33 +36,34 @@ struct ClothesManager {
     func loadClothes(userCode: String, competion: @escaping ([ClothCategory : Cloth]) -> Void) {
         var returnValue: [ClothCategory: Cloth] = [:]
         
-        clothesRef.document(userCode).addSnapshotListener { snapShot, error in
-            guard let data = snapShot?.data() else { competion(returnValue)
-                return
-            }
-            
-            print("Here is listener")
-
-            switch error {
-            case .none:
-                for clothCategory in ClothCategory.allCases {
-                    if let cloth: [String] = data[clothCategory.rawValue] as! [String]? {
-                        if !(cloth[0].isEmpty && cloth[1].isEmpty) {
-                            returnValue[clothCategory] = Cloth(id: cloth[0], hex: cloth[1], category: clothCategory)
-                        }
-                    }
-                }
-                competion(returnValue)
-            case .some(let error):
-                print("DEBUG: 옷 불러오기 에러 - \(error)")
-            }
-            
-        }
+        
+//        clothesRef.document(userCode).addSnapshotListener { snapShot, error in
+//            guard let data = snapShot?.data() else { competion(returnValue)
+//                return
+//            }
+//
+//            print("Here is listener")
+//
+//            switch error {
+//            case .none:
+//                for clothCategory in ClothCategory.allCases {
+//                    if let cloth: [String] = data[clothCategory.rawValue] as! [String]? {
+//                        if !(cloth[0].isEmpty && cloth[1].isEmpty) {
+//                            returnValue[clothCategory] = Cloth(id: cloth[0], hex: cloth[1], category: clothCategory)
+//                        }
+//                    }
+//                }
+//                competion(returnValue)
+//            case .some(let error):
+//                print("DEBUG: 옷 불러오기 에러 - \(error)")
+//            }
+//
+//        }
     }
 }
 
 class ClothService {
-    let clothesRef = Firestore.firestore().collection("clothes")
+    private let clothesRef = Firestore.firestore().collection("clothes")
     
     func createClothesWith(userCode: String, clothes: Clothes) throws {
         try clothesRef.document(userCode).setData(from: clothes)
@@ -77,7 +78,50 @@ class ClothService {
         try clothesRef.document(userCode).setData(from: clothes, merge: true)
     }
     
-    func deleteClotheWith(userCode: String, clothes: Clothes) async throws {
+    func deleteClothesWith(userCode: String, clothes: Clothes) async throws {
         try await clothesRef.document(userCode).delete()
     }
+}
+
+class ClothesManagerTest {
+    let clothService = ClothService()
+    
+    func requestMyClothes() async throws -> Clothes {
+        guard let myCode = UserDefaults.standard.string(forKey: "code") else {
+            throw CodeError.noLocalCode
+        }
+        let clothes = try await clothService.requestClothesWith(userCode: myCode)
+        return clothes
+    }
+    
+    func updateMyClothes(clothes: Clothes) async throws {
+        guard let myCode = UserDefaults.standard.string(forKey: "code") else {
+            throw CodeError.noLocalCode
+        }
+        try await clothService.updateClothesWith(userCode: myCode, clothes: clothes)
+    }
+    
+    func addListenerToPartner(completion: @escaping (Clothes?, Error?) -> Void) {
+        guard let partnerCode = UserDefaults.standard.string(forKey: "partnerCode") else {
+            completion(nil, CodeError.noLocalCode)
+            return
+        }
+        let clothRef = Firestore.firestore().collection("clothes")
+        
+        clothRef.document(partnerCode).addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                completion(nil, error)
+                return
+            }
+            let clothes = try? document.data(as: Clothes.self)
+            completion(clothes, nil)
+        }
+    }
+}
+
+
+
+enum CodeError: Error {
+    case noLocalCode
+    case invalidCode
 }

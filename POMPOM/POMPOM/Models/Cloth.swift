@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Cloth: Identifiable {
+struct Cloth: Identifiable, Codable {
     
     var id: String
     var hex: String

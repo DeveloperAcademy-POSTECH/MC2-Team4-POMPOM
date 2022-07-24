@@ -8,15 +8,9 @@
 import Foundation
 
 struct Clothes: Codable {
-    var hat: Item
-    var top: Item
-    var bottom: Item
-    var shoes: Item
-    var accessories: Item
-    
-    struct Item: Codable {
-        var id: String
-        var hex: String
-        let category: ClothCategory
-    }
+    var hat: Cloth?
+    var top: Cloth?
+    var bottom: Cloth?
+    var shoes: Cloth?
+    var accessories: Cloth?
 }
