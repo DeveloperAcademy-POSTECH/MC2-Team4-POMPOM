@@ -102,6 +102,9 @@ struct CoupleView: View {
                 codeActionSheet
             }
             .onAppear {
+                Task {
+                    try await myClothViewModel.requestClothes()
+                }
                 connectPartner()
             }
             
