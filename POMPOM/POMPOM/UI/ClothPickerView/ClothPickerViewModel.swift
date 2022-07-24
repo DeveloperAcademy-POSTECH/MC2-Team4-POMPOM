@@ -10,7 +10,6 @@ import SwiftUI
 import SystemConfiguration
 
 final class PickerCombineViewModel: ClothesViewModel {
-//    @Published var selectedItems: [ClothCategory : Cloth] = [:]
     @Published var currentCategory: ClothCategory = .hat
     @Published var currentHex: String = "FFFFFF" {
         didSet {
@@ -93,9 +92,7 @@ final class PickerCombineViewModel: ClothesViewModel {
              }
             .store(in: &cancellables)
             
-        
         selectItemSubject
-//            .compactMap{ $0 } //nil 값 제거
             .sink { cloth in
                 self.selectedItems[self.currentCategory] = cloth
             }

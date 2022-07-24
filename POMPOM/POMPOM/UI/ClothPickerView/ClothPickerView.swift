@@ -134,9 +134,6 @@ extension ClothPickerView {
                                     .frame(width: 180, height: 180, alignment: .center)
                             }
                         })
-//                        .overlay(
-//
-//                        )
                         .onTapGesture {
                             withAnimation {
                                 vm.selectItem(name: item.wrappedValue)
