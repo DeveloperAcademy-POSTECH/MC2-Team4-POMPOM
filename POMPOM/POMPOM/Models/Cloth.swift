@@ -8,10 +8,13 @@
 import Foundation
 
 struct Cloth: Identifiable, Codable {
-    
     var id: String
     var hex: String
     var category: ClothCategory
+}
+
+struct Clothes: Codable {
+    var items: [ClothCategory : Cloth]
 }
 
 enum ClothCategory: String, CaseIterable, Identifiable, Codable {

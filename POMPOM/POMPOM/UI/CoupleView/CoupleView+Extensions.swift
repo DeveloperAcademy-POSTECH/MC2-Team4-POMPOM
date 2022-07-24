@@ -78,9 +78,7 @@ extension CoupleView: NetworkDelegate {
     }
     
     func didConnectedPartner() {
-        Task {
-            await partnerClothViewModel.requestPartnerClothes()
-        }
+        partnerClothViewModel.listenPartnerClothes()
         coupleViewModel.isConnectedPartner = true
     }
 }
@@ -161,22 +159,26 @@ extension CoupleView {
     
     var finishOutfitButton: some View {
         Button("완료") {
-            myClothViewModel.uploadItem()
             coupleViewModel.sheetMode = .none
-            
             Task {
-                await myClothViewModel.requestClothes()
-
+                do {
+                    try myClothViewModel.uploadItem()
+                    try await myClothViewModel.requestClothes()
+                } catch CodeError.noLocalCode {
+                    print("ERROR: 로컬 코드 에러")
+                } catch {
+                    print("ERROR: \(error.localizedDescription)")
+                }
             }
         }
     }
     
     var cancelOutfitButton: some View {
         Button("취소") {
-            Task {
-                await myClothViewModel.requestClothes()
-            }
             coupleViewModel.sheetMode = .none
+            Task {
+                try await myClothViewModel.requestClothes()
+            }
         }
         .foregroundColor(.red)
     }
@@ -196,26 +198,18 @@ extension CoupleView {
 // MARK: - methods
 extension CoupleView {
     func connectPartner() {
-        codeViewModel.getCode()
-        Task {
-            await myClothViewModel.requestClothes()
-            print("DEBUG: wow")
-        }
-        print(coupleViewModel.isFirstLaunching)
-        Task {
-            await codeViewModel.getPartnerCodeFromServer { partnerCode in
-                print("DEBUG: getPartnerCodeFromServer completion")
-                if partnerCode == "" {
-                    coupleViewModel.isConnectedPartner = false
-                } else {
-                    print(partnerCode)
-                    coupleViewModel.isConnectedPartner = true
-                    Task {
-                        await partnerClothViewModel.requestPartnerClothes()
-                        print("DEBUG: partnerClothViewModel.requestPartnerClothes")
-                    }
-                }
+        let code = codeViewModel.getCode()
+        coupleViewModel.isConnectedPartner = true
+        codeViewModel.addPartnerCodeListner(myCode: code) { partnerCode in
+            if partnerCode == "" {
+                coupleViewModel.isConnectedPartner = false
+            } else {
+                coupleViewModel.isConnectedPartner = true
+                UserDefaults.standard.set(partnerCode, forKey: "partner_code")
+                partnerClothViewModel.listenPartnerClothes()
             }
+            
+            print("대박 - \(partnerCode), \(coupleViewModel.isConnectedPartner)")
         }
     }
 }

@@ -84,23 +84,15 @@ struct CodeManager {
     }
     
     // FireBase 에서 파트너 코드를 가져옴.
-    func getPartnerCodeFromServer(completion: @escaping (String) -> Void) async {
-        
-        
-        connectionManager.usersRef.document(await connectionManager.getIdByCode(code: getCode()))
+    func addPartnerCodeListner(myCode: String, completion: @escaping (String) -> Void)  {
+        connectionManager.usersRef.whereField("code", isEqualTo: myCode)
             .addSnapshotListener { snapShot, err in
                 if let err = err {
-                    dump("\(err)")
+                    print("ERROR: \(err.localizedDescription)")
                 } else {
-                    guard let data = snapShot?.data()?["partner_code"] as? String else { return }
-                    var temp = ""
-                    print(data)
-                    if data != " " {
-                        temp = data
-                    }
-                    UserDefaults.standard.set(temp, forKey: "partner_code")
-                    print(temp + "wow")
-                    completion(temp)
+                    guard let partnerCode = snapShot?.documents.first?.data()["partner_code"] as? String else { return }
+                    UserDefaults.standard.set(partnerCode, forKey: "partner_code")
+                    completion(partnerCode)
                 }
             }
     }
