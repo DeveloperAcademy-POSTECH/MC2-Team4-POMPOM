@@ -189,17 +189,6 @@
 			path = System;
 			sourceTree = "<group>";
 		};
-		C04795C4284F15D20040646A /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */,
-				AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */,
-				C0A779CD2849E1C60086810C /* Preview Assets.xcassets */,
-				C0A779D12849E1C60086810C /* Model.xcdatamodeld */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		C04795C5284F15D20040646A /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,7 +287,6 @@
 				C0F90CB12850728F00CC2C0E /* Secrets */,
 				C04795C1284F15C10040646A /* System */,
 				C04795C7284F15D20040646A /* Networking */,
-				C04795C4284F15D20040646A /* Resources */,
 				C04795C5284F15D20040646A /* UI */,
 			);
 			path = POMPOM;
@@ -307,6 +295,10 @@
 		C0AC7B3B28B5F46D00DED61F /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */,
+				AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */,
+				C0A779CD2849E1C60086810C /* Preview Assets.xcassets */,
+				C0A779D12849E1C60086810C /* Model.xcdatamodeld */,
 				C0A779CA2849E1C60086810C /* Assets.xcassets */,
 				C04FCAF5284E24020040F790 /* GoogleService-Info.plist */,
 				C059279A2852FF8C0071751A /* Info.plist */,
