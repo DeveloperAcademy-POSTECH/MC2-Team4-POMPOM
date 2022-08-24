@@ -292,19 +292,27 @@
 		C0A779C52849E1C50086810C /* POMPOM */ = {
 			isa = PBXGroup;
 			children = (
-				C0A779CA2849E1C60086810C /* Assets.xcassets */,
-				C04FCAF5284E24020040F790 /* GoogleService-Info.plist */,
+				C0AC7B3B28B5F46D00DED61F /* Config */,
 				C0ED415B2858697D007E5502 /* Models */,
 				C0ED4157285868D7007E5502 /* Util */,
-				C059279A2852FF8C0071751A /* Info.plist */,
 				C0F90CB12850728F00CC2C0E /* Secrets */,
-				C0FF3531284E9FB6001B1129 /* POMPOM.entitlements */,
 				C04795C1284F15C10040646A /* System */,
 				C04795C7284F15D20040646A /* Networking */,
 				C04795C4284F15D20040646A /* Resources */,
 				C04795C5284F15D20040646A /* UI */,
 			);
 			path = POMPOM;
+			sourceTree = "<group>";
+		};
+		C0AC7B3B28B5F46D00DED61F /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				C0A779CA2849E1C60086810C /* Assets.xcassets */,
+				C04FCAF5284E24020040F790 /* GoogleService-Info.plist */,
+				C059279A2852FF8C0071751A /* Info.plist */,
+				C0FF3531284E9FB6001B1129 /* POMPOM.entitlements */,
+			);
+			name = Config;
 			sourceTree = "<group>";
 		};
 		C0ED4157285868D7007E5502 /* Util */ = {
