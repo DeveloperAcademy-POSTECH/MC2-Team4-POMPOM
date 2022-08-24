@@ -144,9 +144,9 @@ final class PickerCombineViewModel: ClothesViewModel {
     
     var itemDic: [ClothCategory: [String]] = [
         .hat : ["cap", "suncap"],
-        .top : [ "short", "long",  "shirts", "shirtslong", "sleeveless", "pkshirts", "onepiece", "pkonepiece"],
-        .bottom : ["shorts", "skirtshort", "skirta", "long", "skirtlong"],
-        .shoes : ["sandals", "sneakers", "women"],
+        .top : [ "short", "long", "crop", "shirts", "shirtslong", "sleeveless", "pkshirts", "onepiece", "pkonepiece", "sleevelessonepiece","linesleeveless", "offshoulder"],
+        .bottom : ["shorts", "skinny", "tennisskirt", "skirtshort", "skirta", "long", "skirtlong"],
+        .shoes : ["sandals", "flat","slipper", "sneakers", "boots", "women"],
         .accessories : ["glasses", "sunglasses"]
     ]
 }
@@ -176,9 +176,9 @@ class PickerViewModel: ClothesViewModel {
     
     var items: [ClothCategory: [String]] = [
         .hat : ["cap", "suncap"],
-        .top : [ "short", "long",  "shirts", "shirtslong", "sleeveless", "pkshirts", "onepiece", "pkonepiece"],
-        .bottom : ["shorts", "skirtshort", "skirta", "long", "skirtlong"],
-        .shoes : ["sandals", "sneakers", "women"],
+        .top : [ "short", "long", "crop", "shirts", "shirtslong", "sleeveless", "pkshirts", "onepiece", "pkonepiece", "lineonepiece","linesleeveless", "offshoulder"],
+        .bottom : ["shorts", "skinny", "tennisskirt", "skirtshort", "skirta", "long", "skirtlong"],
+        .shoes : ["sandals", "flat","slipper", "sneakers", "boots", "women"],
         .accessories : ["glasses", "sunglasses"]
     ]
     
