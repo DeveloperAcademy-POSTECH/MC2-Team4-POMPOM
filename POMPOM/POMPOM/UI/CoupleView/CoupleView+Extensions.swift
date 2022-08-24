@@ -125,11 +125,11 @@ extension CoupleView {
                     .frame(width: characterWidth, height: characterHeight)
                     .opacity(coupleViewModel.isConnectedPartner ? 1 : 0.3)
                 
-                if !coupleViewModel.isConnectedPartner {
+                if coupleViewModel.isConnectedPartner {
+                    ClothesView(vm: partnerClothViewModel)
+                } else {
                     Text("초대하기")
                         .foregroundColor(.orange)
-                } else {
-                    ClothesView(vm: partnerClothViewModel)
                 }
             }
             .frame(width: characterWidth, height: characterHeight)
@@ -196,23 +196,18 @@ extension CoupleView {
 // MARK: - methods
 extension CoupleView {
     func connectPartner() {
-        codeViewModel.getCode()
         Task {
+            codeViewModel.getCode()
             await myClothViewModel.requestClothes()
-            print("DEBUG: wow")
-        }
-        print(coupleViewModel.isFirstLaunching)
-        Task {
             await codeViewModel.getPartnerCodeFromServer { partnerCode in
-                print("DEBUG: getPartnerCodeFromServer completion")
-                if partnerCode == "" {
+                if partnerCode.isEmpty {
                     coupleViewModel.isConnectedPartner = false
+                    print("DEBUG: 서버에 파트너 코드가 존재하지 않음.")
                 } else {
-                    print(partnerCode)
                     coupleViewModel.isConnectedPartner = true
                     Task {
                         await partnerClothViewModel.requestPartnerClothes()
-                        print("DEBUG: partnerClothViewModel.requestPartnerClothes")
+                        print("DEBUG: partnerClothViewModel.requestPartnerClothes 파트너 옷 불러오기 성공 ")
                     }
                 }
             }
