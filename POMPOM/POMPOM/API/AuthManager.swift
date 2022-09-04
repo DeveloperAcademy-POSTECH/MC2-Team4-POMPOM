@@ -8,8 +8,14 @@
 import Foundation
 
 class AuthManager {
-    func hello() {
+    func hello() async throws -> Bool {
+        guard let url = URL(string: URLPath.hello.URLString) else {
+            return false
+        }
         
+        let (_, response) = try await URLSession.shared.data(from: url)
+        
+        return (response as? HTTPURLResponse)?.statusCode == 200
     }
     
     func signUp(userID: String, password: String, deviceToken: String) async throws -> Data {
@@ -34,7 +40,7 @@ class AuthManager {
         let body = try JSONEncoder().encode(dic)
         
         
-        var urlComponents = URLComponents(string: "https://pompom-ada.herokuapp.com/api/signup")
+        var urlComponents = URLComponents(string: URLPath.signup.URLString)
         guard let url = urlComponents?.url else { return Data() }
         let defaultSession = URLSession(configuration: .default)
         var urlRequest = URLRequest(url: url)
@@ -60,7 +66,7 @@ class AuthManager {
         ]
         let body = try JSONEncoder().encode(dic)
         
-        var urlComponents = URLComponents(string: "https://pompom-ada.herokuapp.com/api/authenticate")
+        var urlComponents = URLComponents(string: URLPath.authenticate.URLString)
         guard let url = urlComponents?.url else { return Data() }
         let defaultSession = URLSession(configuration: .default)
         var urlRequest = URLRequest(url: url)
@@ -80,7 +86,7 @@ class AuthManager {
         ]
         let body = try JSONEncoder().encode(dic)
         
-        var urlComponents = URLComponents(string: "https://pompom-ada.herokuapp.com/api/pair")
+        var urlComponents = URLComponents(string: URLPath.pair.URLString)
         guard let url = urlComponents?.url else { return Data() }
         let defaultSession = URLSession(configuration: .default)
         var urlRequest = URLRequest(url: url)
@@ -92,7 +98,22 @@ class AuthManager {
         return data
     }
     
-    func queryAccount() {
+    func queryAccount(bearer: String, token: String) async throws -> Data? {
+        guard let url = URL(string: URLPath.account.URLString) else {
+            return nil
+        }
         
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.addValue(bearer, forHTTPHeaderField: "Bearer")
+        urlRequest.addValue(token, forHTTPHeaderField: "Token")
+        
+        let (data, response) = try await URLSession.shared.data(for: urlRequest)
+        
+        if (response as? HTTPURLResponse)?.statusCode != 200 {
+            return nil
+        }
+        
+        return data
     }
 }
