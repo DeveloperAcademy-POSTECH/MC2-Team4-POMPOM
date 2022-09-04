@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseFirestore
 
 //코멘트 쓰는 곳
-struct TextFieldView: View {
+struct CommentInputView: View {
     private let reference = Firestore.firestore().collection("message")
     
     @State private var comment: String = ""

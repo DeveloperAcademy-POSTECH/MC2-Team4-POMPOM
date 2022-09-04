@@ -11,7 +11,7 @@ enum CharacterSize {
     case large, medium, small
 }
 
-struct CoupleView: View {
+struct MainView: View {
     @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
     @AppStorage("isConnectedPartner") var isConnectedPartnerStorage: Bool = false
 
@@ -23,7 +23,7 @@ struct CoupleView: View {
     
     @StateObject var myClothViewModel = PickerCombineViewModel()
     @StateObject var partnerClothViewModel = ClothesViewModel()
-    @StateObject var coupleViewModel = CoupleViewModel()
+    @StateObject var coupleViewModel = MainViewModel()
     var codeViewModel = CodeManager()
     
     var body: some View {
@@ -54,7 +54,7 @@ struct CoupleView: View {
                 }
                 
                 if coupleViewModel.sheetMode == .none && coupleViewModel.isConnectedPartner {
-                    CardContent()
+                    CommentsView()
                 }
                 
                 SheetView(sheetMode: $coupleViewModel.sheetMode) {
@@ -115,6 +115,6 @@ struct CoupleView: View {
 
 struct CoupleView_Previews: PreviewProvider {
     static var previews: some View {
-        CoupleView()
+        MainView()
     }
 }

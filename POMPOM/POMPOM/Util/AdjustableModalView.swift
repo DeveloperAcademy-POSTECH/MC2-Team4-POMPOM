@@ -7,25 +7,7 @@
 
 import SwiftUI
 
-struct CardContent: View {
-    @StateObject var keyboard : KeyboardObserver = KeyboardObserver()
-    
-    public var body: some View {
-        VStack {
-            SlideModalView(keyboard: keyboard) {
-                MessageListView()
-            }
-            TextFieldView()
-        }.edgesIgnoringSafeArea(.all)
-            .background(Color.white.opacity(0.85))
-            .frame(maxWidth:.infinity, maxHeight: UIScreen.main.bounds.height
-                   , alignment:.bottom)
-            .onAppear{self.keyboard.addObserver()}
-            .onDisappear{self.keyboard.removeObserver()}
-    }
-}
-
-struct SlideModalView<Content> : View where Content : View {
+struct AdjustableModalView<Content> : View where Content : View {
     @ObservedObject var keyboard: KeyboardObserver
     var content: () -> Content
     
@@ -38,7 +20,6 @@ struct SlideModalView<Content> : View where Content : View {
         ModifiedContent(content: self.content(), modifier: CardView(keyboard: keyboard))
     }
 }
-
 
 struct CardView: ViewModifier {
     @ObservedObject var keyboard: KeyboardObserver
@@ -96,13 +77,5 @@ struct CardView: ViewModifier {
                     curHeight = minHeight
                 }
             }
-    }
-}
-
-struct SlideModalView_Previews: PreviewProvider {
-    static var previews: some View {
-        ZStack {
-            CardContent()
-        }
     }
 }
