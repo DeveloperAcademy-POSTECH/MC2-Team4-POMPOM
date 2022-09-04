@@ -7,6 +7,16 @@
 
 import Foundation
 
+enum AuthError: Error {
+    case badRequest // 400
+    case unAuthorized // 401
+    case serverError // 500 서버에러
+    case invalidUID
+    case invalidDeviceToken
+    case invalidPassword
+    case unexpected
+}
+
 class AuthManager {
     func hello() async throws -> Bool {
         guard let url = URL(string: URLPath.hello.URLString) else {
@@ -20,15 +30,15 @@ class AuthManager {
     
     func signUp(userID: String, password: String, deviceToken: String) async throws -> Data {
         guard userID.count == 36 else {
-            return Data()
+            throw AuthError.invalidUID
         }
         
         guard password.count >= 10 && password.count <= 30  else {
-            return Data()
+            throw AuthError.invalidPassword
         }
         
         guard deviceToken.count == 64 else {
-            return Data()
+            throw AuthError.invalidDeviceToken
         }
         
         
@@ -53,11 +63,11 @@ class AuthManager {
     
     func Authenticate(userName: String, password: String) async throws -> Data {
         guard userName.count == 36 else {
-            return Data()
+            throw AuthError.invalidUID
         }
         
         guard password.count >= 10 && password.count <= 30  else {
-            return Data()
+            throw AuthError.invalidPassword
         }
         
         let dic = [
@@ -79,7 +89,7 @@ class AuthManager {
     }
     
     func pair(token: String, partnerName: String) async throws -> Data{
-        guard partnerName.count == 36 else { return Data()}
+        guard partnerName.count == 36 else { throw AuthError.invalidUID }
         
         let dic = [
             "partnerName" : partnerName
@@ -111,7 +121,7 @@ class AuthManager {
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
         
         if (response as? HTTPURLResponse)?.statusCode != 200 {
-            return nil
+            throw AuthError.unexpected
         }
         
         return data
