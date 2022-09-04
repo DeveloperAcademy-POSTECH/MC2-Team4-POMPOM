@@ -47,7 +47,6 @@
 		C0F1DC0328575BCB00F8EAA0 /* ClothPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F1DC0228575BCB00F8EAA0 /* ClothPickerViewModel.swift */; };
 		D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F41832857135D0037B3EB /* OnboardingViewModel.swift */; };
 		D40F418628571FE70037B3EB /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F418528571FE70037B3EB /* OnboardingPageView.swift */; };
-		D430FCFE2859A76900F216CB /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430FCFD2859A76900F216CB /* ColorPickerView.swift */; };
 		D430FD42285B984200F216CB /* DayDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430FD41285B984200F216CB /* DayDisplayView.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +102,6 @@
 		C350ECAB77A213FE32F7F534 /* Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig"; sourceTree = "<group>"; };
 		D40F41832857135D0037B3EB /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		D40F418528571FE70037B3EB /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
-		D430FCFD2859A76900F216CB /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		D430FD41285B984200F216CB /* DayDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDisplayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				8A0732CC285B056C00E72AD9 /* SettingsView */,
-				D430FCFC2859A73700F216CB /* ColorPickerView */,
 				C0F1DBFE28575B9100F8EAA0 /* ClothPickerView */,
 				AEA32AA7285741B5006A31D4 /* ChatView */,
 				C06CE15C2851DD1C00BBDA68 /* Onboarding */,
@@ -312,14 +309,6 @@
 				C0F1DC0228575BCB00F8EAA0 /* ClothPickerViewModel.swift */,
 			);
 			path = ClothPickerView;
-			sourceTree = "<group>";
-		};
-		D430FCFC2859A73700F216CB /* ColorPickerView */ = {
-			isa = PBXGroup;
-			children = (
-				D430FCFD2859A76900F216CB /* ColorPickerView.swift */,
-			);
-			path = ColorPickerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -470,7 +459,6 @@
 				AE8509F52859C0EF00D11812 /* SlideModalView.swift in Sources */,
 				C0182C4028598470000F0A6A /* Seperator.swift in Sources */,
 				D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */,
-				D430FCFE2859A76900F216CB /* ColorPickerView.swift in Sources */,
 				AE850A25285C725100D11812 /* hideKeyboard.swift in Sources */,
 				AB5DDF072876953B00C906E0 /* CoupleViewModel.swift in Sources */,
 				AEA32AAD285741DB006A31D4 /* MessageBubbleView.swift in Sources */,
