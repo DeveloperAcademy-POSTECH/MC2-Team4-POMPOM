@@ -39,7 +39,6 @@
 		C06CE15E2851DD4800BBDA68 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE15D2851DD4800BBDA68 /* OnboardingView.swift */; };
 		C06CE1602851DD6700BBDA68 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE15F2851DD6700BBDA68 /* NotificationManager.swift */; };
 		C0A779C72849E1C50086810C /* POMPOMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779C62849E1C50086810C /* POMPOMApp.swift */; };
-		C0A779C92849E1C50086810C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779C82849E1C50086810C /* ContentView.swift */; };
 		C0A779CE2849E1C60086810C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CD2849E1C60086810C /* Preview Assets.xcassets */; };
 		C0C7EE9A285B42A2003DA1A9 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7EE99285B42A2003DA1A9 /* CustomAlert.swift */; };
 		C0ED415A285868F1007E5502 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED4159285868F1007E5502 /* Color.swift */; };
@@ -93,7 +92,6 @@
 		C06CE15F2851DD6700BBDA68 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		C0A779C32849E1C50086810C /* POMPOM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POMPOM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A779C62849E1C50086810C /* POMPOMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMPOMApp.swift; sourceTree = "<group>"; };
-		C0A779C82849E1C50086810C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C0A779CA2849E1C60086810C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0A779CD2849E1C60086810C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C0C7EE99285B42A2003DA1A9 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 				AEA32AA7285741B5006A31D4 /* ChatView */,
 				C06CE15C2851DD1C00BBDA68 /* Onboarding */,
 				C06CE14C2851DC2600BBDA68 /* CoupleView */,
-				C0A779C82849E1C50086810C /* ContentView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -442,7 +439,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0A779C92849E1C50086810C /* ContentView.swift in Sources */,
 				C06CE1532851DC7F00BBDA68 /* ClothesViewModel.swift in Sources */,
 				C06CE15E2851DD4800BBDA68 /* OnboardingView.swift in Sources */,
 				AEA32AAB285741CF006A31D4 /* MessageListView.swift in Sources */,
