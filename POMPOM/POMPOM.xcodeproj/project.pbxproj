@@ -175,14 +175,6 @@
 			path = ChatView;
 			sourceTree = "<group>";
 		};
-		C04795C1284F15C10040646A /* System */ = {
-			isa = PBXGroup;
-			children = (
-				C0A779C62849E1C50086810C /* POMPOMApp.swift */,
-			);
-			path = System;
-			sourceTree = "<group>";
-		};
 		C04795C5284F15D20040646A /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +270,7 @@
 		C0AC7B3B28B5F46D00DED61F /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				C0A779C62849E1C50086810C /* POMPOMApp.swift */,
 				AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */,
 				AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */,
 				C0A779CD2849E1C60086810C /* Preview Assets.xcassets */,
@@ -331,7 +324,6 @@
 			isa = PBXGroup;
 			children = (
 				C0F90CB22850729E00CC2C0E /* Secret.swift */,
-				C04795C1284F15C10040646A /* System */,
 			);
 			path = Secrets;
 			sourceTree = "<group>";
