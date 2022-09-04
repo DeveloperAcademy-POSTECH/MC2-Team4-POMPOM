@@ -36,7 +36,7 @@ struct POMPOMApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CoupleView()
+            MainView()
         }
     }
 }

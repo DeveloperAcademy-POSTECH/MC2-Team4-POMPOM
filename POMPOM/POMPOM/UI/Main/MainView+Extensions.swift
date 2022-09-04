@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 // MARK: - Computed properties related to layout
-extension CoupleView {
+extension MainView {
     var characterSize: CharacterSize {
         switch coupleViewModel.sheetMode {
         case .none:
@@ -71,7 +71,7 @@ protocol NetworkDelegate {
     func didConnectedPartner()
 }
 
-extension CoupleView: NetworkDelegate {
+extension MainView: NetworkDelegate {
     func showAlertwith(message: String) {
         coupleViewModel.alertMessage = message
         coupleViewModel.showAlert.toggle()
@@ -114,7 +114,7 @@ struct AccesoriesView: View {
 }
 
 // MARK: - Computed properties of subviews
-extension CoupleView {
+extension MainView {
     var partnerCharacterView: some View {
         Button {
             coupleViewModel.actionSheetPresented = true
@@ -194,7 +194,7 @@ extension CoupleView {
 }
 
 // MARK: - methods
-extension CoupleView {
+extension MainView {
     func connectPartner() {
         Task {
             codeViewModel.getCode()

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class CoupleViewModel: ObservableObject {
+class MainViewModel: ObservableObject {
     @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
     @AppStorage("isConnectedPartner") var isConnectedPartnerStorage: Bool = false
 
