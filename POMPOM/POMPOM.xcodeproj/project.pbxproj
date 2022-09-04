@@ -187,7 +187,7 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		C04795C7284F15D20040646A /* Networking */ = {
+		C04795C7284F15D20040646A /* API */ = {
 			isa = PBXGroup;
 			children = (
 				C06CE15A2851DCFE00BBDA68 /* ConnectionManager.swift */,
@@ -195,7 +195,7 @@
 				C06CE15F2851DD6700BBDA68 /* NotificationManager.swift */,
 				2521EC75285A0D2400B02E1A /* ClothesManager.swift */,
 			);
-			path = Networking;
+			path = API;
 			sourceTree = "<group>";
 		};
 		C06CE14C2851DC2600BBDA68 /* CoupleView */ = {
@@ -258,7 +258,7 @@
 				C0AC7B3B28B5F46D00DED61F /* Config */,
 				C0ED415B2858697D007E5502 /* Models */,
 				C0ED4157285868D7007E5502 /* Util */,
-				C04795C7284F15D20040646A /* Networking */,
+				C04795C7284F15D20040646A /* API */,
 				C04795C5284F15D20040646A /* UI */,
 			);
 			path = POMPOM;
