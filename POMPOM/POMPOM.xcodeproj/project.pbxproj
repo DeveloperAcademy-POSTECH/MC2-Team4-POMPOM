@@ -38,12 +38,9 @@
 		C06CE15B2851DCFE00BBDA68 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE15A2851DCFE00BBDA68 /* ConnectionManager.swift */; };
 		C06CE15E2851DD4800BBDA68 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE15D2851DD4800BBDA68 /* OnboardingView.swift */; };
 		C06CE1602851DD6700BBDA68 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE15F2851DD6700BBDA68 /* NotificationManager.swift */; };
-		C06CE1632851DD8500BBDA68 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE1622851DD8500BBDA68 /* LoginView.swift */; };
-		C06CE1652851DDAB00BBDA68 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CE1642851DDAB00BBDA68 /* LoginViewModel.swift */; };
 		C0A779C72849E1C50086810C /* POMPOMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779C62849E1C50086810C /* POMPOMApp.swift */; };
 		C0A779C92849E1C50086810C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A779C82849E1C50086810C /* ContentView.swift */; };
 		C0A779CE2849E1C60086810C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A779CD2849E1C60086810C /* Preview Assets.xcassets */; };
-		C0A779D32849E1C60086810C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0A779D12849E1C60086810C /* Model.xcdatamodeld */; };
 		C0C7EE9A285B42A2003DA1A9 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7EE99285B42A2003DA1A9 /* CustomAlert.swift */; };
 		C0ED415A285868F1007E5502 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED4159285868F1007E5502 /* Color.swift */; };
 		C0ED415D28586989007E5502 /* Cloth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED415C28586989007E5502 /* Cloth.swift */; };
@@ -95,14 +92,11 @@
 		C06CE15A2851DCFE00BBDA68 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		C06CE15D2851DD4800BBDA68 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C06CE15F2851DD6700BBDA68 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		C06CE1622851DD8500BBDA68 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		C06CE1642851DDAB00BBDA68 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C0A779C32849E1C50086810C /* POMPOM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POMPOM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A779C62849E1C50086810C /* POMPOMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMPOMApp.swift; sourceTree = "<group>"; };
 		C0A779C82849E1C50086810C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C0A779CA2849E1C60086810C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0A779CD2849E1C60086810C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C0A779D22849E1C60086810C /* POMPOM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = POMPOM.xcdatamodel; sourceTree = "<group>"; };
 		C0C7EE99285B42A2003DA1A9 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		C0ED4159285868F1007E5502 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		C0ED415C28586989007E5502 /* Cloth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloth.swift; sourceTree = "<group>"; };
@@ -196,7 +190,6 @@
 				D430FCFC2859A73700F216CB /* ColorPickerView */,
 				C0F1DBFE28575B9100F8EAA0 /* ClothPickerView */,
 				AEA32AA7285741B5006A31D4 /* ChatView */,
-				C06CE1612851DD7700BBDA68 /* LoginView */,
 				C06CE15C2851DD1C00BBDA68 /* Onboarding */,
 				C06CE14C2851DC2600BBDA68 /* CoupleView */,
 				C0A779C82849E1C50086810C /* ContentView.swift */,
@@ -251,15 +244,6 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		C06CE1612851DD7700BBDA68 /* LoginView */ = {
-			isa = PBXGroup;
-			children = (
-				C06CE1622851DD8500BBDA68 /* LoginView.swift */,
-				C06CE1642851DDAB00BBDA68 /* LoginViewModel.swift */,
-			);
-			path = LoginView;
-			sourceTree = "<group>";
-		};
 		C0A779BA2849E1C50086810C = {
 			isa = PBXGroup;
 			children = (
@@ -285,7 +269,6 @@
 				C0ED415B2858697D007E5502 /* Models */,
 				C0ED4157285868D7007E5502 /* Util */,
 				C0F90CB12850728F00CC2C0E /* Secrets */,
-				C04795C1284F15C10040646A /* System */,
 				C04795C7284F15D20040646A /* Networking */,
 				C04795C5284F15D20040646A /* UI */,
 			);
@@ -298,7 +281,6 @@
 				AB132FE82854BE5C0023DBD0 /* Montserrat-Bold.ttf */,
 				AB132FE72854BE5C0023DBD0 /* Montserrat-ExtraBold.ttf */,
 				C0A779CD2849E1C60086810C /* Preview Assets.xcassets */,
-				C0A779D12849E1C60086810C /* Model.xcdatamodeld */,
 				C0A779CA2849E1C60086810C /* Assets.xcassets */,
 				C04FCAF5284E24020040F790 /* GoogleService-Info.plist */,
 				C059279A2852FF8C0071751A /* Info.plist */,
@@ -349,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				C0F90CB22850729E00CC2C0E /* Secret.swift */,
+				C04795C1284F15C10040646A /* System */,
 			);
 			path = Secrets;
 			sourceTree = "<group>";
@@ -509,15 +492,12 @@
 				AE8509F92859C10E00D11812 /* TextFieldView.swift in Sources */,
 				C0ED415A285868F1007E5502 /* Color.swift in Sources */,
 				AE8509F52859C0EF00D11812 /* SlideModalView.swift in Sources */,
-				C06CE1632851DD8500BBDA68 /* LoginView.swift in Sources */,
-				C0A779D32849E1C60086810C /* Model.xcdatamodeld in Sources */,
 				C0182C4028598470000F0A6A /* Seperator.swift in Sources */,
 				D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */,
 				D430FCFE2859A76900F216CB /* ColorPickerView.swift in Sources */,
 				AE850A25285C725100D11812 /* hideKeyboard.swift in Sources */,
 				AB5DDF072876953B00C906E0 /* CoupleViewModel.swift in Sources */,
 				AEA32AAD285741DB006A31D4 /* MessageBubbleView.swift in Sources */,
-				C06CE1652851DDAB00BBDA68 /* LoginViewModel.swift in Sources */,
 				C0F1DC0028575BA700F8EAA0 /* ClothPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -733,19 +713,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		C0A779D12849E1C60086810C /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C0A779D22849E1C60086810C /* POMPOM.xcdatamodel */,
-			);
-			currentVersion = C0A779D22849E1C60086810C /* POMPOM.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = C0A779BB2849E1C50086810C /* Project object */;
 }
