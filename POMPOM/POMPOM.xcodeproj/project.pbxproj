@@ -46,7 +46,6 @@
 		C0ED415D28586989007E5502 /* Cloth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED415C28586989007E5502 /* Cloth.swift */; };
 		C0F1DC0028575BA700F8EAA0 /* ClothPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F1DBFF28575BA700F8EAA0 /* ClothPickerView.swift */; };
 		C0F1DC0328575BCB00F8EAA0 /* ClothPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F1DC0228575BCB00F8EAA0 /* ClothPickerViewModel.swift */; };
-		C0F90CB32850729E00CC2C0E /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F90CB22850729E00CC2C0E /* Secret.swift */; };
 		D40F41842857135D0037B3EB /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F41832857135D0037B3EB /* OnboardingViewModel.swift */; };
 		D40F418628571FE70037B3EB /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F418528571FE70037B3EB /* OnboardingPageView.swift */; };
 		D430FCFE2859A76900F216CB /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430FCFD2859A76900F216CB /* ColorPickerView.swift */; };
@@ -102,7 +101,6 @@
 		C0ED415C28586989007E5502 /* Cloth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloth.swift; sourceTree = "<group>"; };
 		C0F1DBFF28575BA700F8EAA0 /* ClothPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothPickerView.swift; sourceTree = "<group>"; };
 		C0F1DC0228575BCB00F8EAA0 /* ClothPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothPickerViewModel.swift; sourceTree = "<group>"; };
-		C0F90CB22850729E00CC2C0E /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		C0FF3531284E9FB6001B1129 /* POMPOM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = POMPOM.entitlements; sourceTree = "<group>"; };
 		C350ECAB77A213FE32F7F534 /* Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Target Support Files/Pods-POMPOMTests/Pods-POMPOMTests.release.xcconfig"; sourceTree = "<group>"; };
 		D40F41832857135D0037B3EB /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -260,7 +258,6 @@
 				C0AC7B3B28B5F46D00DED61F /* Config */,
 				C0ED415B2858697D007E5502 /* Models */,
 				C0ED4157285868D7007E5502 /* Util */,
-				C0F90CB12850728F00CC2C0E /* Secrets */,
 				C04795C7284F15D20040646A /* Networking */,
 				C04795C5284F15D20040646A /* UI */,
 			);
@@ -318,14 +315,6 @@
 				C0F1DC0228575BCB00F8EAA0 /* ClothPickerViewModel.swift */,
 			);
 			path = ClothPickerView;
-			sourceTree = "<group>";
-		};
-		C0F90CB12850728F00CC2C0E /* Secrets */ = {
-			isa = PBXGroup;
-			children = (
-				C0F90CB22850729E00CC2C0E /* Secret.swift */,
-			);
-			path = Secrets;
 			sourceTree = "<group>";
 		};
 		D430FCFC2859A73700F216CB /* ColorPickerView */ = {
@@ -455,7 +444,6 @@
 			files = (
 				C0A779C92849E1C50086810C /* ContentView.swift in Sources */,
 				C06CE1532851DC7F00BBDA68 /* ClothesViewModel.swift in Sources */,
-				C0F90CB32850729E00CC2C0E /* Secret.swift in Sources */,
 				C06CE15E2851DD4800BBDA68 /* OnboardingView.swift in Sources */,
 				AEA32AAB285741CF006A31D4 /* MessageListView.swift in Sources */,
 				C06CE14B2851DC0900BBDA68 /* CoupleView.swift in Sources */,
