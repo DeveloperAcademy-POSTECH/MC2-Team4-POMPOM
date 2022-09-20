@@ -67,7 +67,7 @@ final class PickerCombineViewModel: ClothesViewModel {
         
         setCategory
             .removeDuplicates()
-            .compactMap { category in
+            .map { category in
                 self.selectedItems[category]?.hex
             }
             .sink { hex in

@@ -15,4 +15,22 @@ struct Constant {
     static var screenHeight: CGFloat {
         UIScreen.main.bounds.height
     }
+    
+    
 }
+
+enum URLPath: String  {
+    private static let authURL = "https://pompom-ada.herokuapp.com/api/"
+    
+    case hello
+    case signup
+    case authenticate
+    case pair
+    case account
+    
+    var URLString: String {
+        Self.authURL + self.rawValue
+    }
+}
+
+
