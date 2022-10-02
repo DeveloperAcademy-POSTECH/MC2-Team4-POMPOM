@@ -64,7 +64,7 @@ struct ConnectionManager {
         
         do {
             let querySnapShot = try await usersRef.whereField("code", isEqualTo: code).getDocuments()
-            returnValue = querySnapShot.documents[0].documentID
+            returnValue = querySnapShot.documents[0].documentID // 인덱스 에러 자주 발생
         } catch { }
         
         return returnValue
