@@ -21,11 +21,11 @@
 
 ## Screenshots
 
-<img src="https://user-images.githubusercontent.com/89325126/174545593-344e9eeb-c135-4d41-9c90-249b69bdce91.jpg  width="200" height="400"/>
-<img src="https://user-images.githubusercontent.com/89325126/174545601-0f33d46f-d0dd-4103-9147-d282fa9414f3.jpg  width="200" height="400"/>
-<img src="https://user-images.githubusercontent.com/89325126/174545609-9c73eadc-be3f-45be-a25c-0f4696f63945.jpg  width="200" height="400"/>
-<img src="https://user-images.githubusercontent.com/89325126/174545614-1df524cc-ffad-4dcf-b4f1-05728e162341.jpg  width="200" height="400"/>
-<img src="https://user-images.githubusercontent.com/89325126/174545621-790f554b-913f-4066-8ada-2244765a219f.jpg  width="200" height="400"/>
+|![1](https://user-images.githubusercontent.com/40821203/201463435-f30ab5a3-6fb2-4fe9-ac7f-33176d70998b.jpeg)|![2](https://user-images.githubusercontent.com/40821203/201463440-20de9727-8ae8-4be8-9483-5421a742bd29.jpeg)|![3](https://user-images.githubusercontent.com/40821203/201463448-a7683949-a651-47ba-ae35-b15f004e1f35.jpg)|![4](https://user-images.githubusercontent.com/40821203/201463453-87b3998d-f637-4303-b4cd-eab3f48d6681.jpg)|![5](https://user-images.githubusercontent.com/40821203/201463459-f338c596-68e3-4e36-855f-282cf6115a8d.jpg)|
+|-|-|-|-|-|
+
+
+
 
 
 ## Skills & Tech Stack
